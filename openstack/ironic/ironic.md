@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installation
+title: Ironic
 nav_order: 1
 has_children: true
 permalink: /openstack/ironic
