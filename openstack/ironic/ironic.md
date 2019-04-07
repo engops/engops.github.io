@@ -7,3 +7,6 @@ permalink: /openstack/ironic
 parent: openStack
 ---
 
+# Ironic
+
+
