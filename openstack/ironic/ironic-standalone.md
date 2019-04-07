@@ -8,12 +8,6 @@ permalink: /openstack/ironic/ironic-standalone
 ---
 
 
-
-
-
-
-
-
 #  Instalation and using Ironic as standalone project
 ---
 
