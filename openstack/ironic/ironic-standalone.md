@@ -2,9 +2,9 @@
 layout: default
 title: Ironic StandAlone
 nav_order: 2
-has_children: true
 parent: Ironic
 gran_parent: OpenStack
+permalink: /openstack/ironic/ironic-standalone
 ---
 
 
