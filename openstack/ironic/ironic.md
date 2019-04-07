@@ -4,7 +4,7 @@ title: Ironic Project
 nav_order: 1
 has_children: true
 permalink: /openstack/ironic
-parent: openStack
+parent: OpenStack
 ---
 
 # Ironic
