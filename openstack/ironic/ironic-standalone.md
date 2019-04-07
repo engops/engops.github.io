@@ -7,16 +7,20 @@ nav_order: 2
 ---
 
 #  Instalation and using Ironic as standalone project
-
 ---
 
+```
 setenforce 0
 sed s/SELINUX=.*/SELINUX=disabled/ /etc/selinux/config -i
+```
 
+```
 systemctl stop firewalld
 systemctl disable firewalld
+```
 
-#### interface de gerencia
+interface de gerencia
+```
 cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth0 
 TYPE=Ethernet
 BOOTPROTO=static
@@ -28,6 +32,7 @@ PREFIX=22
 GATEWAY=172.25.48.129
 DNS1=8.8.8.8
 EOF
+```
 
 #### interface do dhcp
 cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth1
