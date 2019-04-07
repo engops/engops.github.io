@@ -34,7 +34,8 @@ DNS1=8.8.8.8
 EOF
 ```
 
-#### interface do dhcp
+interface do dhcp
+```
 cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth1
 TYPE=Ethernet
 BOOTPROTO=static
@@ -44,11 +45,15 @@ ONBOOT=yes
 IPADDR=192.168.0.2
 PREFIX=24
 EOF
+```
 
 #### pacotes basicos e repositorios
+```
 yum install vim epel-release bash-completion centos-release-openstack-rocky -y
+```
 
-#### banco de dados para o ironic
+banco de dados para o ironic
+```
 yum install mariadb-server -y
 
 systemctl enable mariadb.service
@@ -57,14 +62,18 @@ systemctl start mariadb.service
 mysql -uroot -e "CREATE DATABASE ironicdb CHARACTER SET utf8"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON ironicdb.* TO 'ironicuser'@'localhost' IDENTIFIED BY 'ironicpass'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON ironicdb.* TO 'ironicuser'@'%' IDENTIFIED BY'ironicpass'"
+```
 
-#### serviço de messageria
+serviço de messageria
+```
 yum install rabbitmq-server.noarch -y
 
 systemctl enable rabbitmq-server.service
 systemctl start rabbitmq-server.service
+```
 
-#### serviço de dhcp
+serviço de dhcp
+```
 yum install dhcp -y
 cat << EOF > /etc/dhcp/dhcpd.conf
 authoritative;
@@ -88,14 +97,14 @@ EOF
 
 systemctl enable dhcpd
 systemctl start dhcpd
+```
 
-#### serviço de tftp
+serviço de tftp
+```
 yum install tftp-server syslinux-tftpboot xinetd tftp -y
 
 mv /var/lib/tftpboot /
-
 ln -s /tftpboot /var/lib/
-
 mkdir -p /tftpboot/master_images
 mkdir -p /tftpboot/pxelinux.cfg
 mkdir -p /tftpboot/ironic
@@ -104,24 +113,23 @@ echo 're ^(/tftpboot/) /tftpboot/\2' > /tftpboot/map-file
 echo 're ^/tftpboot/ /tftpboot/' >> /tftpboot/map-file
 echo 're ^(^/) /tftpboot/\1' >> /tftpboot/map-file
 echo 're ^([^/]) /tftpboot/\1' >> /tftpboot/map-file
+```
 
+```
 systemctl enable xinetd.service tftp.service
 systemctl start xinetd.service tftp.service
+```
 
-#### serivço de http
+serivço de http
+```
 yum install httpd -y
 mkdir /var/www/html/httpboot
 
 systemctl enable httpd.service
 systemctl start httpd.service
+```
 
-##### imagens... 
-# yum install diskimage-builder -y
-# disk-image-create ironic-agent centos7 -o provide-img ## ainda testando
-###
-# disk-image-create ironic-agent fedora -o ironic-deploy
-###disk-image-create --install-type source -o deploy ironic-agent ubuntu devuser
-
+```
 yum install qemu-img psmisc wget python-networkx squashfs-tools policycoreutils-python libguestfs-bash-completion libvirt diskimage-builder -y
 
 systemctl enable libvirtd
@@ -138,8 +146,10 @@ virt-sysprep -a centos7.qcow2 --root-password password:12
 mv centos7.initrd /var/www/html/httpboot
 mv centos7.qcow2 /var/www/html/httpboot
 mv centos7.vmlinuz /var/www/html/httpboot
+```
 
-#### pacotes do ironic e dos clientes
+pacotes do ironic e dos clientes
+```
 yum install openstack-ironic-conductor.noarch openstack-ironic-api.noarch python-ironicclient python-openstackclient -y
 
 cat << EOF > /etc/ironic/ironic.conf
@@ -233,7 +243,9 @@ ironic-dbsync --config-file /etc/ironic/ironic.conf create_schema
 systemctl enable openstack-ironic-api openstack-ironic-conductor
 
 systemctl start openstack-ironic-api openstack-ironic-conductor
+```
 
+```
 cat << EOF > ~/RC_IRONIC
 export OS_AUTH_TOKEN=fake-token
 export IRONIC_URL=http://172.25.49.58:6385/
@@ -246,9 +258,10 @@ source ~/RC_IRONIC
 ironic node-list
 
 openstack baremetal node list
+```
 
 
-####
+```
 nodename=compute-teste
 nodeuuid="1e1ba69d-a6df-4f4a-8653-fa0402c591d6"
 macaddr="52:54:00:58:0c:fc"
@@ -258,13 +271,16 @@ ipmiuser="root"
 ipmipass="calvin"
 ipmiport="7701"
 imagemd5=$(md5sum /var/www/html/httpboot/centos7.qcow2 | awk '{print $1}')
-#####
+```
 
+```
 #### no service-node
 vbmc add ${nodename} --port ${ipmiport} --address ${ipmiaddr} --username ${ipmiuser} --password ${ipmipass}
 vbmc start ${nodename} 
 ####
+```
 
+```
 openstack baremetal node create --driver ipmi --uuid ${nodeuuid} --name ${nodename} \
     --driver-info ipmi_address=${ipmiaddr} \
     --driver-info ipmi_username=${ipmiuser} \
@@ -272,9 +288,13 @@ openstack baremetal node create --driver ipmi --uuid ${nodeuuid} --name ${nodena
     --driver-info ipmi_port=${ipmiport} \
     --driver-info deploy_kernel=file:///tftpboot/ironic/coreos_production_pxe.vmlinuz \
     --driver-info deploy_ramdisk=file:///tftpboot/ironic/coreos_production_pxe_image-oem.cpio.gz
+```
 
+```
 openstack baremetal port create ${macaddr} --node ${nodeuuid}
+```
 
+```
 openstack baremetal node set ${nodeuuid} \
     --instance-info image_source=http://172.25.49.58:80/httpboot/centos7.qcow2 \
     --instance-info image_checksum=${imagemd5} \
@@ -288,7 +308,9 @@ openstack baremetal node set ${nodeuuid} \
     --inspect-interface no-inspect \
     --raid-interface no-raid \
     --rescue-interface no-rescue
+```
 
+```
 openstack baremetal node validate ${nodeuuid}
 
 openstack baremetal node manage ${nodeuuid}
@@ -296,4 +318,4 @@ openstack baremetal node manage ${nodeuuid}
 openstack baremetal node provide ${nodeuuid}
 
 openstack baremetal node deploy ${nodeuuid}
-
+```
