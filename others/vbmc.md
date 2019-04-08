@@ -1,11 +1,12 @@
 ---
 layout: default
-title: VirtuaTITLE
+title: VBMC
 nav_order: 1
 has_children: true
-permalink: /others/virtualPERMLINK
+permalink: /others/virtuaVBMC
 parent: Others
 ---
 
 ##how to use
+
 
