@@ -1,13 +1,11 @@
 ---
 layout: default
-title: vbmc
+title: Virtualization
 nav_order: 1
 has_children: true
-permalink: /others/vbmc
+permalink: /others/virtualization
 parent: Others
 ---
-
-# VBMC
 
 ##how to use
 

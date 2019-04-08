@@ -1,14 +1,14 @@
 ---
 layout: default
-title: VBMC
+title: Virtual BMC
 nav_order: 2
 parent: vbmc
 gran_parent: Others
-permalink: /others/vbmc/vbmc-howtouse
+permalink: /others/virtualization/vbmc-howtouse
 ---
 
 
-#  Instalatio
+#  Instalation
 ---
 
 ```
