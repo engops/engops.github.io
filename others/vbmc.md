@@ -10,3 +10,10 @@ parent: Others
 ##how to use
 
 
+
+
+
+```
+yum install python2-virtualbmc -y
+```
+
