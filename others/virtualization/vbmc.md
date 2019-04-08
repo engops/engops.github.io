@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Virtualization
+title: VirtuaTITLE
 nav_order: 1
 has_children: true
-permalink: /others/virtualization
+permalink: /others/virtualPERMLINK
 parent: Others
 ---
 
