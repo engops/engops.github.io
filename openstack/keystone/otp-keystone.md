@@ -2,7 +2,7 @@
 layout: default
 title: OTP
 nav_order: 2
-parent: Ironic
+parent: Keystone
 gran_parent: OpenStack
 permalink: /openstack/keystone/otp-keystone
 ---
