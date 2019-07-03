@@ -109,18 +109,18 @@ vim /etc/shibboleth/shibboleth2.xml
 
     <RequestMapper type="Native">
         <RequestMap applicationId="default">
-            <Host name="<<vip-keystoneendpoint.region-1.internal_domain>>">
-                <Path name="idp-<<region-2>>" applicationId="idp-<<region-2>>" authType="shibboleth" requireSession="true"/>
-                <Path name="idp-<<region-3>>" applicationId="idp-<<region-3>>" authType="shibboleth" requireSession="true"/>
+            <Host name="vip-keystoneendpoint.region-1.internal_domain">
+                <Path name="idp-region-2" applicationId="idp-region-2" authType="shibboleth" requireSession="true"/>
+                <Path name="idp-region-3" applicationId="idp-region-3" authType="shibboleth" requireSession="true"/>
             </Host>
         </RequestMap>
     </RequestMapper>
 
-    <ApplicationDefaults entityID="https://<<vip-keystoneendpoint.region-1.internal_domain>>:5000/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
+    <ApplicationDefaults entityID="https://vip-keystoneendpoint.region-1.internal_domain:5000/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="false" cookieProps="https">
-            <SSO discoveryProtocol="SAMLDS" discoveryURL="https://<<vip-keystoneendpoint.region-1.internal_domain>>:5000/DS">
+            <SSO discoveryProtocol="SAMLDS" discoveryURL="https://vip-keystoneendpoint.region-1.internal_domain:5000/DS">
                 SAML2 SAML1
             </SSO>
         </Sessions>
@@ -140,13 +140,13 @@ vim /etc/shibboleth/shibboleth2.xml
               attributeValue="http://refeds.org/category/hide-from-discovery" />
         </MetadataProvider>
     
-        <ApplicationOverride id="idp-<<region-2>>">
+        <ApplicationOverride id="idp-region-2">
             <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                 checkAddress="false" handlerSSL="true" cookieProps="https"
-                handlerURL="/idp-<<region-2>>/Shibboleth.sso">
+                handlerURL="/idp-region-2/Shibboleth.sso">
 
-                <SSO discoveryProtocol="SAMLDS" entityID="https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/v3/OS-FEDERATION/saml2/idp" forceAuthn="true"
-                    discoveryURL="https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/DS">
+                <SSO discoveryProtocol="SAMLDS" entityID="https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/v3/OS-FEDERATION/saml2/idp" forceAuthn="true"
+                    discoveryURL="https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/DS">
                     SAML2 SAML1
                 </SSO>
                 <Logout>SAML2 Local</Logout>
@@ -156,17 +156,17 @@ vim /etc/shibboleth/shibboleth2.xml
                 <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
             </Sessions>
             <MetadataProvider type="Chaining">
-                <MetadataProvider type="XML" uri="https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/v3/OS-FEDERATION/saml2/metadata"/>
+                <MetadataProvider type="XML" uri="https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/v3/OS-FEDERATION/saml2/metadata"/>
             </MetadataProvider>
         </ApplicationOverride>
 
-        <ApplicationOverride id="idp-<<region-3>>">
+        <ApplicationOverride id="idp-region-3">
             <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                 checkAddress="false" handlerSSL="true" cookieProps="https"
-                handlerURL="/idp-<<region-3>>/Shibboleth.sso">
+                handlerURL="/idp-region-3/Shibboleth.sso">
 
-                <SSO discoveryProtocol="SAMLDS" entityID="https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/v3/OS-FEDERATION/saml2/idp" forceAuthn="true"
-                    discoveryURL="https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/DS">
+                <SSO discoveryProtocol="SAMLDS" entityID="https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/v3/OS-FEDERATION/saml2/idp" forceAuthn="true"
+                    discoveryURL="https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/DS">
                     SAML2 SAML1
                 </SSO>
                 <Logout>SAML2 Local</Logout>
@@ -176,7 +176,7 @@ vim /etc/shibboleth/shibboleth2.xml
                 <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
             </Sessions>
             <MetadataProvider type="Chaining">
-                <MetadataProvider type="XML" uri="https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/v3/OS-FEDERATION/saml2/metadata"/>
+                <MetadataProvider type="XML" uri="https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/v3/OS-FEDERATION/saml2/metadata"/>
             </MetadataProvider>
         </ApplicationOverride>
     </ApplicationDefaults>   
@@ -273,42 +273,42 @@ Vamos executar primeiro na region-1, pegue o source de Admin do openstack da reg
 ~~~bash
 openstack mapping create --rules rules.json keystone_idp_mapping
 
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-2>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-2>>
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-3>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-3>>
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-2.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-2
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-3.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-3
 
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-2>>
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-3>>
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-2
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-3
 
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r2-az1
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r3-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r2-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r3-az1
 ~~~
 
 Agora na region-2, pegue o source de Admin do openstack da region-2 e execute os seguintes comandos:
 ~~~bash
 openstack mapping create --rules rules.json keystone_idp_mapping
 
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-1>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-1>>
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-3>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-3>>
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-1.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-1
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-3.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-3
 
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-1>>
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-3>>
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-1
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-3
 
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-1>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-1>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r1-az1
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-3>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r3-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-1.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-1.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r1-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-3.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r3-az1
 ~~~
 
 Por fim na region-3, pegue o source de Admin do openstack da region-3 e execute os seguintes comandos:
 ~~~bash
 openstack mapping create --rules rules.json keystone_idp_mapping
 
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-1>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-1>>
-openstack identity provider create --remote-id https://vip-keystoneendpoint.<<region-3>>.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-<<region-2>>
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-1.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-1
+openstack identity provider create --remote-id https://vip-keystoneendpoint.region-3.cloudevolution.corp:5000/v3/OS-FEDERATION/saml2/idp idp-region-2
 
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-1>>
-openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-<<region-2>>
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-1
+openstack federation protocol create saml2 --mapping keystone_idp_mapping --identity-provider idp-region-2
 
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-1>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-1>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r1-az1
-openstack service provider create --service-provider-url '"https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://<<vip-keystoneendpoint>>.idp-<<region-2>>.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r2-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-1.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-1.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r1-az1
+openstack service provider create --service-provider-url '"https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/idp-region-1/Shibboleth.sso/SAML2/ECP' --auth-url https://vip-keystoneendpoint.idp-region-2.internal_domain:5000/v3/OS-FEDERATION/identity_providers/idp-region-1/protocols/saml2/auth r2-az1
 ~~~
 
 ---
@@ -371,8 +371,8 @@ remote_id_attribute = Shib-Identity-Provider
 [saml]
 certfile = /usr/local/ssl/region-1-wildcard.crt
 keyfile = /usr/local/ssl/region-1-wildcard.key
-idp_entity_id = https://<<vip-keystoneendpoint>>.<<region-1>>.internal_domain:5000/v3/OS-FEDERATION/saml2/idp
-idp_sso_endpoint =https://<<vip-keystoneendpoint>>.<<region-1>>.internal_domain/v3/OS-FEDERATION/saml2/sso
+idp_entity_id = https://vip-keystoneendpoint.region-1.internal_domain:5000/v3/OS-FEDERATION/saml2/idp
+idp_sso_endpoint =https://vip-keystoneendpoint.region-1.internal_domain/v3/OS-FEDERATION/saml2/sso
 idp_organization_name = Company
 idp_organization_display_name = Company
 idp_organization_url = https://domain_external.com
@@ -389,12 +389,12 @@ Restart todos os keystones de cada região, para que eles subam as novas confs.
 
 ~~~bash
 systemctl restart httpd
-~~
+~~~
 
 Agora gere o metadata com base no certificado do IDP (certificado wildcard).
 ~~~bash
 keystone-manage saml_idp_metadata > /etc/keystone/saml2_idp_metadata.xml
-~~
+~~~
 
 
 Para finaliza, realize o restart todos os keystones e shibboletes de cada região, para que eles possam se conectar um a outro e baixem o metadado de cada região.
@@ -418,4 +418,4 @@ KEYSTONE_PROVIDER_IDP_NAME = "r1-az1"
 Agora realize o restart do serviço em todos os horizon.
 ~~~bash
 systemctl restart httpd
-~~~~
+~~~
