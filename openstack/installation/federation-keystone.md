@@ -8,6 +8,7 @@ nav_order: 2
 
 #  Implementando federeação entre keystones de diferentes regiões.
 
+
 Para isto será nessario:
   - Certificado Wildcard para cada região
   - Instalação e configuração do Shibboleth nas maquinas de keystone
@@ -98,7 +99,7 @@ yum install -y shibboleth xmlsec1 xmlsec1-openssl
 
 Edite o sequinte arquivo em todos os keystones, alterando algumas informações de região. (Neste exemplo abaixo eu farei para "region-1", repita o passo para as outras regiões)
 vim /etc/shibboleth/shibboleth2.xml 
-...
+~~~bash
 <SPConfig xmlns="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:conf="urn:mace:shibboleth:2.0:native:sp:config"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
@@ -180,11 +181,11 @@ vim /etc/shibboleth/shibboleth2.xml
         </ApplicationOverride>
     </ApplicationDefaults>   
 </SPConfig>
-...
+~~~
 
 Crie o sequinte arquivo em todos os keystones. (Neste exemplo o arquivo será igual para todas as regiões)
 vim /etc/shibboleth/attribute-map.xml
-...
+~~~bash
 <Attributes xmlns="urn:mace:shibboleth:2.0:attribute-map" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Attribute name="openstack_user" id="openstack_user"/>
     <Attribute name="openstack_roles" id="openstack_roles"/>
@@ -226,12 +227,12 @@ vim /etc/shibboleth/attribute-map.xml
         <AttributeDecoder xsi:type="NameIDAttributeDecoder" formatter="$NameQualifier!$SPNameQualifier!$Name" defaultQualifiers="true"/>
     </Attribute>
 </Attributes>
-...
+~~~
 
 
 Crie o sequinte arquivo em todos os keystones. (Neste exemplo o arquivo será igual para todas as regiões)
 vim /usr/local/sbin/rules.json
-...
+~~~bash
 [{
     "remote": [
     {
@@ -260,7 +261,7 @@ vim /usr/local/sbin/rules.json
             }
     }]
 }]
-...
+~~~
 
 ---
 
@@ -316,7 +317,7 @@ openstack service provider create --service-provider-url '"https://<<vip-keyston
 
 Edite o arquivo do haproxy
 vim /etc/haproxy/haproxy.conf
-...
+~~~
 frontend Front_Keystone-Public-5000
         mode http
         bind 0.0.0.0:5000
@@ -346,7 +347,7 @@ backend Back_Keystone-Admin-35357
         server keystone-1 keystone-1:35357 check ssl verify none weight 1 cookie k1
         server keystone-2 keystone-2:35357 check ssl verify none weight 1 cookie k2
         server keystone-3 keystone-3:35357 check ssl verify none weight 1 cookie k3
-...
+~~~
 
 Reinie o serviços do Haproxy
 
@@ -360,7 +361,7 @@ systemctl restart haproxy
 
 Edite o arquivo de configuração do keystone com as seguintes informações:
 vim /etc/keystone/jeystone.conf
-...
+~~~bash
 [auth]
 methods = external,password,token,saml2
 
@@ -382,7 +383,7 @@ idp_contact_email = cloudevolution-infra@domain_external.com
 idp_contact_telephone = +55119999999
 idp_contact_type = technical
 idp_metadata_path = /etc/keystone/saml2_idp_metadata.xml
-...
+~~~
 
 Restart todos os keystones de cada região, para que eles subam as novas confs.
 
@@ -410,9 +411,9 @@ systemctl restart httpd shibd
 Edite o arquivo de configuração de todos os horizon com a seguinte informação e em todos as regiões, apenas altere a zona conforme a região:
 
 vim /etc/openstack-dashboard/local_settings
-...
+~~~bash
 KEYSTONE_PROVIDER_IDP_NAME = "r1-az1"
-...
+~~~
 
 Agora realize o restart do serviço em todos os horizon.
 ~~~bash
