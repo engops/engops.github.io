@@ -13,6 +13,7 @@ Para isto será nessario:
   - Certificado Wildcard para cada região
   - Instalação e configuração do Shibboleth nas maquinas de keystone
   - Haproxy com persistência de sessão no backend do keystone
+  - Configurando o Keystone para trabalhar como SP
   - Configuração do keystone para funcionar como IDP
   - Horizon versão Pike ou superior
   
@@ -353,6 +354,55 @@ Reinie o serviços do Haproxy
 
 ~~~bash
 systemctl restart haproxy
+~~~
+---
+
+## Configurando o Keystone para trabalhar como SP:
+
+Edite o arquivo de conf. do apache responsável por subir o WSGI do Keystone. (/etc/httpd/conf.d/wsgi-keystone.conf)
+
+Dentro do virtualhost do admin (35357), adicione as linhas:
+~~~bash
+    WSGIScriptAliasMatch ^(/v3/OS-FEDERATION/identity_providers/.*?/protocols/.*?/auth)$ /usr/bin/keystone-wsgi-public/$1
+
+    <Location /idp-region-2/Shibboleth.sso>
+      SetHandler shib
+      ShibRequestSetting applicationId idp-region-2
+      Require all granted
+    </Location>
+    
+    <Location /v3/OS-FEDERATION/identity_providers/idp-region-2/protocols/saml2/auth>
+      ShibRequestSetting applicationId idp-region-2
+      ShibRequestSetting requireSession 1
+      AuthType shibboleth
+      ShibExportAssertion Off
+      Require valid-user
+
+      <IfVersion < 2.4>
+        ShibRequireSession On
+        ShibRequireAll On
+      </IfVersion>
+    </Location>
+    
+
+    <Location /idp-region-3/Shibboleth.sso>
+      SetHandler shib
+      ShibRequestSetting applicationId idp-region-3
+      Require all granted
+    </Location>
+    
+    <Location /v3/OS-FEDERATION/identity_providers/idp-region-3/protocols/saml2/auth>
+      ShibRequestSetting applicationId idp-region-3
+      ShibRequestSetting requireSession 1
+      AuthType shibboleth
+      ShibExportAssertion Off
+      Require valid-user
+
+      <IfVersion < 2.4>
+        ShibRequireSession On
+        ShibRequireAll On
+      </IfVersion>
+    </Location>
 ~~~
 
 ---
