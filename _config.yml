@@ -8,7 +8,8 @@ url: "https://engops.github.io" # the base hostname & protocol for your site, e.
 
 # Build settings
 markdown: kramdown
-remote_theme: pmarsceill/just-the-docs
+#remote_theme: pmarsceill/just-the-docs
+remote_theme: jekyll-theme-midnight
 search_enabled: true
 plugins:
   - jekyll-feed
