@@ -1,0 +1,5661 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="http://127.0.0.1:83/static/images/pinguin.png">
+
+<style>
+html, body {
+  height: 100% !important;
+  width: 100% !important; 
+  margin: 0px;
+  font-family: "Lato", sans-serif;
+}
+
+.main {
+  margin-left: 200px;
+  font-size: 20px;
+  padding: 0px 10px;
+  line-height: 0.4;
+}
+
+
+.sidenav {
+
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+.active {
+  background-color: green;
+  color: white;
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.index {
+  padding-top: 0.5em;
+  padding: 1em;
+  padding-bottom: 0.1em;
+  margin-bottom: 4em;
+  height: 10vw !important;
+  -webkit-box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+  box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+}
+
+.pindexurl {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  font-size: 2.5vw !important;
+  line-height: 1em;
+}
+
+.pindextime {
+  text-align: right;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-top: 0.5em !important;
+  font-size: 1.5vw !important;
+  padding-bottom: 0.5em;
+}
+
+
+
+.numerallines {
+  width: 100% !important;
+  margin: 5px 0 20px 0 !important;
+  position: relative !important;
+  overflow: auto !important;
+  font-size: 1em !important;
+}
+
+.numerallines a,
+.numerallines div,
+.numerallines code,
+.numerallines table,
+.numerallines table td,
+.numerallines table tr,
+.numerallines table tbody,
+.numerallines table thead,
+.numerallines table caption,
+.numerallines textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.numerallines .line {
+  white-space: pre !important;
+}
+.numerallines table {
+  width: 100% !important;
+  margin-top: 5px !important;
+  margin-bottom: 30px !important;
+}
+.numerallines table td.code {
+  width: 100% !important;
+}
+.numerallines table td.code .container {
+  position: relative !important;
+}
+.numerallines table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.numerallines table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.3em 0 1em !important;
+  color: #bbbbbb !important;
+  border-right: 5px solid green !important;
+}
+.numerallines table td.code .line {
+  padding: 0 1em !important;
+}
+
+
+.link {
+  margin-top: 10px !important;
+  margin-bottom: 60px !important;
+  line-height: 20px;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+.text p {
+  height: 100%;
+  line-height: 1.3em !important;
+  font-size: 1.3.em !important;
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+  font-weight: normal !important;
+}
+
+.text {
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+}
+
+
+
+.whichserver p {
+  font-size: 2vw !important;
+  line-height: 1em;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 80px;
+  position: absolute;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.whichserver img {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.whichserver {
+  height: 4vw !important;
+  margin-bottom: 1.5em;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px !important;
+  margin-top: 4px !important;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <button class="dropdown-btn">Ceph
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Ceph/Keystone_Integration.html">Keystone Integration</a>
+    <a href="http://127.0.0.1:83/Ceph/RGW_Integration.html">RGW Integration</a>
+    <a href="http://127.0.0.1:83/Ceph/Ceph_MGR.html">Ceph MGR</a>
+    <a href="http://127.0.0.1:83/Ceph/Ceph-Deploy_Install.html">Ceph-Deploy Install</a>
+    <a href="http://127.0.0.1:83/Ceph/OpenStack_Integration.html">OpenStack Integration</a>
+    </div>
+<button class="dropdown-btn">Heat
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Heat/Remove_Stack_Error.html">Remove Stack Error</a>
+    </div>
+<button class="dropdown-btn">Ironic
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Ironic/StandALone.html">StandALone</a>
+    </div>
+<button class="dropdown-btn">KVM
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/KVM/How_to_install_KVM_+_Terraform.html">How to install KVM + Terraform</a>
+    <a href="http://127.0.0.1:83/KVM/kvmtop2influxdb.html">kvmtop2influxdb</a>
+    <a href="http://127.0.0.1:83/KVM/kvmtop2elastic.html">kvmtop2elastic</a>
+    </div>
+<button class="dropdown-btn">Keystone
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Keystone/RGW_Integration.html">RGW Integration</a>
+    <a href="http://127.0.0.1:83/Keystone/K2K_Federation.html">K2K Federation</a>
+    <a href="http://127.0.0.1:83/Keystone/OTP.html">OTP</a>
+    </div>
+<button class="dropdown-btn">Kolla
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Kolla/Kolla_External_MariaDB-Galera.html">Kolla External MariaDB-Galera</a>
+    <a href="http://127.0.0.1:83/Kolla/Kolla_External_Ceph.html">Kolla External Ceph</a>
+    <a href="http://127.0.0.1:83/Kolla/Kolla_Simple.html">Kolla Simple</a>
+    </div>
+<button class="dropdown-btn">LDAP
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/LDAP/LDAP_Simple.html">LDAP Simple</a>
+    </div>
+<button class="dropdown-btn">MariaDB
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/MariaDB/Galera_Balancer_Haproxy.html">Galera Balancer Haproxy</a>
+    <a href="http://127.0.0.1:83/MariaDB/MariaDB_Galera.html">MariaDB Galera</a>
+    </div>
+<button class="dropdown-btn">Octavia
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/Octavia/How_to_install.html">How to install</a>
+    </div>
+<button class="dropdown-btn">OpenStack
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="http://127.0.0.1:83/OpenStack/Ceph_Integration.html">Ceph Integration</a>
+    <a href="http://127.0.0.1:83/OpenStack/Base.html">Base</a>
+    </div>
+</div>
+
+<script>
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+<div class="main">
+  
+  <h1 style="text-align:center;"> Base </h1>
+<img class="centerimage" src="http://127.0.0.1:83/" style="width:50%;">
+
+<img class="centerimage" src="http://127.0.0.1:83/This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines, on to be the &#34;controller&#34; (where all services will installed) and other to be the compute-node as well we will have tow networks, the imagem bellow show how will be the environment." style="width:50%;">
+
+<img class="centerimage" src="http://127.0.0.1:83/" style="width:50%;">
+
+<div class="text"><p>OpenStack/screenshot-2.png</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>All machines!!!</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+first of all configure the name and ips on all machines like the image above.
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>hostnamectl set-hostname simplecontroller.xurupita.nl</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>hostnamectl set-hostname simplecompute.xurupita.nl</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Disable the SELinux:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>sed -e &#39;s/SELINUX=.*/SELINUX=permissive/&#39; /etc/selinux/config -i</p> </div>
+
+<div class="text"><p>setenforce 0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+And the FirewallD:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl stop firewalld</p> </div>
+
+<div class="text"><p>systemctl disable firewalld</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+As well the NetworkManager:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl stop NetworkManager</p> </div>
+
+<div class="text"><p>systemctl disable NetworkManager</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt; &#39;EOF&#39; &gt; /etc/hosts</p> </div>
+
+<div class="text"><p>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</p> </div>
+
+<div class="text"><p>::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</p> </div>
+
+<div class="text"><p>192.168.88.7    simplecontroller.xurupita.nl  simplecontroller</p> </div>
+
+<div class="text"><p>192.168.88.10    simplecompute.xurupita.nl     simplecompute</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Install the Epel and Openstack repos:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install centos-release-openstack-stein epel-release -y</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>NTP</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install chrony -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Configure to permite the others servers sync the time:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/chrony.conf</p> </div>
+
+<div class="text"><p>server 1.centos.pool.ntp.org iburst</p> </div>
+
+<div class="text"><p>driftfile /var/lib/chrony/drift</p> </div>
+
+<div class="text"><p>makestep 1.0 3</p> </div>
+
+<div class="text"><p>rtcsync</p> </div>
+
+<div class="text"><p>logdir /var/log/chrony</p> </div>
+
+<div class="text"><p>allow 192.168.88.0/24</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Enable and start the Chronyd service:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable chronyd.service</p> </div>
+
+<div class="text"><p>systemctl start chronyd.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+Verify if it is working:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chronyc sources </p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecompute</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install chrony -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Configure to sync time from simplecontroller:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/chrony.conf</p> </div>
+
+<div class="text"><p>server simplecontroller iburst</p> </div>
+
+<div class="text"><p>driftfile /var/lib/chrony/drift</p> </div>
+
+<div class="text"><p>makestep 1.0 3</p> </div>
+
+<div class="text"><p>rtcsync</p> </div>
+
+<div class="text"><p>logdir /var/log/chrony</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Enable and start the Chronyd service:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable chronyd.service</p> </div>
+
+<div class="text"><p>systemctl start chronyd.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+Verify if it is working:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chronyc sources </p> </div>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>SQL DataBase</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install mariadb mariadb-server python2-PyMySQL -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/my.cnf.d/openstack.cnf</p> </div>
+
+<div class="text"><p>[mysqld]</p> </div>
+
+<div class="text"><p>bind-address = 0.0.0.0</p> </div>
+
+<div class="text"><p>default-storage-engine = innodb</p> </div>
+
+<div class="text"><p>innodb_file_per_table = on</p> </div>
+
+<div class="text"><p>max_connections = 4096</p> </div>
+
+<div class="text"><p>collation-server = utf8_general_ci</p> </div>
+
+<div class="text"><p>character-set-server = utf8</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable mariadb.service</p> </div>
+
+<div class="text"><p>systemctl start mariadb.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Test if it is ok:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;show databases&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;grant all privileges on *.* to root@&#39;%&#39; identified by &#39;MDB_PASS&#39; with grant option; flush privileges&#34;</p> </div>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Message Queue</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install rabbitmq-server -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>rabbitmq-plugins enable rabbitmq_management</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable rabbitmq-server.service</p> </div>
+
+<div class="text"><p>systemctl start rabbitmq-server.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>rabbitmqctl add_user openstack RABBIT_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>rabbitmqctl set_user_tags openstack administrator</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>curl -i -u openstack:RABBIT_PASS http://192.168.88.7:15672/api/whoami</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Memcached</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install memcached python-memcached -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>sed -e &#39;s/OPTIONS=.*/OPTIONS=&#34;-l 0.0.0.0&#34;/&#39;  /etc/sysconfig/memcached -i</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable memcached.service</p> </div>
+
+<div class="text"><p>systemctl start memcached.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>memcached-tool 192.168.88.7:11211 stats</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Identity service (Keystone)</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE keystone&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&#39;%&#39; IDENTIFIED BY &#39;KEYSTONE_DBPASS&#39; ; flush privileges&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-utils -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-keystone httpd mod_wsgi -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/keystone/keystone.conf database connection mysql+pymysql://keystone:KEYSTONE_DBPASS@simplecontroller/keystone </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/keystone/keystone.conf token provider fernet </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/keystone/keystone.conf cache backend dogpile.cache.memcached </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/keystone/keystone.conf cache memcache_servers simplecontroller:11211</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;keystone-manage db_sync&#34; keystone</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot keystone -e &#34;show tables&#34; </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone</p> </div>
+
+<div class="text"><p>keystone-manage credential_setup --keystone-user keystone --keystone-group keystone</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>keystone-manage --config-file /etc/keystone/keystone.conf bootstrap \</p> </div>
+
+<div class="text"><p> --bootstrap-password ADMIN_PASS \</p> </div>
+
+<div class="text"><p> --bootstrap-admin-url http://simplecontroller:5000/v3/ \</p> </div>
+
+<div class="text"><p> --bootstrap-internal-url http://simplecontroller:5000/v3/ \</p> </div>
+
+<div class="text"><p> --bootstrap-public-url http://simplecontroller:5000/v3/ \</p> </div>
+
+<div class="text"><p> --bootstrap-region-id EURegion</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable httpd.service</p> </div>
+
+<div class="text"><p>systemctl start httpd.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install python-openstackclient -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Check if it is everthing ok:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p>  --os-project-domain-name Default --os-user-domain-name Default \</p> </div>
+
+<div class="text"><p>  --os-project-name admin --os-username admin --os-password ADMIN_PASS token issue</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; admin_openrc</p> </div>
+
+<div class="text"><p>export OS_USERNAME=admin</p> </div>
+
+<div class="text"><p>export OS_PASSWORD=ADMIN_PASS</p> </div>
+
+<div class="text"><p>export OS_PROJECT_NAME=admin</p> </div>
+
+<div class="text"><p>export OS_USER_DOMAIN_NAME=Default</p> </div>
+
+<div class="text"><p>export OS_PROJECT_DOMAIN_NAME=Default</p> </div>
+
+<div class="text"><p>export OS_AUTH_URL=http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>export OS_IDENTITY_API_VERSION=3</p> </div>
+
+<div class="text"><p>export OS_REGION_NAME=EURegion</p> </div>
+
+<div class="text"><p>export PS1=&#39;\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\W]($OS_PROJECT_NAME-$OS_REGION_NAME)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source admin_openrc</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack project create --domain default --description &#34;Service Project&#34; service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack complete --shell bash | tee /etc/bash_completion.d/os.bash</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source /etc/bash_completion.d/os.bash</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack domain create --description &#34;An Example Domain&#34; mydomain</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack project create --domain mydomain --description &#34;Demo Project&#34; myproject</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain mydomain --password myuser_pass myuser</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project myproject --project-domain mydomain --user myuser --user-domain mydomain member</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p>  --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p>  --os-project-name myproject --os-username myuser --os-password myuser_pass token issue</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Image service (Glance)</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE glance&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON glance.* TO &#39;glance&#39;@&#39;%&#39; IDENTIFIED BY &#39;GLANCE_DBPASS&#39; ; flush privileges&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source admin_openrc</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain default --password GLANCE_PASS glance</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project service --user glance admin</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack service create --name glance --description &#34;OpenStack Image&#34; image</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion image public http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion image internal http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion image admin http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-glance wget -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf database connection mysql+pymysql://glance:GLANCE_DBPASS@simplecontroller/glance </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken project_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken user_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken username glance</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/glance/glance-api.conf keystone_authtoken password GLANCE_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;glance-manage db_sync&#34; glance</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot glance -e &#34;show tables&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable openstack-glance-api.service </p> </div>
+
+<div class="text"><p>systemctl start openstack-glance-api.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack image create &#34;cirros&#34; \</p> </div>
+
+<div class="text"><p>  --file cirros-0.4.0-x86_64-disk.img \</p> </div>
+
+<div class="text"><p>  --disk-format qcow2 --container-format bare</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p> --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p> --os-project-name myproject --os-username myuser --os-password myuser_pass image list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ls -l /var/lib/glance/images/</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Placement service (Placement)</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE placement&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON placement.* TO &#39;placement&#39;@&#39;%&#39; IDENTIFIED BY &#39;PLACEMENT_DBPASS&#39;; flush privileges&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack service create --name placement --description &#34;Placement API&#34; placement</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion placement public http://simplecontroller:8778</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion placement internal http://simplecontroller:8778</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion placement admin http://simplecontroller:8778</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain default --password PLACEMENT_PASS placement</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project service --user placement admin</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-placement-api -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf placement_database connection mysql+pymysql://placement:PLACEMENT_DBPASS@simplecontroller/placement</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken auth_url http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken username placement</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/placement/placement.conf keystone_authtoken password PLACEMENT_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;placement-manage db sync&#34; placement</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot placement -e &#34;show tables&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt;&gt; /etc/httpd/conf.d/00-placement-api.conf</p> </div>
+
+<div class="text"><p>&lt;Directory /usr/bin&gt;</p> </div>
+
+<div class="text"><p>    &lt;IfVersion &gt;= 2.4&gt;</p> </div>
+
+<div class="text"><p>        Require all granted</p> </div>
+
+<div class="text"><p>    &lt;/IfVersion&gt;</p> </div>
+
+<div class="text"><p>    &lt;IfVersion &lt; 2.4&gt;</p> </div>
+
+<div class="text"><p>        Order allow,deny</p> </div>
+
+<div class="text"><p>        Allow from all</p> </div>
+
+<div class="text"><p>    &lt;/IfVersion&gt;</p> </div>
+
+<div class="text"><p>&lt;/Directory&gt;</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl restart httpd</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install python-osc-placement -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack resource provider list</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Compute service (Nova)</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE nova_api&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE nova&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE nova_cell0&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON nova_api.* TO &#39;nova&#39;@&#39;%&#39; IDENTIFIED BY &#39;NOVA_DBPASS&#39;; flush privileges&#34; </p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON nova.* TO &#39;nova&#39;@&#39;%&#39; IDENTIFIED BY &#39;NOVA_DBPASS&#39;; flush privileges&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON nova_cell0.* TO &#39;nova&#39;@&#39;%&#39; IDENTIFIED BY &#39;NOVA_DBPASS&#39;; flush privileges&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack service create --name nova --description &#34;OpenStack Compute&#34; compute</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion compute public http://simplecontroller:8774/v2.1</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion compute internal http://simplecontroller:8774/v2.1</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion compute admin http://simplecontroller:8774/v2.1</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain default --password NOVA_PASS nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project service --user nova admin</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-nova-api openstack-nova-conductor openstack-nova-novncproxy openstack-nova-scheduler -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf api_database connection mysql+pymysql://nova:NOVA_DBPASS@simplecontroller/nova_api</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf database connection mysql+pymysql://nova:NOVA_DBPASS@simplecontroller/nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_url http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken project_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken user_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken username nova</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf DEFAULT my_ip 192.168.88.7</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf vnc server_proxyclient_address \$my_ip</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf glance api_servers http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement region_name EURegion</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement project_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement user_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement auth_url http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement username placement</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement password PLACEMENT_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;nova-manage api_db sync&#34; nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot nova_api -e &#34;show tables&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;nova-manage cell_v2 map_cell0&#34; nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot nova_cell0 -e &#34;show tables&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;nova-manage cell_v2 create_cell --name=cell1 --verbose&#34; nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;nova-manage db sync&#34; nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -uroot nova -e &#34;show tables&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;nova-manage cell_v2 list_cells&#34; nova</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable openstack-nova-api.service openstack-nova-scheduler.service \</p> </div>
+
+<div class="text"><p> openstack-nova-conductor.service openstack-nova-novncproxy.service</p> </div>
+
+<div class="text"><p>systemctl start openstack-nova-api.service openstack-nova-scheduler.service \</p> </div>
+
+<div class="text"><p> openstack-nova-conductor.service openstack-nova-novncproxy.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack compute service list</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecompute</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-utils -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-nova-compute -y   </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_url http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken project_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken user_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken username nova</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf DEFAULT my_ip 192.168.88.10</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf glance api_servers http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement region_name EURegion</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement project_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement user_domain_name Default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement auth_url http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement username placement</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf placement password PLACEMENT_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf vnc enabled true</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf vnc server_listen 0.0.0.0</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf vnc server_proxyclient_address \$my_ip</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf vnc novncproxy_base_url http://simplecontroller:6080/vnc_auto.html</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf glance api_servers http://simplecontroller:9292</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>if egrep -q &#39;(vmx|svm)&#39; /proc/cpuinfo</p> </div>
+
+<div class="text"><p>  then </p> </div>
+
+<div class="text"><p>  openstack-config --set /etc/nova/nova.conf libvirt virt_type kvm</p> </div>
+
+<div class="text"><p>else</p> </div>
+
+<div class="text"><p>  openstack-config --set /etc/nova/nova.conf libvirt virt_type qemu</p> </div>
+
+<div class="text"><p>fi</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable libvirtd.service openstack-nova-compute.service</p> </div>
+
+<div class="text"><p>systemctl start libvirtd.service openstack-nova-compute.service</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack compute service list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack hypervisor list</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Networking service (Neutron)</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -e &#34;CREATE DATABASE neutron&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -e &#34;GRANT ALL PRIVILEGES ON neutron.* TO &#39;neutron&#39;@&#39;%&#39; IDENTIFIED BY &#39;NEUTRON_DBPASS&#39;; flush privileges&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack service create --name neutron --description &#34;OpenStack Networking&#34; network</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion network public http://simplecontroller:9696</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion network internal http://simplecontroller:9696</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion network admin http://simplecontroller:9696</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain default --password NEUTRON_PASS neutron</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project service --user neutron admin</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-neutron openstack-neutron-ml2 openstack-neutron-openvswitch -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf database connection mysql+pymysql://neutron:NEUTRON_DBPASS@simplecontroller/neutron</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT interface_driver openvswitch</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT allow_overlapping_ips true</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken password NEUTRON_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes true</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes true</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova region_name EURegion</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova username nova</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf oslo_concurrency lock_path /var/lib/neutron/tmp</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --del /etc/neutron/plugins/ml2/ml2_conf.ini DEFAULT</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 type_drivers flat,vlan,vxlan</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 tenant_network_types vxlan</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers openvswitch,l2population</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 extension_drivers port_security</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_flat flat_networks provider_br-ex</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_vxlan vni_ranges 1:1000</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup enable_ipset true</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --del /etc/neutron/plugins/ml2/openvswitch_agent.ini DEFAULT</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs bridge_mappings provider_br-ex:br-ex</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs enable_tunneling True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs local_ip 192.168.88.7</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs integration_bridge br-int</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent tunnel_types vxlan</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent vxlan_udp_port 4789</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_security_group True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_ipset True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/l3_agent.ini DEFAULT interface_driver openvswitch</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>### test   openstack-config --set /etc/neutron/l3_agent.ini DEFAULT handle_internal_only_routers True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>### test   openstack-config --set /etc/neutron/l3_agent.ini DEFAULT external_network_bridge br-ex</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT interface_driver neutron.agent.linux.interface.OVSInterfaceDriver</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT dhcp_driver neutron.agent.linux.dhcp.Dnsmasq</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT use_namespaces True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT force_metadata True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT enable_isolated_metadata True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT enable_metadata_network True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT dnsmasq_config_file /etc/neutron/dnsmasq-neutron.conf</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT state_path /var/lib/neutron</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT dhcp_broadcast_reply False</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/dhcp_agent.ini DEFAULT dhcp_delete_namespaces True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set  /etc/neutron/dnsmasq-neutron.conf &#39;&#39; dhcp-option-force 26,1450</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/metadata_agent.ini DEFAULT nova_metadata_host simplecontroller </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/metadata_agent.ini DEFAULT metadata_proxy_shared_secret METADATA_SECRET</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head&#34; neutron</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0</p> </div>
+
+<div class="text"><p>NAME=eth0</p> </div>
+
+<div class="text"><p>DEVICE=eth0</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSPort</p> </div>
+
+<div class="text"><p>OVS_BRIDGE=br-ex</p> </div>
+
+<div class="text"><p>BOOTPROTO=none</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-br-ex</p> </div>
+
+<div class="text"><p>NAME=br-ex</p> </div>
+
+<div class="text"><p>DEVICE=br-ex</p> </div>
+
+<div class="text"><p>IPADDR=192.168.88.7</p> </div>
+
+<div class="text"><p>PREFIX=24</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSBridge</p> </div>
+
+<div class="text"><p>BOOTPROTO=static</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>GATEWAY=192.168.88.1</p> </div>
+
+<div class="text"><p>DNS1=192.168.88.1</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ifdown eth0 ; ifup eth0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable neutron-server.service openvswitch.service \</p> </div>
+
+<div class="text"><p>  neutron-openvswitch-agent.service neutron-dhcp-agent.service \</p> </div>
+
+<div class="text"><p>  neutron-metadata-agent.service \</p> </div>
+
+<div class="text"><p>  neutron-l3-agent.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl start neutron-server.service \</p> </div>
+
+<div class="text"><p>  neutron-openvswitch-agent.service neutron-dhcp-agent.service \</p> </div>
+
+<div class="text"><p>  neutron-metadata-agent.service \</p> </div>
+
+<div class="text"><p>  neutron-l3-agent.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack network agent list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron url http://simplecontroller:9696</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron region_name EURegion</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron password NEUTRON_PASS</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron service_metadata_proxy true</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron metadata_proxy_shared_secret METADATA_SECRET</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl restart openstack-nova-api.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack compute service list</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecompute</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-neutron-openvswitch openstack-neutron-ml2 -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken password NEUTRON_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf oslo_concurrency lock_path /var/lib/neutron/tmp</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --del /etc/neutron/plugins/ml2/openvswitch_agent.ini DEFAULT</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs bridge_mappings provider_br-ex:br-ex</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs enable_tunneling True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs local_ip 192.168.88.10</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs integration_bridge br-int</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent tunnel_types vxlan</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent vxlan_udp_port 4789</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_security_group True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_ipset True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0</p> </div>
+
+<div class="text"><p>NAME=eth0</p> </div>
+
+<div class="text"><p>DEVICE=eth0</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSPort</p> </div>
+
+<div class="text"><p>OVS_BRIDGE=br-ex</p> </div>
+
+<div class="text"><p>BOOTPROTO=none</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-br-ex</p> </div>
+
+<div class="text"><p>NAME=br-ex</p> </div>
+
+<div class="text"><p>DEVICE=br-ex</p> </div>
+
+<div class="text"><p>IPADDR=192.168.88.10</p> </div>
+
+<div class="text"><p>PREFIX=24</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSBridge</p> </div>
+
+<div class="text"><p>BOOTPROTO=static</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>GATEWAY=192.168.88.1</p> </div>
+
+<div class="text"><p>DNS1=192.168.88.1</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ifdown eth0 ; ifup eth0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable openvswitch.service neutron-openvswitch-agent.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl start neutron-openvswitch-agent.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron url http://simplecontroller:9696</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron region_name EURegion</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron password NEUTRON_PASS</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron service_metadata_proxy true</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/nova/nova.conf neutron metadata_proxy_shared_secret METADATA_SECRET</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl restart openstack-nova-compute.service</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack compute service list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack network agent list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack network create --share --external --provider-physical-network provider_br-ex \</p> </div>
+
+<div class="text"><p> --provider-network-type flat ext-net-flat</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack subnet create --network ext-net-flat --allocation-pool start=192.168.88.100,end=192.168.88.250 \</p> </div>
+
+<div class="text"><p> --dns-nameserver 8.8.8.8 --gateway 192.168.88.1 --subnet-range 192.168.88.0/24 ext-subnet-flat</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack flavor create --ram 128 --disk 4 --swap 0 --vcpus 1 --public cirros-flavor</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p> --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p> --os-project-name myproject --os-username myuser --os-password \</p> </div>
+
+<div class="text"><p> myuser_pass image list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p> --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p> --os-project-name myproject --os-username myuser --os-password\</p> </div>
+
+<div class="text"><p> myuser_pass flavor list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p> --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p> --os-project-name myproject --os-username myuser --os-password \</p> </div>
+
+<div class="text"><p> myuser_pass network list</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack --os-auth-url http://simplecontroller:5000/v3 \</p> </div>
+
+<div class="text"><p> --os-project-domain-name mydomain --os-user-domain-name mydomain \</p> </div>
+
+<div class="text"><p> --os-project-name myproject --os-username myuser --os-password myuser_pass \</p> </div>
+
+<div class="text"><p> server create --flavor cirros-flavor --image cirros --nic net-id=ext-net-flat myflatvm1</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+To make our live easy create this file:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; myuser_openrc</p> </div>
+
+<div class="text"><p>export OS_USERNAME=myuser</p> </div>
+
+<div class="text"><p>export OS_PASSWORD=myuser_pass</p> </div>
+
+<div class="text"><p>export OS_PROJECT_NAME=myproject</p> </div>
+
+<div class="text"><p>export OS_USER_DOMAIN_NAME=mydomain</p> </div>
+
+<div class="text"><p>export OS_PROJECT_DOMAIN_NAME=mydomain</p> </div>
+
+<div class="text"><p>export OS_AUTH_URL=http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>export OS_IDENTITY_API_VERSION=3</p> </div>
+
+<div class="text"><p>export OS_REGION_NAME=EURegion</p> </div>
+
+<div class="text"><p>export PS1=&#39;\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\W]($OS_PROJECT_NAME-$OS_REGION_NAME)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source myuser_openrc</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack network create mynet</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack subnet create --network mynet --subnet-range 10.8.8.0/24 --allocation-pool start=10.8.8.10,end=10.8.8.200 mysubnet</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack router create myrouter</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack router add subnet myrouter mysubnet</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack router set myrouter --external-gateway ext-net-flat</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack server create --flavor cirros-flavor --image &#34;cirros&#34; --nic net-id=mynet myvxlanvm1</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>Dashboard (Horizon)</p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-dashboard -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_HOST &#39;&#34;simplecontroller&#34;&#39;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>sed -e &#39;s/ALLOWED_HOSTS.*/ALLOWED_HOSTS = [&#34;*&#34;]/&#39; /etc/openstack-dashboard/local_settings -i</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; SESSION_ENGINE &#34;&#39;django.contrib.sessions.backends.cache&#39;&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES &#34;{&#39;default&#39;: {&#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,&#39;LOCATION&#39;: &#39;simplecontroller:11211&#39;,}}&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_DEFAULT_ROLE &#39;&#34;member&#34;&#39;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl restart httpd.service</p> </div>
+
+</div>
+
+</body>
+</html> 
+
+</html>
