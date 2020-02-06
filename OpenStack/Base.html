@@ -3045,7 +3045,7 @@ openstack endpoint create --region EURegion network admin http://simplecontrolle
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router
+          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router,network_segment_range
 
             </div>
           </div>
@@ -3347,7 +3347,7 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_vxlan vni_ranges 1:1000
+          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_vxlan vni_ranges 8000:80000
 
             </div>
           </div>
