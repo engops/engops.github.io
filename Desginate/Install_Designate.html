@@ -272,6 +272,7 @@ html, body {
   </button>
   <div class="dropdown-container">
     <a href="https://engops.github.io/Desginate/Install_Designate.html">Install Designate</a>
+    <a href="https://engops.github.io/Desginate/Neutron_Integration.html">Neutron Integration</a>
     </div>
 <button class="dropdown-btn">Heat
     <i class="fa-caret-down"></i>
@@ -328,6 +329,13 @@ html, body {
   <div class="dropdown-container">
     <a href="https://engops.github.io/MariaDB/Galera_Balancer_Haproxy.html">Galera Balancer Haproxy</a>
     <a href="https://engops.github.io/MariaDB/MariaDB_Galera.html">MariaDB Galera</a>
+    </div>
+<button class="dropdown-btn">Neutron
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Neutron/Designate_Integration.html">Designate Integration</a>
     </div>
 <button class="dropdown-btn">Octavia
     <i class="fa-caret-down"></i>
@@ -442,7 +450,7 @@ options {
 	memstatistics-file &#34;/var/named/data/named_mem_stats.txt&#34;;
 	recursing-file  &#34;/var/named/data/named.recursing&#34;;
 	secroots-file   &#34;/var/named/data/named.secroots&#34;;
-	allow-query     { 192.168.88.6; };
+	allow-query     { any; };
 	allow-new-zones yes;
 	request-ixfr no;
 	recursion no;
@@ -842,7 +850,7 @@ openstack-config --set /etc/designate/designate.conf service:worker notify true
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/designate/designate.conf service:mdns listen 192.168.88.7:53
+          <div class="line number1 index0 alt1">openstack-config --set /etc/designate/designate.conf service:mdns listen 192.168.88.7:5354
 
             </div>
           </div>
@@ -976,6 +984,195 @@ systemctl enable designate-central designate-api
         rndc_port: 953
         rndc_key_file: /etc/designate/named.designate.key
 EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.6 cat /etc/named.designate.key | tee /etc/designate/named.designate.key
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install bind  -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">rndc -s 192.168.88.6 -p 953 -k /etc/designate/named.designate.key status
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;designate-manage pool update&#34; designate
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable designate-worker designate-producer designate-mdns
+systemctl start designate-worker designate-producer designate-mdns
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack dns service list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">source myuser_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack zone create --email dnsmaster@mydnsdomain.com mydnsdomain.com.
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">dig @192.168.88.6 mydnsdomain.com
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack recordset create --record &#39;10.0.0.1&#39; --type A mydnsdomain.com. www
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">dig @192.168.88.6 www.mydnsdomain.com
 
             </div>
           </div>
