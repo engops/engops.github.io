@@ -273,13 +273,6 @@ html, body {
     <a href="https://engops.github.io/Desginate/Install_Designate.html">Install Designate</a>
     <a href="https://engops.github.io/Desginate/Neutron_Integration.html">Neutron Integration</a>
     </div>
-<button class="dropdown-btn">Heat
-    <i class="fa-caret-down"></i>
-    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
-  </button>
-  <div class="dropdown-container">
-    <a href="https://engops.github.io/Heat/Remove_Stack_Error.html">Remove Stack Error</a>
-    </div>
 <button class="dropdown-btn">Ironic
     <i class="fa-caret-down"></i>
     <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
@@ -610,7 +603,7 @@ openstack-config --set /etc/neutron/neutron.conf designate insecure true
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack port create --dns-name newrecord --network range port001
+          <div class="line number1 index0 alt1">openstack port create --dns-name newrecord --network mydnsnet port001
 
             </div>
           </div>
