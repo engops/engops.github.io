@@ -506,7 +506,128 @@ openstack-config --set /etc/neutron/neutron.conf designate insecure true
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack network set --dns-domain mydnsdomain.com. mynet
+          <div class="line number1 index0 alt1">source admin_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>This is necessary because the segmentation id can&#39;t be the same of tenants&#39; VXLAN </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack network segment range create --project-domain mydomain --project myproject --network-type vxlan --minimum 100 --maximum 199 range100-199
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">source myuser_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack network create mydnsnet
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack subnet create --network mydnsnet --subnet-range 10.28.8.0/24 --allocation-pool start=10.28.8.10,end=10.28.8.200 mydnsnet
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack network set --dns-domain mydnsdomain.com. mydnsnet
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack port create --dns-name newrecord --network range port001
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack recordset list mydnsdomain.com.
 
             </div>
           </div>
