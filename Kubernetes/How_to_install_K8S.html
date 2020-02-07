@@ -386,8 +386,8 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> LDAP_Simple </h1>
-<p class="textsubtitle">How to install a simple ldap to improve your tests</p>
+  <h1 style="text-align:center;"> How_to_install_K8S </h1>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>All Machines!!!</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -397,7 +397,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">yum install openldap-clients openldap-servers -y
+          <div class="line number1 index0 alt1">hostnamectl set-hostname k8smaster.xurupita.nl
 
             </div>
           </div>
@@ -414,7 +414,84 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">systemctl enable slapd.service
+          <div class="line number1 index0 alt1">hostnamectl set-hostname k8snode.xurupita.nl
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Disable the SELinux:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">sed -e &#39;s/SELINUX=.*/SELINUX=permissive/&#39; /etc/selinux/config -i
+setenforce 0
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>And the FirewallD:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl stop firewalld
+systemctl disable firewalld
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt; &#39;EOF&#39; &gt; /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.88.80    k8smaster.xurupita.nl  k8smaster
+192.168.88.81    k8snode.xurupita.nl     k8snode
+192.168.88.41    simplecontroller.xurupita.nl  simplecontroller
+192.168.88.42    simplecompute.xurupita.nl     simplecompute
+192.168.88.43    simplezuncontroller.xurupita.nl     simplezuncontroller
+192.168.88.44    simplezuncompute.xurupita.nl     simplezuncompute
+EOF
 
             </div>
           </div>
@@ -431,7 +508,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+          <div class="line number1 index0 alt1">swapoff -a
 
             </div>
           </div>
@@ -448,7 +525,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">chown ldap\: /var/lib/ldap/DB_CONFIG
+          <div class="line number1 index0 alt1">yum install epel-release -y
 
             </div>
           </div>
@@ -465,7 +542,49 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">systemctl start slapd.service
+          <div class="line number1 index0 alt1">yum install docker -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable docker
+systemctl start docker
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
 
             </div>
           </div>
@@ -482,7 +601,74 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">LDAPPASSWD=$(slappasswd -s 123456)
+          <div class="line number1 index0 alt1">sysctl --system
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt; &#39;EOF&#39; &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install kubeadm kubelet kubectl -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable kubelet
 
             </div>
           </div>
@@ -504,114 +690,12 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">6</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; ch-cnconfig-pw.ldif
-dn: olcDatabase={0}config,cn=config
-changetype: modify
-add: olcRootPW
-olcRootPW: $LDAPPASSWD
-EOF
+          <div class="line number1 index0 alt1">kubectl completion bash &gt; /etc/bash_completion.d/kubectl.bash
+kubeadm completion bash &gt; /etc/bash_completion.d/kubeadm.bash
 
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -Y EXTERNAL -H ldapi:/// -f ch-cnconfig-pw.ldif
 
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapsearch -x -Dcn=config -b cn=config -w123456 -h localhost
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
+source /etc/bash_completion.d/kubectl.bash
+source /etc/bash_completion.d/kubeadm.bash
 
             </div>
           </div>
@@ -620,57 +704,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>cat &lt;&lt; EOF &gt; createbase.ldif</p> </div>
-
-<div class="text"><p>dn: olcDatabase={1}monitor,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcAccess</p> </div>
-
-<div class="text"><p>olcAccess: {0}to * by dn.base=&#34;gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&#34;</p> </div>
-
-<div class="text"><p>  read by dn.base=&#34;cn=admin,dc=xurupita,dc=nl&#34; read by * none</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcSuffix</p> </div>
-
-<div class="text"><p>olcSuffix: dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcRootDN</p> </div>
-
-<div class="text"><p>olcRootDN: cn=admin,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>add: olcRootPW</p> </div>
-
-<div class="text"><p>olcRootPW: $LDAPPASSWD</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>add: olcAccess</p> </div>
-
-<div class="text"><p>olcAccess: {0}to attrs=userPassword,shadowLastChange by</p> </div>
-
-<div class="text"><p>  dn=&#34;cn=admin,dc=xurupita,dc=nl&#34; write by anonymous auth by self write by * none</p> </div>
-
-<div class="text"><p>olcAccess: {1}to dn.base=&#34;&#34; by * read</p> </div>
-
-<div class="text"><p>olcAccess: {2}to * by dn=&#34;cn=admin,dc=xurupita,dc=nl&#34; write by * read</p> </div>
-
-<div class="text"><p>EOF</p> </div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>k8smaster</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -680,7 +714,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">kubeadm config images pull
 
             </div>
           </div>
@@ -688,9 +722,7 @@ EOF
       </tr>
     </tbody>
   </table>
-</div>
-<div class="text"><p>ldapmodify -Y EXTERNAL -H ldapi:/// -f createbase.ldif</p> </div>
-<div class="numerallines">
+</div><div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -699,7 +731,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">kubeadm init --apiserver-advertise-address=192.168.88.80 --pod-network-cidr=10.248.248.0/24
 
             </div>
           </div>
@@ -707,32 +739,18 @@ EOF
       </tr>
     </tbody>
   </table>
-</div>
-<div class="text"><p>ldapsearch -x -Dcn=config -b cn=config -w123456 -h localhost</p> </div>
-<div class="numerallines">
+</div><div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
         <td class="gutter">
           
           <div class="line number1 index0 alt0">1</div>
-          <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div>
-          <div class="line number1 index0 alt0">4</div>
-          <div class="line number1 index0 alt0">5</div>
-          <div class="line number1 index0 alt0">6</div>
-          <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div></td>
+          <div class="line number1 index0 alt0">2</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; base.ldif
-dn: dc=xurupita,dc=nl
-objectClass: top
-objectClass: organization
-objectClass: dcObject
-dc: xurupita
-o: xurupita
-EOF
+          <div class="line number1 index0 alt1">mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
             </div>
           </div>
@@ -749,7 +767,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -x -h localhost -Dcn=admin,dc=xurupita,dc=nl -w123456 -f base.ldif
+          <div class="line number1 index0 alt1">kubectl apply -f https://docs.projectcalico.org/v3.10/manifests/calico.yaml
 
             </div>
           </div>
@@ -766,7 +784,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapsearch -x -Dcn=admin,dc=xurupita,dc=nl -bdc=xurupita,dc=nl -w123456 -h localhost
+          <div class="line number1 index0 alt1">kubectl get nodes
 
             </div>
           </div>
@@ -783,7 +801,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">kubectl get pods --all-namespaces
 
             </div>
           </div>
@@ -791,166 +809,18 @@ EOF
       </tr>
     </tbody>
   </table>
-</div>
-<div class="text"><p>cat &lt;&lt; EOF &gt; grupousers.ldif</p> </div>
-
-<div class="text"><p>dn: ou=Grupos,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>objectClass: organizationalUnit</p> </div>
-
-<div class="text"><p>ou: Grupos</p> </div>
-
-<div class="text"><p>dn: ou=Usuarios,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>objectClass: organizationalUnit</p> </div>
-
-<div class="text"><p>ou: Usuarios</p> </div>
-
-<div class="text"><p>EOF</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>ldapadd -x -h localhost -Dcn=admin,dc=xurupita,dc=nl -w123456 -f grupousers.ldif</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>ldapsearch -x -Dcn=admin,dc=xurupita,dc=nl -bdc=xurupita,dc=nl -w123456 -h localhost</p> </div>
-<div class="numerallines">
+</div><div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
         <td class="gutter">
           
           <div class="line number1 index0 alt0">1</div>
-          <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div>
-          <div class="line number1 index0 alt0">4</div>
-          <div class="line number1 index0 alt0">5</div>
-          <div class="line number1 index0 alt0">6</div>
-          <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div>
-          <div class="line number1 index0 alt0">9</div>
-          <div class="line number1 index0 alt0">10</div>
-          <div class="line number1 index0 alt0">11</div>
-          <div class="line number1 index0 alt0">12</div>
-          <div class="line number1 index0 alt0">13</div>
-          <div class="line number1 index0 alt0">14</div>
-          <div class="line number1 index0 alt0">15</div>
-          <div class="line number1 index0 alt0">16</div>
-          <div class="line number1 index0 alt0">17</div>
-          <div class="line number1 index0 alt0">18</div>
-          <div class="line number1 index0 alt0">19</div>
-          <div class="line number1 index0 alt0">20</div>
-          <div class="line number1 index0 alt0">21</div>
-          <div class="line number1 index0 alt0">22</div>
-          <div class="line number1 index0 alt0">23</div>
-          <div class="line number1 index0 alt0">24</div>
-          <div class="line number1 index0 alt0">25</div>
-          <div class="line number1 index0 alt0">26</div>
-          <div class="line number1 index0 alt0">27</div>
-          <div class="line number1 index0 alt0">28</div>
-          <div class="line number1 index0 alt0">29</div>
-          <div class="line number1 index0 alt0">30</div>
-          <div class="line number1 index0 alt0">31</div>
-          <div class="line number1 index0 alt0">32</div>
-          <div class="line number1 index0 alt0">33</div>
-          <div class="line number1 index0 alt0">34</div>
-          <div class="line number1 index0 alt0">35</div>
-          <div class="line number1 index0 alt0">36</div>
-          <div class="line number1 index0 alt0">37</div>
-          <div class="line number1 index0 alt0">38</div>
-          <div class="line number1 index0 alt0">39</div>
-          <div class="line number1 index0 alt0">40</div>
-          <div class="line number1 index0 alt0">41</div>
-          <div class="line number1 index0 alt0">42</div>
-          <div class="line number1 index0 alt0">43</div>
-          <div class="line number1 index0 alt0">44</div>
-          <div class="line number1 index0 alt0">45</div>
-          <div class="line number1 index0 alt0">46</div>
-          <div class="line number1 index0 alt0">47</div></td>
+          <div class="line number1 index0 alt0">2</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39; &gt; /usr/local/sbin/xurupita-adduser.sh
-#!/bin/bash
-6001
-
-ola=$(sed -n &#39;2p&#39; $0) &amp;&gt; /dev/null
-tr=$(expr $ola + 1)
-
-echo &#34;o nome do usuario&#34;
-read user
-
-cat &lt;&lt; EOFa &gt; $user-grupo.ldif
-dn: cn=$user,ou=Grupos,dc=xurupita,dc=nl
-objectClass: posixGroup
-objectClass: top
-cn: $user
-userPassword: {crypt}x
-gidNumber: $ola
-EOFa
-
-cat &lt;&lt; EOFb &gt; $user.ldif
-dn: uid=$user,ou=Usuarios,dc=xurupita,dc=nl
-uid: $user
-cn: $user
-objectclass: account
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-userPassword: 123456
-shadowLastChange: 15140
-shadowMin: 0
-shadowMax: 99999
-shadowWarning: 7
-loginShell: /bin/bash
-uidNumber: $ola
-gidNumber: $ola
-homeDirectory: /home/$user
-gecos: $user
-description: $user@xurupita.nl
-EOFb
-
-ldapadd -x -h localhost -D&#34;cn=admin,dc=xurupita,dc=nl&#34; -w &#39;123456&#39; -f $user-grupo.ldif 
-sleep 1
-ldapadd -x -h localhost  -D&#34;cn=admin,dc=xurupita,dc=nl&#34; -w &#39;123456&#39; -f $user.ldif
-
-rm -rf $user.ldif $user-grupo.ldif
-sed 2s/$ola/$tr/ $0 -i
-EOF
+          <div class="line number1 index0 alt1">token=$(kubeadm token list | awk &#39; ! /TOKEN/ {print $1}&#39;)
+shacert=&#34;sha256:$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.* //&#39;)&#34;
 
             </div>
           </div>
@@ -967,7 +837,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">chmod +x /usr/local/sbin/xurupita-adduser.sh
+          <div class="line number1 index0 alt1">ssh k8snode kubeadm join 192.168.88.20:6443 --token $token --discovery-token-ca-cert-hash $shacert
 
             </div>
           </div>
@@ -984,7 +854,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">kubectl get nodes
 
             </div>
           </div>
@@ -992,43 +862,7 @@ EOF
       </tr>
     </tbody>
   </table>
-</div>
-<div class="text"><p>cat &lt;&lt; &#39;EOF&#39; &gt; /usr/local/sbin/xurupita-addgroup.sh</p> </div>
-
-<div class="text"><p>#!/bin/bash</p> </div>
-
-<div class="text"><p>ola=$(sed -n &#39;2p&#39; /usr/local/sbin/xurupita-adduser.sh) &amp;&gt; /dev/null</p> </div>
-
-<div class="text"><p>tr=$(expr $ola + 1)</p> </div>
-
-<div class="text"><p>echo &#39;nome do grupo&#39;</p> </div>
-
-<div class="text"><p>read grup</p> </div>
-
-<div class="text"><p>cat &lt;&lt; EOFc &gt; $grup.ldif</p> </div>
-
-<div class="text"><p>dn: cn=$grup,ou=Grupos,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: posixGroup</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>cn: $grup</p> </div>
-
-<div class="text"><p>userPassword: {crypt}x</p> </div>
-
-<div class="text"><p>gidNumber: $ola</p> </div>
-
-<div class="text"><p>EOFc</p> </div>
-
-<div class="text"><p>ldapadd -x -D cn=admin,dc=xurupita,dc=nl -w &#39;123456&#39; -f $grup.ldif</p> </div>
-
-<div class="text"><p>rm -rf $grup.ldif</p> </div>
-
-<div class="text"><p>sed 2s/$ola/$tr/ /usr/local/sbin/xurupita-adduser.sh -i</p> </div>
-
-<div class="text"><p>EOF</p> </div>
-<div class="numerallines">
+</div><div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -1037,7 +871,109 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">kubectl run test-nginx --image=nginx --replicas=2 --port=80
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl expose deployment test-nginx
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl get services
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl describe service test-nginx
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl get pods
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl proxy --address=0.0.0.0 --accept-hosts=&#39;.*&#39; &amp;
 
             </div>
           </div>
@@ -1046,8 +982,6 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>chmod +x /usr/local/sbin/xurupita-addgroup.sh</p> </div>
-
 </div>
 
 </body>

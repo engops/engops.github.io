@@ -386,8 +386,85 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> LDAP_Simple </h1>
-<p class="textsubtitle">How to install a simple ldap to improve your tests</p>
+  <h1 style="text-align:center;"> Ceph_Integration </h1>
+<p class="link"><a href="https://engops.github.io/Ceph/Ceph-Deploy_Install.html">Ceph/Ceph-Deploy_Install</a></p>
+
+<p class="link"><a href="https://engops.github.io/OpenStack/Base.html">OpenStack/Base</a></p>
+
+<div class="text"><p>create the pools for each OpenStack service on Ceph</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ceph osd pool create glance 128
+ceph auth get-or-create-key client.glance
+ceph auth caps client.glance mon &#39;allow r&#39; osd &#39;allow class-read object_prefix rbd_children, allow rwx pool=glance&#39;
+ceph osd pool application enable glance rbd
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ceph osd pool create nova 128
+ceph auth get-or-create-key client.nova
+ceph auth caps client.nova mon &#39;allow r&#39; osd &#39;allow class-read object_prefix rbd_children, allow rwx pool=nova, allow rwx pool=cinder, allow rwx pool=glance&#39;
+ceph osd pool application enable nova rbd
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ceph osd pool create cinder 128
+ceph auth get-or-create-key client.cinder
+ceph auth caps client.cinder mon &#39;allow r&#39; osd &#39;allow class-read object_prefix rbd_children, allow rwx pool=cinder, allow rwx pool=nova, allow rwx pool=glance&#39;
+ceph osd pool application enable cinder rbd
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<p class="textsubtitle">Glance</p>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -397,7 +474,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">yum install openldap-clients openldap-servers -y
+          <div class="line number1 index0 alt1">yum install ceph-common -y
 
             </div>
           </div>
@@ -414,7 +491,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">systemctl enable slapd.service
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 cat /etc/ceph/ceph.conf | tee /etc/ceph/ceph.conf
 
             </div>
           </div>
@@ -431,58 +508,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">chown ldap\: /var/lib/ldap/DB_CONFIG
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">systemctl start slapd.service
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">LDAPPASSWD=$(slappasswd -s 123456)
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 ceph auth get-or-create client.glance | tee /etc/ceph/ceph.client.glance.keyring
 
             </div>
           </div>
@@ -504,12 +530,12 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">6</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; ch-cnconfig-pw.ldif
-dn: olcDatabase={0}config,cn=config
-changetype: modify
-add: olcRootPW
-olcRootPW: $LDAPPASSWD
-EOF
+          <div class="line number1 index0 alt1">openstack-config --set /etc/glance/glance-api.conf glance_store default_store rbd
+openstack-config --set /etc/glance/glance-api.conf glance_store stores  rbd
+openstack-config --set /etc/glance/glance-api.conf glance_store rbd_store_pool glance
+openstack-config --set /etc/glance/glance-api.conf glance_store rbd_store_user glance
+openstack-config --set /etc/glance/glance-api.conf glance_store rbd_store_ceph_conf /etc/ceph/ceph.conf
+openstack-config --set /etc/glance/glance-api.conf glance_store rbd_store_chunk_size 4
 
             </div>
           </div>
@@ -526,7 +552,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -Y EXTERNAL -H ldapi:/// -f ch-cnconfig-pw.ldif
+          <div class="line number1 index0 alt1">systemctl restart openstack-glance-api.service
 
             </div>
           </div>
@@ -543,7 +569,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+          <div class="line number1 index0 alt1">wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
             </div>
           </div>
@@ -552,164 +578,6 @@ EOF
     </tbody>
   </table>
 </div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -c -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">ldapsearch -x -Dcn=config -b cn=config -w123456 -h localhost
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>cat &lt;&lt; EOF &gt; createbase.ldif</p> </div>
-
-<div class="text"><p>dn: olcDatabase={1}monitor,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcAccess</p> </div>
-
-<div class="text"><p>olcAccess: {0}to * by dn.base=&#34;gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&#34;</p> </div>
-
-<div class="text"><p>  read by dn.base=&#34;cn=admin,dc=xurupita,dc=nl&#34; read by * none</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcSuffix</p> </div>
-
-<div class="text"><p>olcSuffix: dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>replace: olcRootDN</p> </div>
-
-<div class="text"><p>olcRootDN: cn=admin,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>add: olcRootPW</p> </div>
-
-<div class="text"><p>olcRootPW: $LDAPPASSWD</p> </div>
-
-<div class="text"><p>dn: olcDatabase={2}hdb,cn=config</p> </div>
-
-<div class="text"><p>changetype: modify</p> </div>
-
-<div class="text"><p>add: olcAccess</p> </div>
-
-<div class="text"><p>olcAccess: {0}to attrs=userPassword,shadowLastChange by</p> </div>
-
-<div class="text"><p>  dn=&#34;cn=admin,dc=xurupita,dc=nl&#34; write by anonymous auth by self write by * none</p> </div>
-
-<div class="text"><p>olcAccess: {1}to dn.base=&#34;&#34; by * read</p> </div>
-
-<div class="text"><p>olcAccess: {2}to * by dn=&#34;cn=admin,dc=xurupita,dc=nl&#34; write by * read</p> </div>
-
-<div class="text"><p>EOF</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>ldapmodify -Y EXTERNAL -H ldapi:/// -f createbase.ldif</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>ldapsearch -x -Dcn=config -b cn=config -w123456 -h localhost</p> </div>
-<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -717,22 +585,12 @@ EOF
           
           <div class="line number1 index0 alt0">1</div>
           <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div>
-          <div class="line number1 index0 alt0">4</div>
-          <div class="line number1 index0 alt0">5</div>
-          <div class="line number1 index0 alt0">6</div>
-          <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div></td>
+          <div class="line number1 index0 alt0">3</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; base.ldif
-dn: dc=xurupita,dc=nl
-objectClass: top
-objectClass: organization
-objectClass: dcObject
-dc: xurupita
-o: xurupita
-EOF
+          <div class="line number1 index0 alt1">openstack image create &#34;cirros-ceph-qcow&#34; \
+  --file cirros-0.4.0-x86_64-disk.img --public \
+  --disk-format qcow2 --container-format bare
 
             </div>
           </div>
@@ -749,7 +607,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapadd -x -h localhost -Dcn=admin,dc=xurupita,dc=nl -w123456 -f base.ldif
+          <div class="line number1 index0 alt1">cirros_qcow_id=$(openstack image list --name cirros-ceph-qcow -c ID -f value) ; echo $cirros_qcow_id
 
             </div>
           </div>
@@ -766,7 +624,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">ldapsearch -x -Dcn=admin,dc=xurupita,dc=nl -bdc=xurupita,dc=nl -w123456 -h localhost
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 rbd -p glance info $cirros_qcow_id
 
             </div>
           </div>
@@ -783,7 +641,79 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">qemu-img convert -f qcow2 -O raw cirros-0.4.0-x86_64-disk.img cirros-0.4.0-x86_64-disk.raw
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack image create &#34;cirros-ceph-raw&#34; \
+  --file cirros-0.4.0-x86_64-disk.raw --public \
+  --disk-format raw --container-format bare
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cirros_raw_id=$(openstack image list --name cirros-ceph-raw -c ID -f value) ; echo $cirros_raw_id
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 rbd -p glance info $cirros_raw_id
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8  rbd -p glance ls -l
 
             </div>
           </div>
@@ -792,25 +722,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>cat &lt;&lt; EOF &gt; grupousers.ldif</p> </div>
-
-<div class="text"><p>dn: ou=Grupos,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>objectClass: organizationalUnit</p> </div>
-
-<div class="text"><p>ou: Grupos</p> </div>
-
-<div class="text"><p>dn: ou=Usuarios,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>objectClass: organizationalUnit</p> </div>
-
-<div class="text"><p>ou: Usuarios</p> </div>
-
-<div class="text"><p>EOF</p> </div>
+<p class="textsubtitle">Cinder</p>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -820,7 +732,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 ceph auth get-or-create client.cinder | tee /etc/ceph/ceph.client.cinder.keyring
 
             </div>
           </div>
@@ -828,28 +740,7 @@ EOF
       </tr>
     </tbody>
   </table>
-</div>
-<div class="text"><p>ldapadd -x -h localhost -Dcn=admin,dc=xurupita,dc=nl -w123456 -f grupousers.ldif</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>ldapsearch -x -Dcn=admin,dc=xurupita,dc=nl -bdc=xurupita,dc=nl -w123456 -h localhost</p> </div>
-<div class="numerallines">
+</div><div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -865,91 +756,296 @@ EOF
           <div class="line number1 index0 alt0">8</div>
           <div class="line number1 index0 alt0">9</div>
           <div class="line number1 index0 alt0">10</div>
-          <div class="line number1 index0 alt0">11</div>
-          <div class="line number1 index0 alt0">12</div>
-          <div class="line number1 index0 alt0">13</div>
-          <div class="line number1 index0 alt0">14</div>
-          <div class="line number1 index0 alt0">15</div>
-          <div class="line number1 index0 alt0">16</div>
-          <div class="line number1 index0 alt0">17</div>
-          <div class="line number1 index0 alt0">18</div>
-          <div class="line number1 index0 alt0">19</div>
-          <div class="line number1 index0 alt0">20</div>
-          <div class="line number1 index0 alt0">21</div>
-          <div class="line number1 index0 alt0">22</div>
-          <div class="line number1 index0 alt0">23</div>
-          <div class="line number1 index0 alt0">24</div>
-          <div class="line number1 index0 alt0">25</div>
-          <div class="line number1 index0 alt0">26</div>
-          <div class="line number1 index0 alt0">27</div>
-          <div class="line number1 index0 alt0">28</div>
-          <div class="line number1 index0 alt0">29</div>
-          <div class="line number1 index0 alt0">30</div>
-          <div class="line number1 index0 alt0">31</div>
-          <div class="line number1 index0 alt0">32</div>
-          <div class="line number1 index0 alt0">33</div>
-          <div class="line number1 index0 alt0">34</div>
-          <div class="line number1 index0 alt0">35</div>
-          <div class="line number1 index0 alt0">36</div>
-          <div class="line number1 index0 alt0">37</div>
-          <div class="line number1 index0 alt0">38</div>
-          <div class="line number1 index0 alt0">39</div>
-          <div class="line number1 index0 alt0">40</div>
-          <div class="line number1 index0 alt0">41</div>
-          <div class="line number1 index0 alt0">42</div>
-          <div class="line number1 index0 alt0">43</div>
-          <div class="line number1 index0 alt0">44</div>
-          <div class="line number1 index0 alt0">45</div>
-          <div class="line number1 index0 alt0">46</div>
-          <div class="line number1 index0 alt0">47</div></td>
+          <div class="line number1 index0 alt0">11</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39; &gt; /usr/local/sbin/xurupita-adduser.sh
-#!/bin/bash
-6001
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf DEFAULT enabled_backends Ceph-Vols
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols volume_driver cinder.volume.drivers.rbd.RBDDriver
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_pool cinder
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_user cinder
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_ceph_conf /etc/ceph/ceph.conf
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_flatten_volume_from_snapshot false
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_max_clone_depth 5
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_store_chunk_size 4
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rados_connect_timeout -1
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols glance_api_version 2
+openstack-config --set /etc/cinder/cinder.conf Ceph-Vols volume_backend_name ceph-backend
 
-ola=$(sed -n &#39;2p&#39; $0) &amp;&gt; /dev/null
-tr=$(expr $ola + 1)
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf Ceph-Vols rbd_secret_uuid 0dcd6320-6eec-4a16-93ef-37c0d746e438
 
-echo &#34;o nome do usuario&#34;
-read user
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume type create ceph
 
-cat &lt;&lt; EOFa &gt; $user-grupo.ldif
-dn: cn=$user,ou=Grupos,dc=xurupita,dc=nl
-objectClass: posixGroup
-objectClass: top
-cn: $user
-userPassword: {crypt}x
-gidNumber: $ola
-EOFa
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume type set ceph --property volume_backend_name=ceph-backend
 
-cat &lt;&lt; EOFb &gt; $user.ldif
-dn: uid=$user,ou=Usuarios,dc=xurupita,dc=nl
-uid: $user
-cn: $user
-objectclass: account
-objectClass: posixAccount
-objectClass: top
-objectClass: shadowAccount
-userPassword: 123456
-shadowLastChange: 15140
-shadowMin: 0
-shadowMax: 99999
-shadowWarning: 7
-loginShell: /bin/bash
-uidNumber: $ola
-gidNumber: $ola
-homeDirectory: /home/$user
-gecos: $user
-description: $user@xurupita.nl
-EOFb
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume type list --long
 
-ldapadd -x -h localhost -D&#34;cn=admin,dc=xurupita,dc=nl&#34; -w &#39;123456&#39; -f $user-grupo.ldif 
-sleep 1
-ldapadd -x -h localhost  -D&#34;cn=admin,dc=xurupita,dc=nl&#34; -w &#39;123456&#39; -f $user.ldif
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl restart openstack-cinder-volume.service 
 
-rm -rf $user.ldif $user-grupo.ldif
-sed 2s/$ola/$tr/ $0 -i
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume create --type ceph --size 3 ceph-vol01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">vol_uid=$(openstack volume list --name ceph-vol01 -c ID -f value) ; echo $vol_uid
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 rbd -p cinder info volume-$vol_uid
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>volume from image</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume create --type ceph --size 3 --image cirros-ceph-qcow vol-img-qcow01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume create --type ceph --size 3 --image cirros-ceph-raw vol-img-raw01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 rbd -p cinder ls -l
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<p class="textsubtitle">Nova</p>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install ceph-common -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 cat /etc/ceph/ceph.conf | tee /etc/ceph/ceph.conf
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>this is for cinder:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 ceph auth get-or-create client.cinder | tee /etc/ceph/ceph.client.cinder.keyring
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;EOF&gt; /etc/ceph/cinder.xml
+&lt;secret ephemeral=&#39;no&#39; private=&#39;no&#39;&gt;
+  &lt;uuid&gt;0dcd6320-6eec-4a16-93ef-37c0d746e438&lt;/uuid&gt;
+  &lt;usage type=&#39;ceph&#39;&gt;
+    &lt;name&gt;client.cinder secret&lt;/name&gt;
+  &lt;/usage&gt;
+&lt;/secret&gt;
 EOF
 
             </div>
@@ -967,7 +1063,7 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">chmod +x /usr/local/sbin/xurupita-adduser.sh
+          <div class="line number1 index0 alt1">virsh secret-define --file /etc/ceph/cinder.xml
 
             </div>
           </div>
@@ -984,7 +1080,24 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">virsh secret-set-value --secret 0dcd6320-6eec-4a16-93ef-37c0d746e438 --base64 $(awk &#39;{print $3}&#39; /etc/ceph/ceph.client.cinder.keyring | tail -1)
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">virsh secret-list
 
             </div>
           </div>
@@ -993,41 +1106,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>cat &lt;&lt; &#39;EOF&#39; &gt; /usr/local/sbin/xurupita-addgroup.sh</p> </div>
-
-<div class="text"><p>#!/bin/bash</p> </div>
-
-<div class="text"><p>ola=$(sed -n &#39;2p&#39; /usr/local/sbin/xurupita-adduser.sh) &amp;&gt; /dev/null</p> </div>
-
-<div class="text"><p>tr=$(expr $ola + 1)</p> </div>
-
-<div class="text"><p>echo &#39;nome do grupo&#39;</p> </div>
-
-<div class="text"><p>read grup</p> </div>
-
-<div class="text"><p>cat &lt;&lt; EOFc &gt; $grup.ldif</p> </div>
-
-<div class="text"><p>dn: cn=$grup,ou=Grupos,dc=xurupita,dc=nl</p> </div>
-
-<div class="text"><p>objectClass: posixGroup</p> </div>
-
-<div class="text"><p>objectClass: top</p> </div>
-
-<div class="text"><p>cn: $grup</p> </div>
-
-<div class="text"><p>userPassword: {crypt}x</p> </div>
-
-<div class="text"><p>gidNumber: $ola</p> </div>
-
-<div class="text"><p>EOFc</p> </div>
-
-<div class="text"><p>ldapadd -x -D cn=admin,dc=xurupita,dc=nl -w &#39;123456&#39; -f $grup.ldif</p> </div>
-
-<div class="text"><p>rm -rf $grup.ldif</p> </div>
-
-<div class="text"><p>sed 2s/$ola/$tr/ /usr/local/sbin/xurupita-adduser.sh -i</p> </div>
-
-<div class="text"><p>EOF</p> </div>
+<div class="text"><p>This is for nova:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1037,7 +1116,152 @@ EOF
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">
+          <div class="line number1 index0 alt1">ssh 192.168.88.8 ceph auth get-or-create client.nova | tee /etc/ceph/ceph.client.nova.keyring
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;EOF&gt; /etc/ceph/nova.xml
+&lt;secret ephemeral=&#39;no&#39; private=&#39;no&#39;&gt;
+  &lt;uuid&gt;b1df3518-5c60-414a-a165-d992f5336a62&lt;/uuid&gt;
+  &lt;usage type=&#39;ceph&#39;&gt;
+    &lt;name&gt;client.nova secret&lt;/name&gt;
+  &lt;/usage&gt;
+&lt;/secret&gt;
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">virsh secret-define --file /etc/ceph/nova.xml
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">virsh secret-set-value --secret b1df3518-5c60-414a-a165-d992f5336a62 --base64 $(awk &#39;{print $3}&#39; /etc/ceph/ceph.client.nova.keyring | tail -1)
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">virsh secret-list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/nova/nova.conf libvirt images_type rbd
+openstack-config --set /etc/nova/nova.conf libvirt images_rbd_pool nova
+openstack-config --set /etc/nova/nova.conf libvirt images_rbd_ceph_conf /etc/ceph/ceph.conf
+openstack-config --set /etc/nova/nova.conf libvirt rbd_user nova
+openstack-config --set /etc/nova/nova.conf libvirt inject_password false
+openstack-config --set /etc/nova/nova.conf libvirt inject_key false
+openstack-config --set /etc/nova/nova.conf libvirt inject_partition -2
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/nova/nova.conf libvirt rbd_secret_uuid b1df3518-5c60-414a-a165-d992f5336a62
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl restart openstack-nova-compute.service
 
             </div>
           </div>
@@ -1046,8 +1270,6 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>chmod +x /usr/local/sbin/xurupita-addgroup.sh</p> </div>
-
 </div>
 
 </body>

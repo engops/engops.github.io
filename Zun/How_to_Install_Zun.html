@@ -1,0 +1,3433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://engops.github.io/static/images/pinguin.png">
+
+<style>
+html, body {
+  height: 100% !important;
+  width: 100% !important; 
+  margin: 0px;
+  font-family: "Lato", sans-serif;
+}
+
+.main {
+  margin-left: 200px;
+  font-size: 20px;
+  padding: 0px 10px;
+  line-height: 0.4;
+}
+
+
+.sidenav {
+
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+.active {
+  background-color: green;
+  color: white;
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.index {
+  padding-top: 0.5em;
+  padding: 1em;
+  padding-bottom: 0.1em;
+  margin-bottom: 4em;
+  height: 10vw !important;
+  -webkit-box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+  box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+}
+
+.pindexurl {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  font-size: 2.5vw !important;
+  line-height: 1em;
+}
+
+.pindextime {
+  text-align: right;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-top: 0.5em !important;
+  font-size: 1.5vw !important;
+  padding-bottom: 0.5em;
+}
+
+
+
+.numerallines {
+  width: 100% !important;
+  margin: 5px 0 20px 0 !important;
+  position: relative !important;
+  overflow: auto !important;
+  font-size: 1em !important;
+}
+
+.numerallines a,
+.numerallines div,
+.numerallines code,
+.numerallines table,
+.numerallines table td,
+.numerallines table tr,
+.numerallines table tbody,
+.numerallines table thead,
+.numerallines table caption,
+.numerallines textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.numerallines .line {
+  white-space: pre !important;
+}
+.numerallines table {
+  width: 100% !important;
+  margin-top: 5px !important;
+  margin-bottom: 30px !important;
+}
+.numerallines table td.code {
+  width: 100% !important;
+}
+.numerallines table td.code .container {
+  position: relative !important;
+}
+.numerallines table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.numerallines table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.3em 0 1em !important;
+  color: #bbbbbb !important;
+  border-right: 5px solid green !important;
+}
+.numerallines table td.code .line {
+  padding: 0 1em !important;
+}
+
+
+.link {
+  margin-top: 10px !important;
+  margin-bottom: 60px !important;
+  line-height: 20px;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+.text p {
+  height: 100%;
+  line-height: 1.3em !important;
+  font-size: 1.3.em !important;
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+  font-weight: normal !important;
+}
+
+.text {
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+}
+
+
+
+.whichserver p {
+  font-size: 2vw !important;
+  line-height: 1em;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 80px;
+  position: absolute;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.whichserver img {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.whichserver {
+  height: 4vw !important;
+  margin-bottom: 1.5em;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px !important;
+  margin-top: 4px !important;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="https://engops.github.io/index.html">Welcome</a>
+  <button class="dropdown-btn">Ceph
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Ceph/Keystone_Integration.html">Keystone Integration</a>
+    <a href="https://engops.github.io/Ceph/Ceph_MGR.html">Ceph MGR</a>
+    <a href="https://engops.github.io/Ceph/Ceph-Deploy_Install.html">Ceph-Deploy Install</a>
+    <a href="https://engops.github.io/Ceph/OpenStack_Integration.html">OpenStack Integration</a>
+    </div>
+<button class="dropdown-btn">Desginate
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Desginate/Install_Designate.html">Install Designate</a>
+    <a href="https://engops.github.io/Desginate/Neutron_Integration.html">Neutron Integration</a>
+    </div>
+<button class="dropdown-btn">Heat
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Heat/Remove_Stack_Error.html">Remove Stack Error</a>
+    </div>
+<button class="dropdown-btn">Ironic
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Ironic/StandALone.html">StandALone</a>
+    </div>
+<button class="dropdown-btn">KVM
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/KVM/How_to_install_KVM_+_Terraform.html">How to install KVM + Terraform</a>
+    <a href="https://engops.github.io/KVM/kvmtop2influxdb.html">kvmtop2influxdb</a>
+    <a href="https://engops.github.io/KVM/kvmtop2elastic.html">kvmtop2elastic</a>
+    </div>
+<button class="dropdown-btn">Keystone
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Keystone/RGW_Integration.html">RGW Integration</a>
+    <a href="https://engops.github.io/Keystone/K2K_Federation.html">K2K Federation</a>
+    <a href="https://engops.github.io/Keystone/OTP.html">OTP</a>
+    </div>
+<button class="dropdown-btn">Kolla
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Kolla/Kolla_External_MariaDB-Galera.html">Kolla External MariaDB-Galera</a>
+    <a href="https://engops.github.io/Kolla/Kolla_External_Ceph.html">Kolla External Ceph</a>
+    <a href="https://engops.github.io/Kolla/Kolla_Simple.html">Kolla Simple</a>
+    </div>
+<button class="dropdown-btn">Kubernetes
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Kubernetes/CKA.html">CKA</a>
+    <a href="https://engops.github.io/Kubernetes/How_to_install_K8S.html">How to install K8S</a>
+    </div>
+<button class="dropdown-btn">LDAP
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/LDAP/LDAP_Simple.html">LDAP Simple</a>
+    </div>
+<button class="dropdown-btn">MariaDB
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/MariaDB/Galera_Balancer_Haproxy.html">Galera Balancer Haproxy</a>
+    <a href="https://engops.github.io/MariaDB/MariaDB_Galera.html">MariaDB Galera</a>
+    </div>
+<button class="dropdown-btn">Neutron
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Neutron/Designate_Integration.html">Designate Integration</a>
+    </div>
+<button class="dropdown-btn">Octavia
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Octavia/How_to_install.html">How to install</a>
+    </div>
+<button class="dropdown-btn">OpenStack
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/OpenStack/Ceph_Integration.html">Ceph Integration</a>
+    <a href="https://engops.github.io/OpenStack/Base.html">Base</a>
+    </div>
+<button class="dropdown-btn">Zun
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+  <div class="dropdown-container">
+    <a href="https://engops.github.io/Zun/How_to_Install_Zun.html">How to Install Zun</a>
+    </div>
+</div>
+
+<script>
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+<div class="main">
+  
+  <h1 style="text-align:center;"> How_to_Install_Zun </h1>
+<img class="centerimage" src="https://engops.github.io/" style="width:50%;">
+
+<div class="text"><p>Zun/Figure-1.png</p> </div>
+
+<p class="link"><a href="https://engops.github.io/.html"></a></p>
+
+<p class="link"><a href="https://engops.github.io/.html"></a></p>
+
+<div class="text"><p>OpenStack/Base</p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>All Machines!!!</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>hostnamectl set-hostname simplezuncontroller.xurupita.nl</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>hostnamectl set-hostname simplezuncompute.xurupita.nl</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+Disable the SELinux:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>sed -e &#39;s/SELINUX=.*/SELINUX=permissive/&#39; /etc/selinux/config -i</p> </div>
+
+<div class="text"><p>setenforce 0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+And the FirewallD:
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl stop firewalld</p> </div>
+
+<div class="text"><p>systemctl disable firewalld</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt; &#39;EOF&#39; &gt;&gt; /etc/hosts</p> </div>
+
+<div class="text"><p>192.168.88.13    simplezuncontroller.xurupita.nl     simplezuncontroller</p> </div>
+
+<div class="text"><p>192.168.88.14    simplezuncompute.xurupita.nl     simplezuncompute</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install chrony -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/chrony.conf</p> </div>
+
+<div class="text"><p>server simplecontroller iburst</p> </div>
+
+<div class="text"><p>driftfile /var/lib/chrony/drift</p> </div>
+
+<div class="text"><p>makestep 1.0 3</p> </div>
+
+<div class="text"><p>rtcsync</p> </div>
+
+<div class="text"><p>logdir /var/log/chrony</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable chronyd.service</p> </div>
+
+<div class="text"><p>systemctl start chronyd.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chronyc sources </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install centos-release-openstack-stein wget epel-release -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install mariadb openstack-utils python-openstackclient -y</p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplezuncontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u root -p&#39;MDB_PASS&#39; -h simplecontroller -e &#34;CREATE DATABASE zun CHARACTER SET utf8&#34;</p> </div>
+
+<div class="text"><p>mysql -u root -p&#39;MDB_PASS&#39; -h simplecontroller -e &#34;GRANT ALL PRIVILEGES ON zun.* TO &#39;zun&#39;@&#39;%&#39; IDENTIFIED BY &#39;ZUN_DBPASSWORD&#39;&#34;</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mysql -u zun -p&#39;ZUN_DBPASSWORD&#39; -h simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; admin_openrc</p> </div>
+
+<div class="text"><p>export OS_USERNAME=admin</p> </div>
+
+<div class="text"><p>export OS_PASSWORD=ADMIN_PASS</p> </div>
+
+<div class="text"><p>export OS_PROJECT_NAME=admin</p> </div>
+
+<div class="text"><p>export OS_USER_DOMAIN_NAME=Default</p> </div>
+
+<div class="text"><p>export OS_PROJECT_DOMAIN_NAME=Default</p> </div>
+
+<div class="text"><p>export OS_AUTH_URL=http://simplecontroller:5000/v3</p> </div>
+
+<div class="text"><p>export OS_IDENTITY_API_VERSION=3</p> </div>
+
+<div class="text"><p>export OS_REGION_NAME=EURegion</p> </div>
+
+<div class="text"><p>export PS1=&#39;\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\W]($OS_PROJECT_NAME-$OS_REGION_NAME)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source admin_openrc</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack user create --domain default --password ZUN_PASSWORD zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack role add --project service --user zun admin</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack service create --name zun --description &#34;Container Service&#34; container</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack endpoint create --region EURegion container public http://simplezuncontroller:9517/v1</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion container internal http://simplezuncontroller:9517/v1</p> </div>
+
+<div class="text"><p>openstack endpoint create --region EURegion container admin http://simplezuncontroller:9517/v1</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>groupadd --system zun</p> </div>
+
+<div class="text"><p>useradd --home-dir &#34;/var/lib/zun&#34; --system --shell /bin/false -g zun zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mkdir -p /etc/zun</p> </div>
+
+<div class="text"><p>mkdir -p /var/log/zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chown zun:zun /var/log/zun</p> </div>
+
+<div class="text"><p>chown zun:zun /etc/zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install python-pip git python-devel libffi-devel gcc openssl-devel -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install --upgrade pip</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install more-itertools==5.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install zun==3.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install pip==8.1.1</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install zun==3.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/zun/api-paste.ini</p> </div>
+
+<div class="text"><p>[pipeline:main]</p> </div>
+
+<div class="text"><p>pipeline = cors request_id osprofiler authtoken api_v1</p> </div>
+
+<div class="text"><p>[app:api_v1]</p> </div>
+
+<div class="text"><p>paste.app_factory = zun.api.app:app_factory</p> </div>
+
+<div class="text"><p>[filter:authtoken]</p> </div>
+
+<div class="text"><p>acl_public_routes = /, /v1</p> </div>
+
+<div class="text"><p>paste.filter_factory = zun.api.middleware.auth_token:AuthTokenMiddleware.factory</p> </div>
+
+<div class="text"><p>[filter:osprofiler]</p> </div>
+
+<div class="text"><p>paste.filter_factory = zun.common.profiler:WsgiMiddleware.factory</p> </div>
+
+<div class="text"><p>[filter:request_id]</p> </div>
+
+<div class="text"><p>paste.filter_factory = oslo_middleware:RequestId.factory</p> </div>
+
+<div class="text"><p>[filter:cors]</p> </div>
+
+<div class="text"><p>paste.filter_factory =  oslo_middleware.cors:filter_factory</p> </div>
+
+<div class="text"><p>oslo_config_project = zun</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd /var/lib/
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">git clone -b stable/stein https://git.openstack.org/openstack/zun.git
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">chown -R zun:zun zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd /var/lib/zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">pip install --upgrade pip
+pip install -r requirements.txt
+python setup.py install
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">bash -c &#34;git clone https://github.com/micheles/decorator &amp;&amp; cd decorator &amp;&amp; pip install . &amp;&amp; exit&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;oslo-config-generator --config-file etc/zun/zun-config-generator.conf&#34; zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;cp etc/zun/zun.conf.sample /etc/zun/zun.conf&#34; zun
+su -s /bin/sh -c &#34;cp etc/zun/api-paste.ini /etc/zun&#34; zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf DEFAULT log_file /var/log/zun/zun-api.log</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf api port 9517</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf api host_ip 192.168.88.13</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf database connection mysql+pymysql://zun:ZUN_DBPASSWORD@simplecontroller/zun?charset=utf8</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth password ZUN_PASSWORD</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth username zun</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_version v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_protocol http</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth service_token_roles_required True</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth endpoint_type internalURL</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken password ZUN_PASSWORD</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken username zun</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_version v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_protocol http</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken service_token_roles_required True</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken endpoint_type internalURL</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf oslo_messaging_notifications driver messaging</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf websocket_proxy wsproxy_host 192.168.88.13</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf websocket_proxy wsproxy_port 6784</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf websocket_proxy base_url ws://192.168.88.13:6784/</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install pymysql python-memcached</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>su -s /bin/sh -c &#34;zun-db-manage upgrade&#34; zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt; EOF &gt; /etc/systemd/system/openstack-zun-api.service</p> </div>
+
+<div class="text"><p>[Unit]</p> </div>
+
+<div class="text"><p>Description = OpenStack Container Service API</p> </div>
+
+<div class="text"><p>[Service]</p> </div>
+
+<div class="text"><p>ExecStart = /usr/bin/zun-api</p> </div>
+
+<div class="text"><p>User = zun</p> </div>
+
+<div class="text"><p>[Install]</p> </div>
+
+<div class="text"><p>WantedBy = multi-user.target</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt; EOF &gt; /etc/systemd/system/openstack-zun-wsproxy.service</p> </div>
+
+<div class="text"><p>[Unit]</p> </div>
+
+<div class="text"><p>Description = OpenStack Container Service Websocket Proxy</p> </div>
+
+<div class="text"><p>[Service]</p> </div>
+
+<div class="text"><p>ExecStart = /usr/bin/zun-wsproxy</p> </div>
+
+<div class="text"><p>User = zun</p> </div>
+
+<div class="text"><p>[Install]</p> </div>
+
+<div class="text"><p>WantedBy = multi-user.target</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable openstack-zun-api</p> </div>
+
+<div class="text"><p>systemctl enable openstack-zun-wsproxy</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl start openstack-zun-api</p> </div>
+
+<div class="text"><p>systemctl start openstack-zun-wsproxy</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install python-zunclient==3.3.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack complete --shell bash | tee /etc/bash_completion.d/os.bash</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>source /etc/bash_completion.d/os.bash</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack appcontainer service list # empty </p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>ETCD</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install etcd -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt; EOF &gt; /etc/etcd/etcd.conf</p> </div>
+
+<div class="text"><p>ETCD_DATA_DIR=&#34;/var/lib/etcd/default.etcd&#34;</p> </div>
+
+<div class="text"><p>ETCD_LISTEN_PEER_URLS=&#34;http://192.168.88.13:2380&#34;</p> </div>
+
+<div class="text"><p>ETCD_LISTEN_CLIENT_URLS=&#34;http://192.168.88.13:2379&#34;</p> </div>
+
+<div class="text"><p>ETCD_NAME=&#34;controller&#34;</p> </div>
+
+<div class="text"><p>ETCD_INITIAL_ADVERTISE_PEER_URLS=&#34;http://192.168.88.13:2380&#34;</p> </div>
+
+<div class="text"><p>ETCD_ADVERTISE_CLIENT_URLS=&#34;http://192.168.88.13:2379&#34;</p> </div>
+
+<div class="text"><p>ETCD_INITIAL_CLUSTER=&#34;controller=http://192.168.88.13:2380&#34;</p> </div>
+
+<div class="text"><p>ETCD_INITIAL_CLUSTER_TOKEN=&#34;etcd-zun01&#34;</p> </div>
+
+<div class="text"><p>ETCD_INITIAL_CLUSTER_STATE=&#34;new&#34;</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable etcd</p> </div>
+
+<div class="text"><p>systemctl start etcd</p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p></p> </div>
+
+<div class="text"><p>simplezuncompute</p> </div>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>neutron and openvswitch</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install openstack-neutron-openvswitch openstack-neutron-ml2 libibverbs -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf keystone_authtoken password NEUTRON_PASS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/neutron.conf oslo_concurrency lock_path /var/lib/neutron/tmp</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --del /etc/neutron/plugins/ml2/openvswitch_agent.ini DEFAULT</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs bridge_mappings provider_br-ex:br-ex</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs enable_tunneling True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs local_ip 192.168.88.44</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini ovs integration_bridge br-int</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent tunnel_types vxlan</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini agent vxlan_udp_port 4789</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_security_group True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/neutron/plugins/ml2/openvswitch_agent.ini securitygroup enable_ipset True</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0</p> </div>
+
+<div class="text"><p>NAME=eth0</p> </div>
+
+<div class="text"><p>DEVICE=eth0</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSPort</p> </div>
+
+<div class="text"><p>OVS_BRIDGE=br-ex</p> </div>
+
+<div class="text"><p>BOOTPROTO=none</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-br-ex</p> </div>
+
+<div class="text"><p>NAME=br-ex</p> </div>
+
+<div class="text"><p>DEVICE=br-ex</p> </div>
+
+<div class="text"><p>IPADDR=192.168.88.44</p> </div>
+
+<div class="text"><p>PREFIX=24</p> </div>
+
+<div class="text"><p>DEVICETYPE=ovs</p> </div>
+
+<div class="text"><p>TYPE=OVSBridge</p> </div>
+
+<div class="text"><p>BOOTPROTO=static</p> </div>
+
+<div class="text"><p>HOTPLUG=no</p> </div>
+
+<div class="text"><p>ONBOOT=yes</p> </div>
+
+<div class="text"><p>GATEWAY=192.168.88.1</p> </div>
+
+<div class="text"><p>DNS1=192.168.88.1</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>ifdown eth0 ; ifup eth0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>sed &#39;/\[Service\]/a ExecStartPost=/usr/bin/chmod 0777 /var/run/openvswitch/db.sock&#39; -i /usr/lib/systemd/system/openvswitch.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl daemon-reload</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl restart openvswitch</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable openvswitch.service neutron-openvswitch-agent.service</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl start neutron-openvswitch-agent.service</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>kuryr</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>groupadd --system kuryr</p> </div>
+
+<div class="text"><p>useradd --home-dir &#34;/var/lib/kuryr&#34; --create-home --system --shell /bin/false -g kuryr kuryr</p> </div>
+
+<div class="text"><p>gpasswd -a kuryr hugetlbfs</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mkdir -p /etc/kuryr</p> </div>
+
+<div class="text"><p>mkdir -p /var/log/kuryr</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chown -R kuryr:kuryr /etc/kuryr</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install python-pip git python-devel libffi-devel gcc openssl-devel -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install --upgrade pip</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install more-itertools==5.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install kuryr-libnetwork==3.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd /var/lib/kuryr
+git clone -b master https://git.openstack.org/openstack/kuryr-libnetwork.git
+chown -R kuryr:kuryr kuryr-libnetwork
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd kuryr-libnetwork
+pip install -r requirements.txt
+python setup.py install
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;./tools/generate_config_file_samples.sh&#34; kuryr
+su -s /bin/sh -c &#34;cp etc/kuryr.conf.sample /etc/kuryr/kuryr.conf&#34; kuryr
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf DEFAULT bindir /usr/libexec/kuryr</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf DEFAULT bindir /usr/libexec/kuryr</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf DEFAULT capability_scope global</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf DEFAULT process_external_connectivity False</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf DEFAULT log_file /var/log/kuryr/kuryr.log</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron username neutron</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron password NEUTRON_PASS</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/kuryr/kuryr.conf neutron user_domain_name default</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>cat &lt;&lt;&#39;EOF&#39;&gt; /etc/systemd/system/kuryr-libnetwork.service</p> </div>
+
+<div class="text"><p>[Unit]</p> </div>
+
+<div class="text"><p>After=openvswitch.service</p> </div>
+
+<div class="text"><p>Description = Kuryr-libnetwork - Docker network plugin for Neutron</p> </div>
+
+<div class="text"><p>[Service]</p> </div>
+
+<div class="text"><p>ExecStart = /usr/bin/kuryr-server --config-file /etc/kuryr/kuryr.conf</p> </div>
+
+<div class="text"><p>CapabilityBoundingSet = CAP_NET_ADMIN</p> </div>
+
+<div class="text"><p>[Install]</p> </div>
+
+<div class="text"><p>WantedBy = multi-user.target</p> </div>
+
+<div class="text"><p>EOF</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>systemctl enable kuryr-libnetwork</p> </div>
+
+<div class="text"><p>systemctl start kuryr-libnetwork</p> </div>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<p class="textsubtitle"></p>
+
+<div class="text"><p>zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>groupadd --system zun</p> </div>
+
+<div class="text"><p>useradd --home-dir &#34;/var/lib/zun&#34; --system --shell /bin/false -g zun zun</p> </div>
+
+<div class="text"><p>gpasswd -a zun hugetlbfs</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>mkdir -p /etc/zun</p> </div>
+
+<div class="text"><p>mkdir -p /var/log/zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>chown zun:zun /var/log/zun</p> </div>
+
+<div class="text"><p>chown zun:zun /etc/zun</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>yum install python-pip git python-devel libffi-devel gcc openssl-devel bridge-utils numactl -y</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd /var/lib/
+git clone -b stable/stein https://git.openstack.org/openstack/zun.git
+chown -R zun:zun zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cd zun
+pip install -r requirements.txt
+python setup.py install
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">bash -c &#34;git clone https://github.com/micheles/decorator &amp;&amp; cd decorator &amp;&amp; pip install . &amp;&amp; exit&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;oslo-config-generator --config-file etc/zun/zun-config-generator.conf&#34; zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;oslo-config-generator --config-file etc/zun/zun-config-generator.conf&#34; zun
+su -s /bin/sh -c &#34;cp etc/zun/zun.conf.sample /etc/zun/zun.conf&#34; zun
+su -s /bin/sh -c &#34;cp etc/zun/rootwrap.conf /etc/zun/rootwrap.conf&#34; zun
+su -s /bin/sh -c &#34;mkdir -p /etc/zun/rootwrap.d&#34; zun
+su -s /bin/sh -c &#34;cp etc/zun/rootwrap.d/* /etc/zun/rootwrap.d/&#34; zun
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">echo &#39;Defaults:zun !requiretty&#39; | tee /etc/sudoers.d/zun-rootwrap
+echo &#39;zun ALL=(root) NOPASSWD: /usr/bin/zun-rootwrap /etc/zun/rootwrap.conf *&#39; | tee -a /etc/sudoers.d/zun-rootwrap
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install --upgrade pip</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install more-itertools==5.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install zun==3.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install pip==8.1.1</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install zun==3.0.0</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf DEFAULT log_file /var/log/zun/zun-compute.log</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf database connection mysql+pymysql://zun:ZUN_DBPASSWORD@simplecontroller/zun?charset=utf8</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth password ZUN_PASSWORD</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth username zun</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_version v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth auth_protocol http</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth service_token_roles_required True</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_auth endpoint_type internalURL</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken memcached_servers simplecontroller:11211</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken project_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken project_name service</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken user_domain_name default</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken password ZUN_PASSWORD</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken username zun</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_url http://simplecontroller:5000</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_type password</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_version v3</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken auth_protocol http</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken service_token_roles_required True</p> </div>
+
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf keystone_authtoken endpoint_type internalURL</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>openstack-config --set /etc/zun/zun.conf oslo_messaging_notifications driver messaging</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">
+
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>pip install pymysql python-memcached</p> </div>
+
+<p class="textsubtitle">docker</p>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install docker -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mkdir -p /etc/systemd/system/docker.service.d
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; /etc/systemd/system/docker.service.d/docker.conf
+[Unit]
+After=kuryr-libnetwork.service
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd --group zun -H tcp://simplezuncompute:2375 -H unix:///var/run/docker.sock --cluster-store etcd://simplezuncontroller:2379
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl daemon-reload
+systemctl enable docker
+systemctl start docker
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/systemd/system/openstack-zun-compute.service
+[Unit]
+After=docker.service
+Description = OpenStack Container Service Compute Agent
+[Service]
+ExecStart = /usr/bin/zun-compute
+User = zun
+[Install]
+WantedBy = multi-user.target
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable openstack-zun-compute
+systemctl start openstack-zun-compute
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; myuser_openrc
+export OS_USERNAME=myuser
+export OS_PASSWORD=myuser_pass
+export OS_PROJECT_NAME=myproject
+export OS_USER_DOMAIN_NAME=mydomain
+export OS_PROJECT_DOMAIN_NAME=mydomain
+export OS_AUTH_URL=http://simplecontroller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=EURegion
+export PS1=&#39;\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\W]($OS_PROJECT_NAME-$OS_REGION_NAME)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer run --name container1 --net network=ext-net-flat --cpu 0.5 --memory 512 cirros ping 8.8.8.8
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer logs container1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer exec --interactive container1 /bin/sh
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer stop container1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack appcontainer delete container1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>### from treta / net= treta-net</p> </div>
+
+<div class="text"><p>openstack appcontainer run --name treta-container1 --security-group all --net network=fb9a8165-3966-465f-b24e-0c28f680c846 --cpu 0.5 --memory 512 cirros ping 8.8.8.8</p> </div>
+
+<div class="text"><p>openstack appcontainer run --name treta-container2 --security-group all --net network=fb9a8165-3966-465f-b24e-0c28f680c846 --cpu 0.5 --memory 512 cirros ping 8.8.8.8</p> </div>
+
+<div class="text"><p>openstack appcontainer run --name treta-container3 --security-group all --net network=fb9a8165-3966-465f-b24e-0c28f680c846 --cpu 0.5 --memory 512 cirros ping 8.8.8.8</p> </div>
+
+<div class="text"><p>openstack appcontainer run --name treta-container4 --security-group all --net network=fb9a8165-3966-465f-b24e-0c28f680c846 --cpu 0.5 --memory 512 cirros ping 8.8.8.8</p> </div>
+
+<div class="text"><p>openstack appcontainer run --name treta-cont-ext1 --security-group all --net network=2ad9a1d6-927f-4b2a-9055-55bc974bd353 --cpu 0.5 --memory 512 cirros ping 8.8.8.8 </p> </div>
+
+</div>
+
+</body>
+</html> 
+
+</html>
