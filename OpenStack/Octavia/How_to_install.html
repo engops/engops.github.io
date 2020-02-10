@@ -407,7 +407,11 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> kvmtop2elastic </h1>
+  <h1 style="text-align:center;"> How to install </h1>
+
+<p class="link"><a href="https://engops.github.io/OpenStack/Base.html">OpenStack/Base</a></p>
+
+<p class="textsubtitle">How to install Octavia LBaaS </p>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -417,7 +421,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">yum install wget epel-repel -y
+          <div class="line number1 index0 alt1">mysql -u root -e &#34;CREATE DATABASE octavia&#34;
 
             </div>
           </div>
@@ -434,7 +438,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">wget --no-check-certificate --no-cookies --header &#34;Cookie: oraclelicense=accept-securebackup-cookie&#34; http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+          <div class="line number1 index0 alt1">mysql -u root -e &#34;GRANT ALL PRIVILEGES ON octavia.* TO &#39;octavia&#39;@&#39;%&#39; IDENTIFIED BY &#39;PLACEMENT_DBPASS&#39;; flush privileges&#34;
 
             </div>
           </div>
@@ -451,7 +455,28 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">yum localinstall jdk-8u131-linux-x64.rpm -y
+          <div class="line number1 index0 alt1">openstack service create --name octavia --description &#34;OpenStack Octavia&#34; load-balancer
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion octavia public http://simplecontroller:9876
+openstack endpoint create --region EURegion octavia internal http://simplecontroller:9876
+openstack endpoint create --region EURegion octavia admin http://simplecontroller:9876
 
             </div>
           </div>
@@ -468,7 +493,7 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">java -version
+          <div class="line number1 index0 alt1">openstack user create --domain default --password OCTAVIA_PASS octavia
 
             </div>
           </div>
@@ -485,7 +510,41 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+          <div class="line number1 index0 alt1">openstack role add --project service --user octavia admin
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install openstack-octavia-common openstack-octavia-housekeeping openstack-octavia-api openstack-octavia-health-manager openstack-octavia-worker openstack-octavia-amphora-agent python2-octaviaclient -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/octavia/octavia.conf octavia_database connection mysql+pymysql://octavia:PLACEMENT_DBPASS@simplecontroller/octavia
 
             </div>
           </div>
@@ -506,255 +565,17 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">5</div>
           <div class="line number1 index0 alt0">6</div>
           <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div>
-          <div class="line number1 index0 alt0">9</div>
-          <div class="line number1 index0 alt0">10</div></td>
+          <div class="line number1 index0 alt0">8</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/yum.repos.d/elastic.repo
-[elastic-6.x]
-name=Elastic repository for 6.x packages
-baseurl=https://artifacts.elastic.co/packages/6.x/yum
-gpgcheck=1
-gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
-enabled=1
-autorefresh=1
-type=rpm-md
-EOF
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">yum install elasticsearch -y
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div>
-          <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div>
-          <div class="line number1 index0 alt0">4</div>
-          <div class="line number1 index0 alt0">5</div>
-          <div class="line number1 index0 alt0">6</div>
-          <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div>
-          <div class="line number1 index0 alt0">9</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/elasticsearch/elasticsearch.yml 
-cluster.name: test
-node.name: opentsdb
-path.data: /var/lib/elasticsearch
-path.logs: /var/log/elasticsearch
-network.host: 127.0.0.1
-http.host: 0.0.0.0
-http.port: 9200
-EOF
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">systemctl start elasticsearch.service
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">systemctl status elasticsearch.service
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">yum install python-pip -y
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">pip install requests elasticsearch
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div>
-          <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div>
-          <div class="line number1 index0 alt0">4</div>
-          <div class="line number1 index0 alt0">5</div>
-          <div class="line number1 index0 alt0">6</div>
-          <div class="line number1 index0 alt0">7</div>
-          <div class="line number1 index0 alt0">8</div>
-          <div class="line number1 index0 alt0">9</div>
-          <div class="line number1 index0 alt0">10</div>
-          <div class="line number1 index0 alt0">11</div>
-          <div class="line number1 index0 alt0">12</div>
-          <div class="line number1 index0 alt0">13</div>
-          <div class="line number1 index0 alt0">14</div>
-          <div class="line number1 index0 alt0">15</div>
-          <div class="line number1 index0 alt0">16</div>
-          <div class="line number1 index0 alt0">17</div>
-          <div class="line number1 index0 alt0">18</div>
-          <div class="line number1 index0 alt0">19</div>
-          <div class="line number1 index0 alt0">20</div>
-          <div class="line number1 index0 alt0">21</div>
-          <div class="line number1 index0 alt0">22</div>
-          <div class="line number1 index0 alt0">23</div>
-          <div class="line number1 index0 alt0">24</div>
-          <div class="line number1 index0 alt0">25</div>
-          <div class="line number1 index0 alt0">26</div>
-          <div class="line number1 index0 alt0">27</div>
-          <div class="line number1 index0 alt0">28</div>
-          <div class="line number1 index0 alt0">29</div>
-          <div class="line number1 index0 alt0">30</div>
-          <div class="line number1 index0 alt0">31</div>
-          <div class="line number1 index0 alt0">32</div>
-          <div class="line number1 index0 alt0">33</div>
-          <div class="line number1 index0 alt0">34</div>
-          <div class="line number1 index0 alt0">35</div>
-          <div class="line number1 index0 alt0">36</div>
-          <div class="line number1 index0 alt0">37</div>
-          <div class="line number1 index0 alt0">38</div>
-          <div class="line number1 index0 alt0">39</div>
-          <div class="line number1 index0 alt0">40</div>
-          <div class="line number1 index0 alt0">41</div>
-          <div class="line number1 index0 alt0">42</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">#!/usr/bin/python
-import requests
-import json
-from elasticsearch import Elasticsearch
-import datetime
-
-#res = requests.get(&#39;http://localhost:9200&#39;)
-#print(res.content)
-
-host = {&#39;host&#39;: &#39;localhost&#39;, &#39;port&#39;: 9200}
-es = Elasticsearch([host])
-index_name = &#39;xurupita_gold&#39;
-
-mapping = &#39;&#39;&#39;
-{
-  &#34;mappings&#34;:{  
-    &#34;_default_&#34;:{  
-      &#34;_timestamp&#34;:{  
-        &#34;enabled&#34;:&#34;true&#34;
-      },
-      &#34;properties&#34;:{  
-        &#34;@timestamp&#34;: {
-          &#34;type&#34;: &#34;date&#34;,
-          &#34;include_in_all&#34;: true
-        }
-      }
-    }
-  }
-}&#39;&#39;&#39;
-es.indices.create(index=index_name, ignore=400, body=mapping)
-
-timestamp = datetime.datetime.now().isoformat()
-
-
-doc = {
-    &#39;author&#39;: &#39;kimchy&#39;,
-    &#39;text&#39;: &#39;Elasticsearch: cool. bonsai cool1.&#39;,
-    &#39;@timestamp&#39;: datetime.datetime.now().isoformat()
-}
-res = es.index(index=index_name, doc_type=&#39;tweet&#39;, body=doc)
-print(res[&#39;ok&#39;])
-
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">curl &#39;http://localhost:9200/xurupita_gold/_search?q=author:kimchy&amp;pretty=true&#39;
+          <div class="line number1 index0 alt1">openstack-config --set /etc/octavia/octavia.conf keystone_authtoken auth_url http://simplecontroller:5000/v3
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken memcached_servers simplecontroller:11211
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken auth_type password
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken project_domain_name default
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken user_domain_name default
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken project_name service
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken username octavia
+openstack-config --set /etc/octavia/octavia.conf keystone_authtoken password PLACEMENT_PASS
 
             </div>
           </div>
