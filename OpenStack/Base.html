@@ -304,16 +304,6 @@ html, body {
   <a href="https://engops.github.io/MariaDB/MariaDB_Galera.html">MariaDB Galera</a>
   </div>
 
-  <button class="dropdown-btn">Kolla
-    <i class="fa-caret-down"></i>
-    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
-  </button>
-    <div class="dropdown-container">
-  <a href="https://engops.github.io/Kolla/Kolla_External_MariaDB-Galera.html">Kolla External MariaDB-Galera</a>
-  <a href="https://engops.github.io/Kolla/Kolla_External_Ceph.html">Kolla External Ceph</a>
-  <a href="https://engops.github.io/Kolla/Kolla_Simple.html">Kolla Simple</a>
-  </div>
-
   <button class="dropdown-btn">OpenStack
     <i class="fa-caret-down"></i>
     <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
@@ -354,6 +344,20 @@ html, body {
     
     </div>
   <a href="https://engops.github.io/OpenStack/Ceph_Integration.html">Ceph Integration</a>
+  
+    <button class="dropdown-btn">Kolla
+      <i class="fa-caret-down"></i>
+      <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+    </button>
+    <div class="dropdown-container">
+    
+      <a href="https://engops.github.io/OpenStack/Kolla/Kolla_External_MariaDB-Galera.html">Kolla External MariaDB-Galera</a>
+    
+      <a href="https://engops.github.io/OpenStack/Kolla/Kolla_External_Ceph.html">Kolla External Ceph</a>
+    
+      <a href="https://engops.github.io/OpenStack/Kolla/Kolla_Simple.html">Kolla Simple</a>
+    
+    </div>
   
     <button class="dropdown-btn">Neutron
       <i class="fa-caret-down"></i>
@@ -443,6 +447,23 @@ for (i = 0; i < dropdown.length; i++) {
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">hostnamectl set-hostname simplecompute.xurupita.nl
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">hostnamectl set-hostname simpleservices.xurupita.nl
 
             </div>
           </div>
@@ -1884,6 +1905,677 @@ systemctl start openstack-glance-api.service
     </tbody>
   </table>
 </div>
+<p class="textsubtitle">Volume service (Cinder)</p>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mysql -u root -e &#34;CREATE DATABASE cinder&#34;
+mysql -u root -e &#34;GRANT ALL PRIVILEGES ON cinder.* TO &#39;cinder&#39;@&#39;%&#39; IDENTIFIED BY &#39;CINDER_DBPASS&#39; ; flush privileges&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">source admin_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack user create --domain default --password CINDER_PASS cinder
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role add --project service --user cinder admin
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack service create --name cinderv2 --description &#34;OpenStack Block Storage&#34; volumev2
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev2 public http://simplecontroller:8776/v2/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev2 internal http://simplecontroller:8776/v2/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev2 admin http://simplecontroller:8776/v2/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack service create --name cinderv3 --description &#34;OpenStack Block Storage&#34; volumev3
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev3 public http://simplecontroller:8776/v3/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev3 internal http://simplecontroller:8776/v3/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion volumev3 admin http://simplecontroller:8776/v3/%\(project_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install openstack-cinder -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf database connection mysql+pymysql://cinder:CINDER_DBPASS@simplecontroller/cinder 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf DEFAULT auth_strategy keystone
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken auth_url http://simplecontroller:5000
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken memcached_servers simplecontroller:11211
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken auth_type password
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken project_domain_name Default
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken user_domain_name Default
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken project_name service
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken username cinder
+openstack-config --set /etc/cinder/cinder.conf keystone_authtoken password CINDER_PASS
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf oslo_concurrency lock_path /var/lib/cinder/tmp
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;cinder-manage db sync&#34; cinder
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service
+systemctl enable openstack-cinder-api.service openstack-cinder-scheduler.service
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume service list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install nfs-utils -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mkdir /mnt/vol01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">echo &#39;/mnt/vol01 *(rw,no_root_squash)&#39; &gt; /etc/exports
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable nfs-server
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">showmount -e
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install nfs-utils -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf DEFAULT enabled_backends nfs
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">echo &#34;simpleservices.xurupita.nl:/mnt/vol01&#34; &gt; /etc/cinder/shares.conf
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/cinder/cinder.conf nfs nfs_shares_config /etc/cinder/shares.conf
+openstack-config --set /etc/cinder/cinder.conf nfs volume_driver cinder.volume.drivers.nfs.NfsDriver
+openstack-config --set /etc/cinder/cinder.conf nfs volume_backend_name nfsbackend
+openstack-config --set /etc/cinder/cinder.conf nfs nfs_mount_options
+openstack-config --set /etc/cinder/cinder.conf nfs nfs_sparsed_volumes True
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable openstack-cinder-volume
+systemctl restart openstack-cinder-api openstack-cinder-scheduler openstack-cinder-volume
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>is possible to see the mount of the NFS</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mount
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume type create NFS
+openstack volume type set NFS --property volume_backend_name=nfsbackend
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume type list --long
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume create --type NFS --size 2 vol01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack volume create --type NFS --image cirros --size 2 volimg01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ls -R /var/lib/cinder/mnt/
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <p class="textsubtitle">Placement service (Placement)</p>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
@@ -2424,6 +3116,23 @@ openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">openstack-config --set /etc/nova/nova.conf glance api_servers http://simplecontroller:9292
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/nova/nova.conf cinder os_region_name EURegion
 
             </div>
           </div>
@@ -3081,7 +3790,7 @@ openstack endpoint create --region EURegion network admin http://simplecontrolle
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router,network_segment_range
+          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router
 
             </div>
           </div>
