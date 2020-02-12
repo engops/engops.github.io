@@ -421,8 +421,652 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> How to install </h1>
+  <h1 style="text-align:center;"> Install and congute the Heat (Orchestration as a Service) </h1>
 
+<div class="text"><p>Make sure that you followed or have some environment like this link</p> </div>
+
+<p class="link"><a href="https://engops.github.io/OpenStack/Base.html">OpenStack/Base</a></p>
+
+<p class="textsubtitle">Orchestration as a Service (Heat)</p>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mysql -u root -e &#34;CREATE DATABASE heat&#34;
+mysql -u root -e &#34;GRANT ALL PRIVILEGES ON heat.* TO &#39;heat&#39;@&#39;%&#39; IDENTIFIED BY &#39;HEAT_DBPASS&#39; ; flush privileges&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">source admin_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack user create --domain default --password HEAT_PASS heat
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role add --project service --user heat admin
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack service create --name heat --description &#34;Orchestration&#34; orchestration
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion orchestration public http://simplecontroller:8004/v1/%\(tenant_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion orchestration internal http://simplecontroller:8004/v1/%\(tenant_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion orchestration admin http://simplecontroller:8004/v1/%\(tenant_id\)s
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack service create --name heat-cfn --description &#34;Orchestration&#34;  cloudformation
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion cloudformation public http://simplecontroller:8000/v1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion cloudformation internal http://simplecontroller:8000/v1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion cloudformation admin http://simplecontroller:8000/v1
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack domain create --description &#34;Stack projects and users&#34; heat
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack user create --domain heat --password HEAT_PASS heat_domain_admin
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role add --domain heat --user-domain heat --user heat_domain_admin admin
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role create heat_stack_owner
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role add --project myproject --project-domain mydomain --user myuser --user-domain mydomain heat_stack_owner
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack role create heat_stack_user
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install openstack-heat-api openstack-heat-api-cfn openstack-heat-engine -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf database connection mysql+pymysql://heat:HEAT_DBPASS@simplecontroller/heat 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf DEFAULT heat_metadata_server_url http://simplecontroller:8000
+openstack-config --set /etc/heat/heat.conf DEFAULT heat_waitcondition_server_url http://simplecontroller:8000/v1/waitcondition
+openstack-config --set /etc/heat/heat.conf DEFAULT stack_domain_admin heat_domain_admin
+openstack-config --set /etc/heat/heat.conf DEFAULT stack_domain_admin_password HEAT_PASS
+openstack-config --set /etc/heat/heat.conf DEFAULT stack_user_domain_name heat
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf keystone_authtoken auth_uri http://simplecontroller:5000
+openstack-config --set /etc/heat/heat.conf keystone_authtoken auth_url http://simplecontroller:5000
+openstack-config --set /etc/heat/heat.conf keystone_authtoken memcached_servers simplecontroller:11211
+openstack-config --set /etc/heat/heat.conf keystone_authtoken auth_type password
+openstack-config --set /etc/heat/heat.conf keystone_authtoken project_domain_name Default
+openstack-config --set /etc/heat/heat.conf keystone_authtoken user_domain_name Default
+openstack-config --set /etc/heat/heat.conf keystone_authtoken project_name service
+openstack-config --set /etc/heat/heat.conf keystone_authtoken username heat
+openstack-config --set /etc/heat/heat.conf keystone_authtoken password HEAT_PASS
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf DEFAULT deferred_auth_method trusts
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/heat/heat.conf trustee auth_type password
+openstack-config --set /etc/heat/heat.conf trustee auth_url http://simplecontroller:5000
+openstack-config --set /etc/heat/heat.conf trustee username heat
+openstack-config --set /etc/heat/heat.conf trustee password HEAT_PASS
+openstack-config --set /etc/heat/heat.conf trustee user_domain_name default
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">su -s /bin/sh -c &#34;heat-manage db_sync&#34; heat
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl enable openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openstack-heat-engine.service
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack orchestration service list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; simple-HOT.yaml
+heat_template_version: 2015-04-30
+description: Simple template to deploy a single compute instance
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    properties:
+      name: &#39;testHOT&#39;
+      image: cirros
+      flavor: cirros-flavor
+      networks: [{network: mynet }]
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">source myuser_openrc
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack stack create -t simple-HOT.yaml simpleHOT01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack stack show simpleHOT01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack stack resource list simpleHOT01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack stack event list simpleHOT01
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 
 </body>
