@@ -959,7 +959,12 @@ systemctl start openstack-heat-api.service openstack-heat-api-cfn.service openst
           <div class="line number1 index0 alt0">9</div>
           <div class="line number1 index0 alt0">10</div>
           <div class="line number1 index0 alt0">11</div>
-          <div class="line number1 index0 alt0">12</div></td>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div></td>
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; simple-HOT.yaml
@@ -973,6 +978,11 @@ resources:
       image: cirros
       flavor: cirros-flavor
       networks: [{network: mynet }]
+outputs:
+  instance_ip:
+    description: The IP address of the deployed instance
+    value: { get_attr: [my_instance, first_address] }
+
 EOF
 
             </div>
