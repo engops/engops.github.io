@@ -334,9 +334,67 @@ for (i = 0; i < dropdown.length; i++) {
 
 <img class="centerimage" src="https://engops.github.io/OpenStack/environment.png" style="width:50%;">
 
-<p class="textsubtitle">All machines!!!</p>
+<div class="text"><p>first of all configure the name and ips on all machines like the commands bellow.</p> </div>
 
-<div class="text"><p>first of all configure the name and ips on all machines like the image above.</p> </div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">hostnamectl set-hostname simpleservices.xurupita.nl
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0 
+IPADDR=192.168.88.6
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+NAME=eth0
+DEVICE=eth0
+ONBOOT=yes
+PREFIX=24
+GATEWAY=192.168.88.1
+DNS1=8.8.8.8
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -360,6 +418,47 @@ for (i = 0; i < dropdown.length; i++) {
       <tr>
         <td class="gutter">
           
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0 
+IPADDR=192.168.88.7
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+NAME=eth0
+DEVICE=eth0
+ONBOOT=yes
+PREFIX=24
+GATEWAY=192.168.88.1
+DNS1=8.8.8.8
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
           <div class="line number1 index0 alt0">1</div></td>
         <td class="code">
           <div class="container">
@@ -377,10 +476,32 @@ for (i = 0; i < dropdown.length; i++) {
       <tr>
         <td class="gutter">
           
-          <div class="line number1 index0 alt0">1</div></td>
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">hostnamectl set-hostname simpleservices.xurupita.nl
+          <div class="line number1 index0 alt1">cat &lt;&lt;&#39;EOF&#39;&gt; /etc/sysconfig/network-scripts/ifcfg-eth0 
+IPADDR=192.168.88.11
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+NAME=eth0
+DEVICE=eth0
+ONBOOT=yes
+PREFIX=24
+GATEWAY=192.168.88.1
+DNS1=8.8.8.8
+EOF
 
             </div>
           </div>
@@ -389,6 +510,8 @@ for (i = 0; i < dropdown.length; i++) {
     </tbody>
   </table>
 </div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>All machines!!!</p> </div>
+
 <div class="text"><p>Disable the SELinux:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
@@ -451,7 +574,9 @@ systemctl disable NetworkManager
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Because we are not using some DNS as authoritative of xurupita.nl add to &#39;/etc/hosts&#39; these lines:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -687,6 +812,8 @@ systemctl start chronyd.service
 <p class="textsubtitle">SQL DataBase</p>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<div class="text"><p>Install the MariaDB service and the python connector:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -704,7 +831,9 @@ systemctl start chronyd.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Configure the &#39;/etc/my.cnf.d/openstack.cnf&#39; to ensure that MySQL will work InnoDB and UTF also set to be open the port 3306 on all ips that we&#39;ll have:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -737,7 +866,9 @@ EOF
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Enable and start the MariaDB service:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -775,7 +906,9 @@ systemctl start mariadb.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Set a passowrd to root user (root only on MariaDB will have this password) be able to connect remotly if necessary:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -796,6 +929,8 @@ systemctl start mariadb.service
 <p class="textsubtitle">Message Queue</p>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<div class="text"><p>Install the RabbitMQ service to provide the message system:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -813,7 +948,9 @@ systemctl start mariadb.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Enable the managment portal, it will expose many informations on web console, the default port is 15672, in our case try http://192.168.88.7:15672 after create the user and set the permission on next steps:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -830,7 +967,9 @@ systemctl start mariadb.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Enable and start the RabbitMQ Server service:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -849,16 +988,22 @@ systemctl start rabbitmq-server.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Create, set password and set permission of the &#39;openstack&#39; user, this user will be used to connect each OpenStack service on RabbitMQ:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
         <td class="gutter">
           
-          <div class="line number1 index0 alt0">1</div></td>
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">rabbitmqctl add_user openstack RABBIT_PASS
+rabbitmqctl set_user_tags openstack administrator
+rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
 
             </div>
           </div>
@@ -866,41 +1011,9 @@ systemctl start rabbitmq-server.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">rabbitmqctl set_user_tags openstack administrator
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Chech if all is correctly configured:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
