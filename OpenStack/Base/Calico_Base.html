@@ -341,72 +341,17 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> CKA </h1>
+  <h1 style="text-align:center;"> Calico Base </h1>
 
-<div class="text"><p>Prerequisite</p> </div>
+<div class="text"><p>To do this section is advise finalized or have enviroment equal the section bellow: </p> </div>
 
-<p class="link"><a href="https://engops.github.io/Kubernetes/How_to_install_K8S.html">Kubernetes/How_to_install_K8S</a></p>
+<p class="link"><a href="https://engops.github.io/OpenStack/Base/Instalation_Base.html">OpenStack/Base/Instalation_Base</a></p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>Imperative Commands</p> </div>
+<p class="textsubtitle">Networking service (Neutron)</p>
 
-<div class="text"><p>Create a pod</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">kubectl run --generator=run-pod/v1 nginx --image=nginx
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>Generate POD yaml file</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml &gt; pod-definition.yml
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>Create Deployment</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">kubectl create deployment --image=nginx nginx
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="text"><p>Create Deployment with replicas</p> </div>
+<div class="text"><p>First of all, create the Neutron database and set the password to enable the connection on this database with user neutron:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -417,8 +362,25 @@ for (i = 0; i < dropdown.length; i++) {
           <div class="line number1 index0 alt0">2</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">kubectl create deployment --image=nginx nginx
-kubectl scale deployment/nginx --replicas=4
+          <div class="line number1 index0 alt1">mysql -u root -e &#34;CREATE DATABASE neutron&#34;
+mysql -u root -e &#34;GRANT ALL PRIVILEGES ON neutron.* TO &#39;neutron&#39;@&#39;%&#39; IDENTIFIED BY &#39;NEUTRON_DBPASS&#39;; flush privileges&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack service create --name neutron --description &#34;OpenStack Networking&#34; network
 
             </div>
           </div>
@@ -427,8 +389,6 @@ kubectl scale deployment/nginx --replicas=4
     </tbody>
   </table>
 </div>
-<div class="text"><p>Either, you may want generate the deployment YAML file and than update the replica options</p> </div>
-
 </div>
 
 </body>
