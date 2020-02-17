@@ -373,23 +373,6 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON neutron.* TO &#39;neutron&#39;@&#3
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack service create --name neutron --description &#34;OpenStack Networking&#34; network
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 <div class="text"><p>Now create the Neutron service as well add the your endpoints:</p> </div>
 <div class="numerallines">
@@ -400,10 +383,12 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON neutron.* TO &#39;neutron&#39;@&#3
           
           <div class="line number1 index0 alt0">1</div>
           <div class="line number1 index0 alt0">2</div>
-          <div class="line number1 index0 alt0">3</div></td>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack endpoint create --region EURegion network public http://simplecontroller:9696
+          <div class="line number1 index0 alt1">openstack service create --name neutron --description &#34;OpenStack Networking&#34; network
+openstack endpoint create --region EURegion network public http://simplecontroller:9696
 openstack endpoint create --region EURegion network internal http://simplecontroller:9696
 openstack endpoint create --region EURegion network admin http://simplecontroller:9696
 
@@ -465,6 +450,25 @@ openstack role add --project service --user neutron admin
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf database connection mysql+pymysql://neutron:NEUTRON_DBPASS@simplecontroller/neutron
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller
 
             </div>
           </div>
@@ -541,42 +545,6 @@ openstack role add --project service --user neutron admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:RABBIT_PASS@simplecontroller
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 <div class="text"><p>Determine the OpenStack credentials on the Neutron configuration file:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
@@ -592,10 +560,12 @@ openstack role add --project service --user neutron admin
           <div class="line number1 index0 alt0">6</div>
           <div class="line number1 index0 alt0">7</div>
           <div class="line number1 index0 alt0">8</div>
-          <div class="line number1 index0 alt0">9</div></td>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div></td>
         <td class="code">
           <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000
+          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
+openstack-config --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://simplecontroller:5000
 openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://simplecontroller:5000
 openstack-config --set /etc/neutron/neutron.conf keystone_authtoken memcached_servers simplecontroller:11211
 openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_type password
@@ -611,33 +581,20 @@ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken password NEU
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Enable the communication between Neutron and Nova, it is also used by Designate:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
         <td class="gutter">
           
-          <div class="line number1 index0 alt0">1</div></td>
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes true
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes true
+openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes true
 
             </div>
           </div>
@@ -678,7 +635,9 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>To manage external resources and with multi-thead and/or multi-process is necessary manage the lock where will determine who is doing what:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -1239,7 +1198,9 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>The Neutron-server will look for this file, so create the link:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
