@@ -330,7 +330,7 @@ for (i = 0; i < dropdown.length; i++) {
   
   <h1 style="text-align:center;"> Manual basic instalation (Simple OpenStack) </h1>
 
-<div class="text"><p>This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines, on to be the &#34;controller&#34; (where all services will installed) and other to be the compute-node as well we will have tow networks, the imagem bellow show how will be the environment.</p> </div>
+<div class="text"><p>This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines as OpenStack components and the third will be to adictional services, on to be the &#34;simplecontroller&#34; (where all services will installed) and other to be the compute-node as well we will have only one network, the imagem bellow show how will be the environment.</p> </div>
 
 <img class="centerimage" src="https://engops.github.io/OpenStack/environment.png" style="width:50%;">
 
@@ -1034,6 +1034,8 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
 <p class="textsubtitle">Memcached</p>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<div class="text"><p>Install the Memcached and the python library to enable openstack uses memcached:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1051,7 +1053,9 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Determine that memcached service will listen on all interfaces:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -1068,7 +1072,9 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Enable and start the Memcached service:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -1087,7 +1093,9 @@ systemctl start memcached.service
       </tr>
     </tbody>
   </table>
-</div><div class="numerallines">
+</div>
+<div class="text"><p>Chech if the Memcached is correctly configured:</p> </div>
+<div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
       <tr>
@@ -1108,6 +1116,8 @@ systemctl start memcached.service
 <p class="textsubtitle">Identity service (Keystone)</p>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<div class="text"><p>First of all, create the Keystone database and set the password to enable the connection on this database with user keystone:</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
