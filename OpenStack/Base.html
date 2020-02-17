@@ -3290,6 +3290,145 @@ openstack hypervisor list
     </tbody>
   </table>
 </div>
+<p class="textsubtitle">Dashboard (Horizon)</p>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+
+<div class="text"><p>Install the Horizon packge:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum install openstack-dashboard -y
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Determine which OpenStack this Horizon will conect:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_HOST &#39;&#34;simplecontroller&#34;&#39;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Set where from will be accept connections:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">sed -e &#39;s/ALLOWED_HOSTS.*/ALLOWED_HOSTS = [&#34;*&#34;]/&#39; /etc/openstack-dashboard/local_settings -i
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Set Horizon to store the Session and Cache on Memcached:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; SESSION_ENGINE &#34;&#39;django.contrib.sessions.backends.cache&#39;&#34;
+openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES &#34;{&#39;default&#39;: {&#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,&#39;LOCATION&#39;: &#39;simplecontroller:11211&#39;,}}&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Enable the Horizon to work with multiple Domains:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT True
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Chose the default Role to be used by Horizon:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_DEFAULT_ROLE &#39;&#34;member&#34;&#39;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Restart the Apache to be affected by the changes:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">systemctl restart httpd.service
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <p class="textsubtitle">Networking service (Neutron)</p>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
@@ -5294,148 +5433,6 @@ EOF
         <td class="code">
           <div class="container">
           <div class="line number1 index0 alt1">openstack server create --flavor cirros-flavor --volume volimg01 --nic net-id=mynet myvxlanvmFromvol1
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<p class="textsubtitle">Dashboard (Horizon)</p>
-
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
-
-<div class="text"><p>Install the Horizon packge:</p> </div>
-<div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">yum install openstack-dashboard -y
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_HOST &#39;&#34;simplecontroller&#34;&#39;
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">sed -e &#39;s/ALLOWED_HOSTS.*/ALLOWED_HOSTS = [&#34;*&#34;]/&#39; /etc/openstack-dashboard/local_settings -i
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; SESSION_ENGINE &#34;&#39;django.contrib.sessions.backends.cache&#39;&#34;
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES &#34;{&#39;default&#39;: {&#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,&#39;LOCATION&#39;: &#39;simplecontroller:11211&#39;,}}&#34;
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT True
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; OPENSTACK_KEYSTONE_DEFAULT_ROLE &#39;&#34;member&#34;&#39;
-
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div><div class="numerallines">
-  <table cellspacing="0" cellpadding="0" border="1">
-    <tbody>
-      <tr>
-        <td class="gutter">
-          
-          <div class="line number1 index0 alt0">1</div></td>
-        <td class="code">
-          <div class="container">
-          <div class="line number1 index0 alt1">systemctl restart httpd.service
 
             </div>
           </div>
