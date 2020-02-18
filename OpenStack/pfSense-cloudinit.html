@@ -344,10 +344,148 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="main">
   
-  <h1 style="text-align:center;"> LinuxBridge Base </h1>
+  <h1 style="text-align:center;"> PfSense Cloudinit </h1>
 
-<div class="text"><p>UNDER CONSTRUCTION !!!</p> </div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>pfSense installation</p> </div>
 
+<div class="text"><p>Install pfSense 2.4.3 or later with default settings on two partition (/boot and /). Be aware that there isn&#39;t any disk partition after the root partition, otherwise, the disk resize won&#39;t work.</p> </div>
+
+<div class="text"><p>Configure a single interface as WAN interface.</p> </div>
+
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>pfSense WebGUI customization</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">1. System / Advanced / Admin Access tab:
+* Check: Disable HTTP_REFERER enforcement check
+* Check: Enable Secure Shell
+* Check: Disable password login for Secure Shell (RSA/DSA key only)
+
+2. System / Advanced / Networking tab:
+* Check: Disable hardware checksum offload
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>pfSense Console</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">### Comment the stty lines:
+
+vi /etc/phpshellsessions/changepassword
+...
+// If the user does exist, prompt for password
+while (empty($password)) {
+        echo gettext(&#34;New Password&#34;) . &#34;: &#34;;
+        //exec(&#39;/bin/stty -echo&#39;);
+        $password = trim(fgets($fp));
+        //exec(&#39;/bin/stty echo&#39;);
+        echo &#34;\n&#34;;
+}
+
+// Confirm password
+while (empty($confpassword)) {
+        echo gettext(&#34;Confirm New Password&#34;) . &#34;: &#34;;
+        //exec(&#39;/bin/stty -echo&#39;);
+        $confpassword = trim(fgets($fp));
+        //exec(&#39;/bin/stty echo&#39;);
+        echo &#34;\n&#34;;
+}
+...
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>Install cloudinit</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">fetch https://raw.githubusercontent.com/rrbarreto/pfsense-cloudinit/master/installer.sh
+sh installer.sh
+poweroff
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>### OpenStack image create</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">$ openstack image create pfSense --file pfsense.qcow2 --disk-format qcow2
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 
 </body>
