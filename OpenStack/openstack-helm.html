@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://engops.github.io/static/images/pinguin.png">
+
+<style>
+html, body {
+  height: 100% !important;
+  width: 100% !important; 
+  margin: 0px;
+  font-family: "Lato", sans-serif;
+}
+
+.main {
+  margin-left: 230px;
+  font-size: 20px;
+  padding: 0px 10px;
+  line-height: 0.4;
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+.active {
+  background-color: green;
+  color: white;
+}
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.index {
+  padding-top: 0.5em;
+  padding: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  height: 10vw !important;
+  -webkit-box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+  box-shadow: 20px 15px 15px 5px rgba(0,0,0,0.92);
+}
+
+.pindextitle {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  font-size: 2.5vw !important;
+  line-height: 1em;
+}
+
+.pindextime {
+  text-align: right;
+  margin-left: 0;
+  margin-right: 1em;
+  margin-top: 0.5em !important;
+  font-size: 1.5vw !important;
+  padding-bottom: 0.5em;
+}
+
+
+.numerallines {
+  width: 100% !important;
+  margin: 0 0 0 0 !important;
+
+  position: relative !important;
+  overflow: auto !important;
+  font-size: 1em !important;
+}
+
+.numerallines a,
+.numerallines div,
+.numerallines code,
+.numerallines table,
+.numerallines table td,
+.numerallines table tr,
+.numerallines table tbody,
+.numerallines table thead,
+.numerallines table caption,
+.numerallines textarea {
+  -moz-border-radius: 0 0 0 0 !important;
+  -webkit-border-radius: 0 0 0 0 !important;
+  background: none !important;
+  border: 0 !important;
+  bottom: auto !important;
+  float: none !important;
+  height: auto !important;
+  left: auto !important;
+  line-height: 1.1em !important;
+  margin: 0 !important;
+  outline: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  position: static !important;
+  right: auto !important;
+  text-align: left !important;
+  top: auto !important;
+  vertical-align: baseline !important;
+  width: auto !important;
+  box-sizing: content-box !important;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  min-height: inherit !important;
+  min-height: auto !important;
+}
+
+.numerallines .line {
+  white-space: pre !important;
+}
+.numerallines table {
+  width: 100% !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.numerallines table td.code {
+  width: 100% !important;
+}
+.numerallines table td.code .container {
+  position: relative !important;
+}
+.numerallines table td.code .container textarea {
+  box-sizing: border-box !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: white !important;
+  padding-left: 1em !important;
+  overflow: hidden !important;
+  white-space: pre !important;
+}
+.numerallines table td.gutter .line {
+  text-align: right !important;
+  padding: 0 0.3em 0 1em !important;
+  color: #bbbbbb !important;
+  border-right: 5px solid green !important;
+}
+.numerallines table td.code .line {
+  padding: 0 1em !important;
+}
+
+
+.link {
+  margin-top: 10px !important;
+  margin-bottom: 60px !important;
+  line-height: 20px;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+.text p {
+  height: 100%;
+  line-height: 1.3em !important;
+  font-size: 1.3.em !important;
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+  font-weight: normal !important;
+}
+
+.text {
+  margin-bottom: 2px !important;
+  margin-top: 5px !important;
+}
+
+
+
+.whichserver p {
+  font-size: 2vw !important;
+  line-height: 1em;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 80px;
+  position: absolute;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.whichserver img {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.whichserver {
+  height: 4vw !important;
+  margin-bottom: 1.5em;
+}
+
+
+.textsubtitle {
+  line-height: 25px;
+  font-size: 25px;
+  margin-left: 25px;
+  font-weight: bold;
+}
+
+
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px !important;
+  margin-top: 4px !important;
+}
+
+
+
+
+
+
+.sample_attach a, 
+.sample_attach div {
+  width: 100px;
+  border: 1px solid #DFAD00;
+  background: #FFFFEE;
+  padding: 0px 5px;
+  font-weight: 900;
+  color: #00009C;
+  text-align: center;
+}
+
+.sample_attach a{
+  display: block;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.sample_attach form{
+  position: absolute;
+  visibility: hidden;
+  border: 1px solid #DFAD00;
+  background: #FFFFEE;
+  color: #00009C;
+  padding: 0px 5px 2px 5px;
+  text-align: center;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="sidenav">
+  <a href="https://engops.github.io/index.html">Welcome</a>
+
+  
+  <button class="dropdown-btn">Kubernetes
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+    <div class="dropdown-container">
+  <a href="https://engops.github.io/Kubernetes/CKA.html">CKA</a>
+  <a href="https://engops.github.io/Kubernetes/How_to_install_K8S.html">How to install K8S</a>
+  </div>
+
+  <button class="dropdown-btn">OpenStack
+    <i class="fa-caret-down"></i>
+    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+    <div class="dropdown-container">
+  <a href="https://engops.github.io/OpenStack/openstack-helm.html">openstack-helm</a>
+  <a href="https://engops.github.io/OpenStack/pfSense-cloudinit.html">pfSense-cloudinit</a>
+  
+    <button class="dropdown-btn">Base
+      <i class="fa-caret-down"></i>
+      <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+    </button>
+    <div class="dropdown-container">
+    
+      <a href="https://engops.github.io/OpenStack/Base/OpenVSwitch_Base.html">OpenVSwitch Base</a>
+    
+      <a href="https://engops.github.io/OpenStack/Base/LinuxBridge_Base.html">LinuxBridge Base</a>
+    
+      <a href="https://engops.github.io/OpenStack/Base/Calico_Base.html">Calico Base</a>
+    
+      <a href="https://engops.github.io/OpenStack/Base/Instalation_Base.html">Instalation Base</a>
+    
+    </div>
+  <a href="https://engops.github.io/OpenStack/pfSense-instance.html">pfSense-instance</a>
+  </div>
+<a href="https://engops.github.io/index.html">About</a>
+
+</div>
+
+
+<script>
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+</script>
+
+<div class="main">
+  
+  <h1 style="text-align:center;"> Deploy OpenStack on Kubernetes with Helm using external Ceph </h1>
+
+<div class="text"><p>## Topoly</p> </div>
+
+<div class="text"><p>* In this topology will be used 5 virtual machines to form a kubernetes cluster being 1 to master and 4 to nodes;</p> </div>
+
+<div class="text"><p>* Helm will be installed on master;</p> </div>
+
+<div class="text"><p>* Nova Compute, Glance, Cinder and Gnocchi on external Ceph;</p> </div>
+
+<div class="text"><p>* Ceph cluster. We won&#39;t cover ceph deployment here. I suppose that you use a ceph cluster lab environment to perform those steps.</p> </div>
+
+<div class="text"><p>---</p> </div>
+
+<div class="text"><p>## Prepare all nodes</p> </div>
+
+<div class="text"><p>#### Configure repositories</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt; &#39;EOF&#39; &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+cat &lt;&lt; &#39;EOF&#39; &gt; /etc/yum.repos.d/ceph.repo
+[ceph]
+name=Ceph packages for $basearch
+baseurl=https://download.ceph.com/rpm-luminous/el7/$basearch
+enabled=1
+priority=2
+gpgcheck=1
+gpgkey=https://download.ceph.com/keys/release.asc
+EOF
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Install packages</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">yum update -y
+yum install epel-release -y
+yum install vim bash-completion docker kubeadm kubelet kubectl ceph-common -y
+
+systemctl enable kubelet docker
+systemctl start docker
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Configuration</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl completion bash &gt; /etc/bash_completion.d/kubectl.bash
+chmod +x /etc/bash_completion.d/kubectl.bash
+
+cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl --system
+
+cat &lt;&lt; EOF &gt; /etc/modules-load.d/rbd.conf
+# Load rbd kernel module
+rbd
+EOF
+
+modprobe rbd
+
+sed -i &#39;s/SELINUX=.*/SELINUX=disabled/&#39; /etc/selinux/config
+setenforce 0
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>## Deploy Kubernetes cluster</p> </div>
+
+<div class="text"><p>### On master node</p> </div>
+
+<div class="text"><p>#### K8s control plane setup</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubeadm config images pull
+
+kubeadm init --apiserver-advertise-address=&lt;&lt;MASTERNODEIP&gt;&gt; --pod-network-cidr=10.244.0.0/16
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>After that the command kubeadm init has fineshed, you will see the output as below:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">      mkdir -p $HOME/.kube
+      sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+      sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+      You should now deploy a pod network to the cluster.
+      Run &#34;kubectl apply -f [podnetwork].yaml&#34; with one of the options listed at:
+        https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+        Then you can join any number of worker nodes by running the following on each as root:
+
+        kubeadm join 192.168.122.10:6443 --token gzco2t.n6g1swh2s5x6rp4g --discovery-token-ca-cert-hash sha256:97b3c8854af5f2889d453143e4d641a592fb55400d8462251ac6c13d1e15b4e3
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>**Save all kubeadm join command to be used to join the k8s nodes in the k8s cluster.**</p> </div>
+
+<div class="text"><p>#### k8s network setup</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>### On worker nodes</p> </div>
+
+<div class="text"><p>#### Join nodes to the k8s cluster</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubeadm join &lt;&lt;MASTERNODEIP&gt;&gt;:6443 --token gzco2t.n6g1swh2s5x6rp4g --discovery-token-ca-cert-hash sha256:97b3c8854af5f2889d453143e4d641a592fb55400d8462251ac6c13d1e15b4e3
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>## Install Helm</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">curl -o helm-v2.13.1-linux-amd64.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz
+
+tar xvf helm-v2.13.1-linux-amd64.tar.gz
+
+cp linux-amd64/helm /usr/local/bin/
+
+chmod +x /usr/local/bin/helm
+
+helm completion bash &gt; /etc/bash_completion.d/helm.bash
+
+helm init
+
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl patch deploy --namespace kube-system tiller-deploy -p &#39;{&#34;spec&#34;:{&#34;template&#34;:{&#34;spec&#34;:{&#34;serviceAccount&#34;:&#34;tiller&#34;}}}}&#39;
+
+cat &lt;&lt; EOF &gt; /etc/systemd/system/helm-serve.service
+[Unit]
+Description=Helm Server
+After=network.target
+
+[Service]
+User=root
+Restart=always
+ExecStart=/usr/local/bin/helm serve
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable helm-serve.service
+systemctl start helm-serve.service
+
+helm repo remove local
+helm repo remove stable
+helm repo add local  http://localhost:8879/charts
+
+curl http://localhost:8879/charts
+
+helm repo update
+helm ls
+helm search 
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>## Deploy OpenStack</p> </div>
+
+<div class="text"><p>#### Label all nodes</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl label nodes --all openstack-control-plane=enabled
+kubectl label nodes --all openstack-compute-node=enabled
+kubectl label nodes --all openvswitch=enabled
+kubectl label nodes --all linuxbridge=enabled
+kubectl label nodes --all ceph-mon=enabled
+kubectl label nodes --all ceph-osd=enabled
+kubectl label nodes --all ceph-mds=enabled
+kubectl label nodes --all ceph-rgw=enabled
+kubectl label nodes --all ceph-mgr=enabled
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Ceph configuration</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">ceph osd pool create kube 128 128
+ceph osd pool create images 128 128
+ceph osd pool create volumes 128 128
+ceph osd pool create nova 128 128
+
+ceph auth add client.kube mon &#39;allow r&#39; osd &#39;allow rwx pool=kube&#39;
+ceph auth add client.glance mon &#39;allow r&#39; osd &#39;allow rwx pool=images&#39;
+ceph auth add client.cinder mon &#39;allow r&#39; osd &#39;allow rwx pool=images, allow rwx pool=volumes, allow rwx pool=nova&#39;
+
+ceph auth get-key client.kube |base64
+ceph auth get-key client.admin |base64
+
+* We&#39;ll use this to create the secrets, save it.
+
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Secrets and storageclass</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">cat &lt;&lt; EOF &gt; rbd-storageclass.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: general
+  namespace: kube-system
+provisioner: ceph.com/rbd
+parameters:
+  monitors: &lt;&lt;CEPHMONITOR1&gt;&gt;:6789,&lt;&lt;CEPHMONITOR2&gt;&gt;:6789,&lt;&lt;CEPHMONITOR3&gt;&gt;:6789
+  adminId: admin
+  adminSecretName: ceph-admin-secret
+  adminSecretNamespace: openstack
+  pool: kube
+  userId: kube
+  userSecretName: ceph-kube-secret
+  userSecretNamespace: openstack
+  imageFormat: &#34;2&#34;
+  imageFeatures: layering
+EOF
+
+cat &lt;&lt; EOF &gt; ceph-admin-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: &#34;ceph-admin-secret&#34;
+  namespace: openstack
+type: kubernetes.io/rbd
+data:
+  key: &#34;&lt;&lt;ADMINKEYRINGBASE64&gt;&gt;&#34;
+EOF
+
+cat &lt;&lt; EOF &gt; ceph-kube-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: &#34;ceph-kube-secret&#34;
+  namespace: openstack
+type: kubernetes.io/rbd
+data:
+  key: &#34;&lt;&lt;KUBEKEYRINGBASE64&gt;&gt;&#34;
+EOF
+
+kubectl create namespace openstack
+kubectl apply --namespace openstack -f ceph-kube-secret.yaml
+kubectl apply --namespace openstack -f ceph-admin-secret.yaml
+kubectl create -f rbd-storageclass.yaml
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Openstack helm repositories</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">git clone https://opendev.org/openstack/openstack-helm-infra.git
+git clone https://opendev.org/openstack/openstack-helm.git
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Deployment customization</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">mkdir ./openstack-helm/tools/deployment/developer/os-lab
+cd ./openstack-helm/tools/deployment/developer/os-lab
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Create the custom scripts as follow:</p> </div>
+
+<div class="text"><p>##### 020-setup-client.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+sudo -H -E pip install &#34;cmd2&lt;=0.8.7&#34;
+sudo -H -E pip install python-openstackclient python-heatclient --ignore-installed
+
+sudo -H mkdir -p /etc/openstack
+sudo -H chown -R $(id -un): /etc/openstack
+tee /etc/openstack/clouds.yaml &lt;&lt; EOF
+clouds:
+  openstack_helm:
+    region_name: RegionOne
+    identity_api_version: 3
+    auth:
+      username: &#39;admin&#39;
+      password: &#39;password&#39;
+      project_name: &#39;admin&#39;
+      project_domain_name: &#39;default&#39;
+      user_domain_name: &#39;default&#39;
+      auth_url: &#39;http://keystone.openstack.svc.cluster.local/v3&#39;
+EOF
+
+#NOTE: Build charts
+make all
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 030-ingress.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div>
+          <div class="line number1 index0 alt0">51</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} ingress
+
+#NOTE: Deploy command
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+tee /tmp/ingress-kube-system.yaml &lt;&lt; EOF
+deployment:
+  mode: cluster
+  type: DaemonSet
+network:
+  host_namespace: true
+EOF
+helm upgrade --install ingress-kube-system ${OSH_INFRA_PATH}/ingress \
+  --namespace=kube-system \
+  --values=/tmp/ingress-kube-system.yaml \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_INGRESS_KUBE_SYSTEM}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh kube-system
+
+#NOTE: Display info
+helm status ingress-kube-system
+
+#NOTE: Deploy namespace ingress
+helm upgrade --install ingress-openstack ${OSH_INFRA_PATH}/ingress \
+  --namespace=openstack \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_INGRESS_OPENSTACK}  
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Display info
+helm status ingress-openstack
+
+helm upgrade --install ingress-ceph ${OSH_INFRA_PATH}/ingress \
+  --namespace=ceph \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_INGRESS_CEPH}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh ceph
+
+#NOTE: Display info
+helm status ingress-ceph
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 040-ceph-provisioners-deploy-with-existing-ceph.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div>
+          <div class="line number1 index0 alt0">51</div>
+          <div class="line number1 index0 alt0">52</div>
+          <div class="line number1 index0 alt0">53</div>
+          <div class="line number1 index0 alt0">54</div>
+          <div class="line number1 index0 alt0">55</div>
+          <div class="line number1 index0 alt0">56</div>
+          <div class="line number1 index0 alt0">57</div>
+          <div class="line number1 index0 alt0">58</div>
+          <div class="line number1 index0 alt0">59</div>
+          <div class="line number1 index0 alt0">60</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} ceph-provisioners 
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+
+#Change YOUR_CEPH_IP to your ceph-mon ip address
+tee /tmp/ceph-openstack-config.yaml &lt;&lt;EOF   
+deployment:
+  ceph: true
+  client_secrets: true
+  rbd_provisioner: true
+  cephfs_provisioner: true
+bootstrap:
+  enabled: false
+dependencies:
+  static:
+    cephfs_provisioner:
+      jobs: null
+      services: null
+    rbd_provisioner:
+      jobs: null
+      services: null
+storageclass:
+  rbd:
+    provision_storage_class: false
+  cephfs:
+    provision_storage_class: false
+conf:
+  ceph:
+    global:
+      mon_host: &lt;&lt;CEPHMONITOR1&gt;&gt;
+      mon_addr: &lt;&lt;CEPHMONITOR1&gt;&gt;:6789
+    osd:
+      cluster_network: 10.244.0.0/16
+      public_network: 10.244.0.0/16
+manifests:
+  configmap_bin: true
+  configmap_bin_common: true
+  configmap_etc: true
+  deployment_rbd_provisioner: true
+  deployment_cephfs_provisioner: true
+  job_bootstrap: false
+  job_cephfs_client_key: false
+  job_image_repo_sync: true
+  job_namespace_client_key_cleaner: false   
+  job_namespace_client_key: false
+  storageclass_cephfs: false
+  storageclass_rbd: false
+EOF
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+
+helm upgrade --install ceph-openstack-config ${OSH_INFRA_PATH}/ceph-provisioners \
+  --namespace=openstack \
+  --values=/tmp/ceph-openstack-config.yaml \
+  ${OSH_EXTRA_HELM_ARGS}
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 050-mariadb.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} mariadb
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install mariadb ${OSH_INFRA_PATH}/mariadb \
+    --namespace=openstack \
+    --set pod.replicas.server=1 \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_MARIADB}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status mariadb
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 060-rabbitmq.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} rabbitmq
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install rabbitmq ${OSH_INFRA_PATH}/rabbitmq \
+    --namespace=openstack \
+    --set pod.replicas.server=1 \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_RABBITMQ}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status rabbitmq
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 070-memcached.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div>
+          <div class="line number1 index0 alt0">51</div>
+          <div class="line number1 index0 alt0">52</div>
+          <div class="line number1 index0 alt0">53</div>
+          <div class="line number1 index0 alt0">54</div>
+          <div class="line number1 index0 alt0">55</div>
+          <div class="line number1 index0 alt0">56</div>
+          <div class="line number1 index0 alt0">57</div>
+          <div class="line number1 index0 alt0">58</div>
+          <div class="line number1 index0 alt0">59</div>
+          <div class="line number1 index0 alt0">60</div>
+          <div class="line number1 index0 alt0">61</div>
+          <div class="line number1 index0 alt0">62</div>
+          <div class="line number1 index0 alt0">63</div>
+          <div class="line number1 index0 alt0">64</div>
+          <div class="line number1 index0 alt0">65</div>
+          <div class="line number1 index0 alt0">66</div>
+          <div class="line number1 index0 alt0">67</div>
+          <div class="line number1 index0 alt0">68</div>
+          <div class="line number1 index0 alt0">69</div>
+          <div class="line number1 index0 alt0">70</div>
+          <div class="line number1 index0 alt0">71</div>
+          <div class="line number1 index0 alt0">72</div>
+          <div class="line number1 index0 alt0">73</div>
+          <div class="line number1 index0 alt0">74</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} memcached
+
+tee /tmp/memcached.yaml &lt;&lt;EOF
+manifests:
+  network_policy: true
+network_policy:
+  memcached:
+    ingress:
+      - from:
+        - podSelector:
+            matchLabels:
+              application: keystone
+        - podSelector:
+            matchLabels:
+              application: heat
+        - podSelector:
+            matchLabels:
+              application: glance
+        - podSelector:
+            matchLabels:
+              application: cinder
+        - podSelector:
+            matchLabels:
+              application: congress
+        - podSelector:
+            matchLabels:
+              application: barbican
+        - podSelector:
+            matchLabels:
+              application: ceilometer
+        - podSelector:
+            matchLabels:
+              application: horizon
+        - podSelector:
+            matchLabels:
+              application: ironic
+        - podSelector:
+            matchLabels:
+              application: magnum
+        - podSelector:
+            matchLabels:
+              application: mistral
+        - podSelector:
+            matchLabels:
+              application: nova
+        - podSelector:
+            matchLabels:
+              application: neutron
+        - podSelector:
+            matchLabels:
+              application: senlin
+        ports:
+        - protocol: TCP
+          port: 11211
+EOF
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install memcached ${OSH_INFRA_PATH}/memcached \
+    --namespace=openstack \
+    --values=/tmp/memcached.yaml \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_MEMCACHED}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status memcached
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 080-keystone.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make keystone
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install keystone ./keystone \
+    --namespace=openstack \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_KEYSTONE}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status keystone
+export OS_CLOUD=openstack_helm
+sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+openstack endpoint list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 090-heat.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make heat
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install heat ./heat \
+  --namespace=openstack \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_HEAT}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+export OS_CLOUD=openstack_helm
+openstack service list
+sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+openstack orchestration service list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 100-horizon.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make horizon
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install horizon ./horizon \
+    --namespace=openstack \
+    --set network.node_port.enabled=true \
+    --set network.node_port.port=31000 \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_HORIZON}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status horizon
+
+helm test horizon
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 120-glance.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div>
+          <div class="line number1 index0 alt0">51</div>
+          <div class="line number1 index0 alt0">52</div>
+          <div class="line number1 index0 alt0">53</div>
+          <div class="line number1 index0 alt0">54</div>
+          <div class="line number1 index0 alt0">55</div>
+          <div class="line number1 index0 alt0">56</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make glance
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+: ${OSH_OPENSTACK_RELEASE:=&#34;newton&#34;}
+#NOTE(portdirect), this could be: radosgw, rbd, swift or pvc
+: ${GLANCE_BACKEND:=&#34;rbd&#34;}
+tee /tmp/glance.yaml &lt;&lt;EOF
+storage: ${GLANCE_BACKEND}
+EOF
+if [ &#34;x${OSH_OPENSTACK_RELEASE}&#34; == &#34;xnewton&#34; ]; then
+# NOTE(portdirect): glance APIv1 is required for heat in Newton
+  tee -a /tmp/glance.yaml &lt;&lt;EOF
+conf:
+  glance:
+    DEFAULT:
+      enable_v1_api: true
+      enable_v2_registry: true
+    glance_store:
+      rbd_store_user: glance
+      rbd_store_pool: images
+  ceph:
+    enabled: true
+ceph_client:
+  configmap: ceph-etc
+  user_secret_name: ceph-admin-secret
+manifests:
+  deployment_registry: true
+  ingress_registry: true
+  pdb_registry: true
+  service_ingress_registry: true
+  service_registry: true
+  job_storage_init: false
+EOF
+fi
+helm upgrade --install glance ./glance \
+  --namespace=openstack \
+  --values=/tmp/glance.yaml \
+  --set manifests.network_policy=true \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_GLANCE}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status glance
+export OS_CLOUD=openstack_helm
+openstack service list
+sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+openstack image list
+openstack image show &#39;Cirros 0.3.5 64-bit&#39;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 130-cinder.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make cinder
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+tee /tmp/cinder.yaml &lt;&lt;EOF
+conf:
+  ceph:
+    enable: true
+  cinder:
+    DEFAULT:
+      debug: true
+      backup_driver: cinder.backup.drivers.ceph
+      backup_ceph_user: cinder
+      backup_ceph_pool: volumes
+  backends:
+    rbd1:
+      volume_driver: cinder.volume.drivers.rbd.RBDDriver
+      volume_backend_name: rbd1
+      rbd_ceph_conf: &#34;/etc/ceph/ceph.conf&#34;
+      rbd_user: cinder
+      rbd_pool: volumes
+      rbd_secret_uuid: 33dfcb04-2279-4010-8f0d-dd41f7183c2c
+ceph_client:
+  configmap: ceph-etc
+  user_secret_name: ceph-admin-secret
+manifests:
+  deployment_backup: false
+  job_backup_storage_init: false
+  pvc_backup: false
+  job_storage_init: false
+EOF
+helm upgrade --install cinder ./cinder \
+  --namespace=openstack \
+  --values=/tmp/cinder.yaml \
+    --set manifests.network_policy=true \   
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_CINDER}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+export OS_CLOUD=openstack_helm
+openstack service list
+sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+openstack volume type list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 140-openvswitch.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} openvswitch
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install openvswitch ${OSH_INFRA_PATH}/openvswitch \
+  --namespace=openstack \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_OPENVSWITCH}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+helm status openvswitch
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 150-libvirt.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+: ${OSH_INFRA_PATH:=&#34;../openstack-helm-infra&#34;}
+make -C ${OSH_INFRA_PATH} libvirt
+
+tee /tmp/libvirt.yaml &lt;&lt;EOF
+manifests:
+  network_policy: true
+network_policy:
+  libvirt:
+    ingress:
+      - {}
+conf:
+  ceph:
+    enabled: true
+    cinder:
+       user: cinder
+       secret_uuid: 33dfcb04-2279-4010-8f0d-dd41f7183c2c
+ceph_client:
+  configmap: ceph-etc
+  user_secret_name: ceph-admin-secret
+EOF
+
+#NOTE: Deploy command
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+helm upgrade --install libvirt ${OSH_INFRA_PATH}/libvirt \
+  --namespace=openstack \
+  --set manifests.network_policy=true \
+  --values=/tmp/libvirt.yaml \
+  ${OSH_EXTRA_HELM_ARGS} \
+  ${OSH_EXTRA_HELM_ARGS_LIBVIRT}
+
+#NOTE(portdirect): We don&#39;t wait for libvirt pods to come up, as they depend
+# on the neutron agents being up.
+
+#NOTE: Validate Deployment info
+helm status libvirt
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### 160-compute-kit.sh</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div>
+          <div class="line number1 index0 alt0">27</div>
+          <div class="line number1 index0 alt0">28</div>
+          <div class="line number1 index0 alt0">29</div>
+          <div class="line number1 index0 alt0">30</div>
+          <div class="line number1 index0 alt0">31</div>
+          <div class="line number1 index0 alt0">32</div>
+          <div class="line number1 index0 alt0">33</div>
+          <div class="line number1 index0 alt0">34</div>
+          <div class="line number1 index0 alt0">35</div>
+          <div class="line number1 index0 alt0">36</div>
+          <div class="line number1 index0 alt0">37</div>
+          <div class="line number1 index0 alt0">38</div>
+          <div class="line number1 index0 alt0">39</div>
+          <div class="line number1 index0 alt0">40</div>
+          <div class="line number1 index0 alt0">41</div>
+          <div class="line number1 index0 alt0">42</div>
+          <div class="line number1 index0 alt0">43</div>
+          <div class="line number1 index0 alt0">44</div>
+          <div class="line number1 index0 alt0">45</div>
+          <div class="line number1 index0 alt0">46</div>
+          <div class="line number1 index0 alt0">47</div>
+          <div class="line number1 index0 alt0">48</div>
+          <div class="line number1 index0 alt0">49</div>
+          <div class="line number1 index0 alt0">50</div>
+          <div class="line number1 index0 alt0">51</div>
+          <div class="line number1 index0 alt0">52</div>
+          <div class="line number1 index0 alt0">53</div>
+          <div class="line number1 index0 alt0">54</div>
+          <div class="line number1 index0 alt0">55</div>
+          <div class="line number1 index0 alt0">56</div>
+          <div class="line number1 index0 alt0">57</div>
+          <div class="line number1 index0 alt0">58</div>
+          <div class="line number1 index0 alt0">59</div>
+          <div class="line number1 index0 alt0">60</div>
+          <div class="line number1 index0 alt0">61</div>
+          <div class="line number1 index0 alt0">62</div>
+          <div class="line number1 index0 alt0">63</div>
+          <div class="line number1 index0 alt0">64</div>
+          <div class="line number1 index0 alt0">65</div>
+          <div class="line number1 index0 alt0">66</div>
+          <div class="line number1 index0 alt0">67</div>
+          <div class="line number1 index0 alt0">68</div>
+          <div class="line number1 index0 alt0">69</div>
+          <div class="line number1 index0 alt0">70</div>
+          <div class="line number1 index0 alt0">71</div>
+          <div class="line number1 index0 alt0">72</div>
+          <div class="line number1 index0 alt0">73</div>
+          <div class="line number1 index0 alt0">74</div>
+          <div class="line number1 index0 alt0">75</div>
+          <div class="line number1 index0 alt0">76</div>
+          <div class="line number1 index0 alt0">77</div>
+          <div class="line number1 index0 alt0">78</div>
+          <div class="line number1 index0 alt0">79</div>
+          <div class="line number1 index0 alt0">80</div>
+          <div class="line number1 index0 alt0">81</div>
+          <div class="line number1 index0 alt0">82</div>
+          <div class="line number1 index0 alt0">83</div>
+          <div class="line number1 index0 alt0">84</div>
+          <div class="line number1 index0 alt0">85</div>
+          <div class="line number1 index0 alt0">86</div>
+          <div class="line number1 index0 alt0">87</div>
+          <div class="line number1 index0 alt0">88</div>
+          <div class="line number1 index0 alt0">89</div>
+          <div class="line number1 index0 alt0">90</div>
+          <div class="line number1 index0 alt0">91</div>
+          <div class="line number1 index0 alt0">92</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">#!/bin/bash
+set -xe
+
+#NOTE: Lint and package chart
+make nova
+make neutron
+
+#NOTE: Deploy nova
+: ${OSH_EXTRA_HELM_ARGS:=&#34;&#34;}
+
+tee /tmp/nova.yaml &lt;&lt; EOF
+conf:
+  ceph:
+    enabled: true
+    cinder:
+      user: cinder
+      secret_uuid: 33dfcb04-2279-4010-8f0d-dd41f7183c2c
+  nova:
+    libvirt:
+      images_type: rbd
+      images_rbd_pool: nova
+      images_rbd_ceph_conf: /etc/ceph/ceph.conf
+      rbd_user: cinder
+      rbd_secret_uuid: 33dfcb04-2279-4010-8f0d-dd41f7183c2c
+ceph_client:
+  configmap: ceph-etc
+  user_secret_name: ceph-admin-secret
+EOF
+
+if [ &#34;x$(systemd-detect-virt)&#34; == &#34;xnone&#34; ]; then
+  echo &#39;OSH is not being deployed in virtualized environment&#39;
+  helm upgrade --install nova ./nova \
+      --namespace=openstack \
+      --values=/tmp/nova.yaml \
+      --set manifests.network_policy=true \
+      ${OSH_EXTRA_HELM_ARGS} \
+      ${OSH_EXTRA_HELM_ARGS_NOVA}
+else
+  echo &#39;OSH is being deployed in virtualized environment, using qemu for nova&#39;
+  helm upgrade --install nova ./nova \
+      --namespace=openstack \
+      --values=/tmp/nova.yaml \
+      --set conf.nova.libvirt.virt_type=qemu \
+      --set conf.nova.libvirt.cpu_mode=none \
+      --set manifests.network_policy=true \
+      ${OSH_EXTRA_HELM_ARGS} \
+      ${OSH_EXTRA_HELM_ARGS_NOVA}
+fi
+
+#NOTE: Deploy neutron
+tee /tmp/neutron.yaml &lt;&lt; EOF
+network:
+  interface:
+    tunnel: docker0
+conf:
+  neutron:
+    DEFAULT:
+      l3_ha: False
+      max_l3_agents_per_router: 1
+      l3_ha_network_type: vxlan
+      dhcp_agents_per_network: 1
+  plugins:
+    ml2_conf:
+      ml2_type_flat:
+        flat_networks: public
+    #NOTE(portdirect): for clarity we include options for all the neutron
+    # backends here.
+    openvswitch_agent:
+      agent:
+        tunnel_types: vxlan
+      ovs:
+        bridge_mappings: public:br-ex
+    linuxbridge_agent:
+      linux_bridge:
+        bridge_mappings: public:br-ex
+EOF
+helm upgrade --install neutron ./neutron \
+    --namespace=openstack \
+    --values=/tmp/neutron.yaml \
+    --set manifests.network_policy=true \
+    ${OSH_EXTRA_HELM_ARGS} \
+    ${OSH_EXTRA_HELM_ARGS_NEUTRON}
+
+#NOTE: Wait for deploy
+./tools/deployment/common/wait-for-pods.sh openstack
+
+#NOTE: Validate Deployment info
+export OS_CLOUD=openstack_helm
+openstack service list
+sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+openstack compute service list
+openstack network agent list
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Deploy</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">chmod +x ./openstack-helm/tools/deployment/developer/os-lab/*.sh
+
+cd ./openstack-helm
+
+./tools/deployment/developer/os-lab/020-setup-client.sh
+./tools/deployment/developer/os-lab/030-ingress.sh
+./tools/deployment/developer/os-lab/040-ceph-provisioners-deploy-with-existing-ceph.sh
+./tools/deployment/developer/os-lab/050-mariadb.sh
+./tools/deployment/developer/os-lab/060-rabbitmq.sh
+./tools/deployment/developer/os-lab/070-memcached.sh
+./tools/deployment/developer/os-lab/080-keystone.sh
+./tools/deployment/developer/os-lab/090-heat.sh
+./tools/deployment/developer/os-lab/100-horizon.sh
+./tools/deployment/developer/os-lab/120-glance.sh
+./tools/deployment/developer/os-lab/130-cinder.sh
+./tools/deployment/developer/os-lab/140-openvswitch.sh
+./tools/deployment/developer/os-lab/150-libvirt.sh
+./tools/deployment/developer/os-lab/160-compute-kit.sh
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>#### Troubleshooting</p> </div>
+
+<div class="text"><p>##### missing Ceph monitors workaround</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div>
+          <div class="line number1 index0 alt0">10</div>
+          <div class="line number1 index0 alt0">11</div>
+          <div class="line number1 index0 alt0">12</div>
+          <div class="line number1 index0 alt0">13</div>
+          <div class="line number1 index0 alt0">14</div>
+          <div class="line number1 index0 alt0">15</div>
+          <div class="line number1 index0 alt0">16</div>
+          <div class="line number1 index0 alt0">17</div>
+          <div class="line number1 index0 alt0">18</div>
+          <div class="line number1 index0 alt0">19</div>
+          <div class="line number1 index0 alt0">20</div>
+          <div class="line number1 index0 alt0">21</div>
+          <div class="line number1 index0 alt0">22</div>
+          <div class="line number1 index0 alt0">23</div>
+          <div class="line number1 index0 alt0">24</div>
+          <div class="line number1 index0 alt0">25</div>
+          <div class="line number1 index0 alt0">26</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kind: Service
+apiVersion: v1
+metadata:
+  name: ceph-mon-1
+  namespace: ceph
+spec:
+  type: ExternalName
+  externalName: 192.168.0.1.xip.io
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ceph-mon-2
+  namespace: ceph
+spec:
+  type: ExternalName
+  externalName: 192.168.0.2.xip.io
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ceph-mon-3
+  namespace: ceph
+spec:
+  type: ExternalName
+  externalName: 192.168.0.3.xip.io
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>Then change rbd storage class to use as below:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1"> monitors: ceph-mon-1.ceph.svc.cluster.local.:6789,ceph-mon-2.ceph.svc.cluster.local.:6789,ceph-mon-3.ceph.svc.cluster.local.:6789
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>##### if using job_storage_init and then it got an error when creating the secrets, maybe it could help:</p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div>
+          <div class="line number1 index0 alt0">3</div>
+          <div class="line number1 index0 alt0">4</div>
+          <div class="line number1 index0 alt0">5</div>
+          <div class="line number1 index0 alt0">6</div>
+          <div class="line number1 index0 alt0">7</div>
+          <div class="line number1 index0 alt0">8</div>
+          <div class="line number1 index0 alt0">9</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">--- a/cinder/templates/bin/_storage-init.sh.tpl
++++ b/cinder/templates/bin/_storage-init.sh.tpl
+-  kubectl apply --namespace ${NAMESPACE} -f ${SECRET}
++  kubectl apply --namespace ${NAMESPACE} --validate=false -f ${SECRET}
+
+--- a/glance/templates/bin/_storage-init.sh.tpl
++++ b/glance/templates/bin/_storage-init.sh.tpl
+-  kubectl apply --namespace &#34;${NAMESPACE}&#34; -f &#34;${SECRET}&#34;
++  kubectl apply --namespace &#34;${NAMESPACE}&#34; --validate=false -f &#34;${SECRET}&#34;
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text"><p>---</p> </div>
+
+<div class="text"><p>That&#39;s it ;)</p> </div>
+
+</div>
+
+</body>
+</html> 
+
+</html>
