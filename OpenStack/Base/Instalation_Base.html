@@ -348,11 +348,13 @@ for (i = 0; i < dropdown.length; i++) {
   
   <h1 style="text-align:center;"> Manual basic instalation (Simple OpenStack) </h1>
 
-<div class="text"><p>This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines as OpenStack components and the third will be to adictional services, on to be the &#34;simplecontroller&#34; (where all services will installed) and other to be the compute-node as well we will have only one network, the imagem bellow show how will be the environment.</p> </div>
+<div class="text"><p><p>This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines as OpenStack components and the third will be to adictional services, on to be the &quot;simplecontroller&quot; (where all services will installed) and other to be the compute-node as well we will have only one network, the imagem bellow show how will be the environment.</p>
+</p> </div>
 
 <img class="centerimage" src="https://engops.github.io/OpenStack/environment.png" style="width:50%;">
 
-<div class="text"><p>first of all configure the name and ips on all machines like the commands bellow.</p> </div>
+<div class="text"><p><p>first of all configure the name and ips on all machines like the commands bellow.</p>
+</p> </div>
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
 <div class="numerallines">
@@ -530,7 +532,8 @@ EOF
 </div>
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>All machines!!!</p> </div>
 
-<div class="text"><p>Disable the SELinux:</p> </div>
+<div class="text"><p><p>Disable the SELinux:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -551,7 +554,8 @@ setenforce 0
     </tbody>
   </table>
 </div>
-<div class="text"><p>And the FirewallD:</p> </div>
+<div class="text"><p><p>And the FirewallD:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -572,7 +576,8 @@ systemctl disable firewalld
     </tbody>
   </table>
 </div>
-<div class="text"><p>As well the NetworkManager:</p> </div>
+<div class="text"><p><p>As well the NetworkManager:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -593,7 +598,8 @@ systemctl disable NetworkManager
     </tbody>
   </table>
 </div>
-<div class="text"><p>Because we are not using some DNS as authoritative of xurupita.nl add to &#39;/etc/hosts&#39; these lines:</p> </div>
+<div class="text"><p><p>Because we are not using some DNS as authoritative of xurupita.nl add to &#39;/etc/hosts&#39; these lines:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -624,7 +630,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Epel and Openstack repos:</p> </div>
+<div class="text"><p><p>Install the Epel and Openstack repos:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -643,7 +650,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>This package will install the &#39;openstack-config&#39; command that is just a wrapper to the command &#39;crudinni&#39;:</p> </div>
+<div class="text"><p><p>This package will install the &#39;openstack-config&#39; command that is just a wrapper to the command &#39;crudinni&#39;:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -683,7 +691,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure to permite the others servers sync the time:</p> </div>
+<div class="text"><p><p>Configure to permite the others servers sync the time:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -716,7 +725,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Chronyd service:</p> </div>
+<div class="text"><p><p>Enable and start the Chronyd service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -737,7 +747,8 @@ systemctl start chronyd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Verify if it is working:</p> </div>
+<div class="text"><p><p>Verify if it is working:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -775,7 +786,8 @@ systemctl start chronyd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure to sync time from simplecontroller:</p> </div>
+<div class="text"><p><p>Configure to sync time from simplecontroller:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -806,7 +818,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Chronyd service:</p> </div>
+<div class="text"><p><p>Enable and start the Chronyd service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -827,7 +840,8 @@ systemctl start chronyd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Verify if it is working:</p> </div>
+<div class="text"><p><p>Verify if it is working:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -850,7 +864,8 @@ systemctl start chronyd.service
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the MariaDB service and the python connector:</p> </div>
+<div class="text"><p><p>Install the MariaDB service and the python connector:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -869,7 +884,8 @@ systemctl start chronyd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure the &#39;/etc/my.cnf.d/openstack.cnf&#39; to ensure that MySQL will work InnoDB and UTF also set to be open the port 3306 on all ips that we&#39;ll have:</p> </div>
+<div class="text"><p><p>Configure the &#39;/etc/my.cnf.d/openstack.cnf&#39; to ensure that MySQL will work InnoDB and UTF also set to be open the port 3306 on all ips that we&#39;ll have:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -904,7 +920,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the MariaDB service:</p> </div>
+<div class="text"><p><p>Enable and start the MariaDB service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -925,7 +942,8 @@ systemctl start mariadb.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Test if it is ok:</p> </div>
+<div class="text"><p><p>Test if it is ok:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -944,7 +962,8 @@ systemctl start mariadb.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set a passowrd to root user (root only on MariaDB will have this password) be able to connect remotly if necessary:</p> </div>
+<div class="text"><p><p>Set a passowrd to root user (root only on MariaDB will have this password) be able to connect remotly if necessary:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -967,7 +986,8 @@ systemctl start mariadb.service
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the RabbitMQ service to provide the message system:</p> </div>
+<div class="text"><p><p>Install the RabbitMQ service to provide the message system:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -986,7 +1006,8 @@ systemctl start mariadb.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable the managment portal, it will expose many informations on web console, the default port is 15672, in our case try http://192.168.88.7:15672 after create the user and set the permission on next steps:</p> </div>
+<div class="text"><p><p>Enable the managment portal, it will expose many informations on web console, the default port is 15672, in our case try http://192.168.88.7:15672 after create the user and set the permission on next steps:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1005,7 +1026,8 @@ systemctl start mariadb.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the RabbitMQ Server service:</p> </div>
+<div class="text"><p><p>Enable and start the RabbitMQ Server service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1026,7 +1048,8 @@ systemctl start rabbitmq-server.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create, set password and set permission of the &#39;openstack&#39; user, this user will be used to connect each OpenStack service on RabbitMQ:</p> </div>
+<div class="text"><p><p>Create, set password and set permission of the &#39;openstack&#39; user, this user will be used to connect each OpenStack service on RabbitMQ:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1049,7 +1072,8 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Chech if all is correctly configured:</p> </div>
+<div class="text"><p><p>Chech if all is correctly configured:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1072,7 +1096,8 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the Memcached and the python library to enable openstack uses memcached:</p> </div>
+<div class="text"><p><p>Install the Memcached and the python library to enable openstack uses memcached:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1091,7 +1116,8 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine that memcached service will listen on all interfaces:</p> </div>
+<div class="text"><p><p>Determine that memcached service will listen on all interfaces:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1110,7 +1136,8 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Memcached service:</p> </div>
+<div class="text"><p><p>Enable and start the Memcached service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1131,7 +1158,8 @@ systemctl start memcached.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Chech if the Memcached is correctly configured:</p> </div>
+<div class="text"><p><p>Chech if the Memcached is correctly configured:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1154,7 +1182,8 @@ systemctl start memcached.service
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>First of all, create the Keystone database and set the password to enable the connection on this database with user keystone:</p> </div>
+<div class="text"><p><p>First of all, create the Keystone database and set the password to enable the connection on this database with user keystone:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1175,7 +1204,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Keystone packages, the apache server and the wsgi that is used to be like a gateway interface for the keytone api service:</p> </div>
+<div class="text"><p><p>Install the Keystone packages, the apache server and the wsgi that is used to be like a gateway interface for the keytone api service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1194,7 +1224,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the database configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the database configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1213,7 +1244,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine which token mechanism Keytone will use:</p> </div>
+<div class="text"><p><p>Determine which token mechanism Keytone will use:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1232,7 +1264,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON keystone.* TO &#39;keystone&#39;@&
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set Keytone to work with Memcached also set which server will be:</p> </div>
+<div class="text"><p><p>Set Keytone to work with Memcached also set which server will be:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1253,7 +1286,8 @@ openstack-config --set /etc/keystone/keystone.conf cache memcache_servers simple
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1272,7 +1306,8 @@ openstack-config --set /etc/keystone/keystone.conf cache memcache_servers simple
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1291,7 +1326,8 @@ openstack-config --set /etc/keystone/keystone.conf cache memcache_servers simple
     </tbody>
   </table>
 </div>
-<div class="text"><p>To user Fernet is necessary to generate the hashs that will be used to genetate the tokens, so run the command bellow:</p> </div>
+<div class="text"><p><p>To user Fernet is necessary to generate the hashs that will be used to genetate the tokens, so run the command bellow:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1312,7 +1348,8 @@ keystone-manage credential_setup --keystone-user keystone --keystone-group keyst
     </tbody>
   </table>
 </div>
-<div class="text"><p>This command will create the service identity and the address endpoints of Identity service (Keystone), as well will create the Domain Default, the Project admin and the User admin with the especified password and if you specify will create the Region, as bellow.</p> </div>
+<div class="text"><p><p>This command will create the service identity and the address endpoints of Identity service (Keystone), as well will create the Domain Default, the Project admin and the User admin with the especified password and if you specify will create the Region, as bellow.</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1341,7 +1378,8 @@ keystone-manage credential_setup --keystone-user keystone --keystone-group keyst
     </tbody>
   </table>
 </div>
-<div class="text"><p>Because the keystone package dont create the Apache Virtual-Host for Keystone WSGI, create this link:</p> </div>
+<div class="text"><p><p>Because the keystone package dont create the Apache Virtual-Host for Keystone WSGI, create this link:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1360,7 +1398,8 @@ keystone-manage credential_setup --keystone-user keystone --keystone-group keyst
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Apache service:</p> </div>
+<div class="text"><p><p>Enable and start the Apache service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1381,7 +1420,8 @@ systemctl start httpd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the client, to manage the OpenStack and your services by CLI:</p> </div>
+<div class="text"><p><p>Install the client, to manage the OpenStack and your services by CLI:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1400,7 +1440,8 @@ systemctl start httpd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if it is everthing ok:</p> </div>
+<div class="text"><p><p>Check if it is everthing ok:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1423,7 +1464,8 @@ systemctl start httpd.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Instead to pass on command line all information that you need, is possible to add to a file like bellow:</p> </div>
+<div class="text"><p><p>Instead to pass on command line all information that you need, is possible to add to a file like bellow:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1462,7 +1504,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>upload this file to memory:</p> </div>
+<div class="text"><p><p>upload this file to memory:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1481,7 +1524,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now you are able to execute any comando whit this credential, so create the service project that will be used by all other OpenStack services:</p> </div>
+<div class="text"><p><p>Now you are able to execute any comando whit this credential, so create the service project that will be used by all other OpenStack services:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1500,7 +1544,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Just a tip for you!!!</p> </div>
+<div class="text"><p><p>Just a tip for you!!!</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1521,7 +1566,8 @@ source /etc/bash_completion.d/os.bash
     </tbody>
   </table>
 </div>
-<div class="text"><p>To test many resources, create the Domain, Project, User and set the role for this new user.</p> </div>
+<div class="text"><p><p>To test many resources, create the Domain, Project, User and set the role for this new user.</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1546,7 +1592,8 @@ openstack role add --project myproject --project-domain mydomain --user myuser -
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if it is everthing ok:</p> </div>
+<div class="text"><p><p>Check if it is everthing ok:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1573,7 +1620,8 @@ openstack role add --project myproject --project-domain mydomain --user myuser -
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>First of all, create the Glance database and set the password to enable the connection on this database with user glance:</p> </div>
+<div class="text"><p><p>First of all, create the Glance database and set the password to enable the connection on this database with user glance:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1594,7 +1642,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON glance.* TO &#39;glance&#39;@&#39;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create the Glance user also set the role admin on project service:</p> </div>
+<div class="text"><p><p>Create the Glance user also set the role admin on project service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1615,7 +1664,8 @@ openstack role add --project service --user glance admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now create the Glance service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>Now create the Glance service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1640,7 +1690,8 @@ openstack endpoint create --region EURegion image admin http://simplecontroller:
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Glance packge also wget that will be used to download the images:</p> </div>
+<div class="text"><p><p>Install the Glance packge also wget that will be used to download the images:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1659,7 +1710,8 @@ openstack endpoint create --region EURegion image admin http://simplecontroller:
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the database configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the database configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1678,7 +1730,8 @@ openstack endpoint create --region EURegion image admin http://simplecontroller:
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Glance configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Glance configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1713,7 +1766,8 @@ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken password G
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1732,7 +1786,8 @@ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken password G
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1751,7 +1806,8 @@ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken password G
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Glance API service:</p> </div>
+<div class="text"><p><p>Enable and start the Glance API service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1772,7 +1828,8 @@ systemctl start openstack-glance-api.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Download the Cirros image file from internet:</p> </div>
+<div class="text"><p><p>Download the Cirros image file from internet:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1791,7 +1848,8 @@ systemctl start openstack-glance-api.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create on OpenStack a new image called &#34;cirros&#34;, the disk format must be QCOW2 and the container format Bare:</p> </div>
+<div class="text"><p><p>Create on OpenStack a new image called &quot;cirros&quot;, the disk format must be QCOW2 and the container format Bare:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1814,7 +1872,8 @@ systemctl start openstack-glance-api.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if this command works propearly:</p> </div>
+<div class="text"><p><p>Check if this command works propearly:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1837,7 +1896,8 @@ systemctl start openstack-glance-api.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Also check if exist a new file on the path bellow:</p> </div>
+<div class="text"><p><p>Also check if exist a new file on the path bellow:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1860,7 +1920,8 @@ systemctl start openstack-glance-api.service
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>First of all, create the Cinder database and set the password to enable the connection on this database with user cinder:</p> </div>
+<div class="text"><p><p>First of all, create the Cinder database and set the password to enable the connection on this database with user cinder:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1881,7 +1942,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON cinder.* TO &#39;cinder&#39;@&#39;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create the Cinder user also set the role admin on project service:</p> </div>
+<div class="text"><p><p>Create the Cinder user also set the role admin on project service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1902,7 +1964,8 @@ openstack role add --project service --user cinder admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now create the Cinder V2 service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>Now create the Cinder V2 service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1927,7 +1990,8 @@ openstack endpoint create --region EURegion volumev2 admin http://simplecontroll
     </tbody>
   </table>
 </div>
-<div class="text"><p>And create the Cinder V3 service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>And create the Cinder V3 service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1952,7 +2016,8 @@ openstack endpoint create --region EURegion volumev3 admin http://simplecontroll
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Cinder packge:</p> </div>
+<div class="text"><p><p>Install the Cinder packge:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1971,7 +2036,8 @@ openstack endpoint create --region EURegion volumev3 admin http://simplecontroll
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the database configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the database configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -1990,7 +2056,8 @@ openstack endpoint create --region EURegion volumev3 admin http://simplecontroll
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
+<div class="text"><p><p>Set the RabbitMQ credentions also which server we will work:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2009,7 +2076,8 @@ openstack endpoint create --region EURegion volumev3 admin http://simplecontroll
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Cinder configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Cinder configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2046,7 +2114,8 @@ openstack-config --set /etc/cinder/cinder.conf keystone_authtoken password CINDE
     </tbody>
   </table>
 </div>
-<div class="text"><p>To manage external resources and with multi-thead and/or multi-process is necessary manage the lock where will determine who is doing what:</p> </div>
+<div class="text"><p><p>To manage external resources and with multi-thead and/or multi-process is necessary manage the lock where will determine who is doing what:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2065,7 +2134,8 @@ openstack-config --set /etc/cinder/cinder.conf keystone_authtoken password CINDE
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2084,7 +2154,8 @@ openstack-config --set /etc/cinder/cinder.conf keystone_authtoken password CINDE
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2103,7 +2174,8 @@ openstack-config --set /etc/cinder/cinder.conf keystone_authtoken password CINDE
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Cinder API and Cinder Scheduler service:</p> </div>
+<div class="text"><p><p>Enable and start the Cinder API and Cinder Scheduler service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2124,7 +2196,8 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if the Cinder services are running, in this case should be only the scheduler:</p> </div>
+<div class="text"><p><p>Check if the Cinder services are running, in this case should be only the scheduler:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2145,9 +2218,11 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
 </div>
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
 
-<div class="text"><p>The propuse of the section is describe how to have some way to provide volumes on OpenStack, for this environment will be the NFS, but on this blog have or will have other ways to provide Block Storage.</p> </div>
+<div class="text"><p><p>The propuse of the section is describe how to have some way to provide volumes on OpenStack, for this environment will be the NFS, but on this blog have or will have other ways to provide Block Storage.</p>
+</p> </div>
 
-<div class="text"><p>First of all, install the nfs-utils package that contain the nfs-server service:</p> </div>
+<div class="text"><p><p>First of all, install the nfs-utils package that contain the nfs-server service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2166,7 +2241,8 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>create a new directory that will be used to share with other machines through NFS protocol: </p> </div>
+<div class="text"><p><p>create a new directory that will be used to share with other machines through NFS protocol: </p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2185,7 +2261,8 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Inside the NFS configuration file, write the config about the directory recently created:</p> </div>
+<div class="text"><p><p>Inside the NFS configuration file, write the config about the directory recently created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2204,7 +2281,8 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the NFS Server service:</p> </div>
+<div class="text"><p><p>Enable and start the NFS Server service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2225,7 +2303,8 @@ systemctl start nfs-server
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check to see if it is all ok:</p> </div>
+<div class="text"><p><p>Check to see if it is all ok:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2246,7 +2325,8 @@ systemctl start nfs-server
 </div>
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the same packge, but this time we&#39;ll (Cinder Volume&#39;ll) use the &#39;mount.nfs&#39; command:</p> </div>
+<div class="text"><p><p>Install the same packge, but this time we&#39;ll (Cinder Volume&#39;ll) use the &#39;mount.nfs&#39; command:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2265,7 +2345,8 @@ systemctl start nfs-server
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine that the backends enabled will be the &#39;nfsbkend&#39;:</p> </div>
+<div class="text"><p><p>Determine that the backends enabled will be the &#39;nfsbkend&#39;:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2284,7 +2365,8 @@ systemctl start nfs-server
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure the Cinder Volume to work with the NFS protocol also determine the config file of our NFS Server:</p> </div>
+<div class="text"><p><p>Configure the Cinder Volume to work with the NFS protocol also determine the config file of our NFS Server:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2311,7 +2393,8 @@ openstack-config --set /etc/cinder/cinder.conf nfsbkend nfs_sparsed_volumes True
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set where is our NFS server like bellow:</p> </div>
+<div class="text"><p><p>Set where is our NFS server like bellow:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2330,7 +2413,8 @@ openstack-config --set /etc/cinder/cinder.conf nfsbkend nfs_sparsed_volumes True
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Cinder Volume service:</p> </div>
+<div class="text"><p><p>Enable and start the Cinder Volume service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2351,7 +2435,8 @@ systemctl restart openstack-cinder-api openstack-cinder-scheduler openstack-cind
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now is possible to see the mount of the NFS:</p> </div>
+<div class="text"><p><p>Now is possible to see the mount of the NFS:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2370,7 +2455,8 @@ systemctl restart openstack-cinder-api openstack-cinder-scheduler openstack-cind
     </tbody>
   </table>
 </div>
-<div class="text"><p>still admin user, create the type and correlate with the NFS server config:</p> </div>
+<div class="text"><p><p>still admin user, create the type and correlate with the NFS server config:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2393,7 +2479,8 @@ openstack volume type list --long
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create a new volume:</p> </div>
+<div class="text"><p><p>Create a new volume:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2418,7 +2505,8 @@ openstack volume type list --long
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create a new other volume, but this time from a image:</p> </div>
+<div class="text"><p><p>Create a new other volume, but this time from a image:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2443,7 +2531,8 @@ openstack volume type list --long
     </tbody>
   </table>
 </div>
-<div class="text"><p>List all volumes also their configs:</p> </div>
+<div class="text"><p><p>List all volumes also their configs:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2462,7 +2551,8 @@ openstack volume type list --long
     </tbody>
   </table>
 </div>
-<div class="text"><p>To finalize verify these new files on mount point:</p> </div>
+<div class="text"><p><p>To finalize verify these new files on mount point:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2483,7 +2573,8 @@ openstack volume type list --long
 </div>
 <p class="textsubtitle">Placement service (Placement)</p>
 
-<div class="text"><p>First of all, create the Placement database and set the password to enable the connection on this database with user placement:</p> </div>
+<div class="text"><p><p>First of all, create the Placement database and set the password to enable the connection on this database with user placement:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2504,7 +2595,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON placement.* TO &#39;placement&#39;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now create the Placement service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>Now create the Placement service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2529,7 +2621,8 @@ openstack endpoint create --region EURegion placement admin http://simplecontrol
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create the Placement user also set the role admin on project service:</p> </div>
+<div class="text"><p><p>Create the Placement user also set the role admin on project service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2550,7 +2643,8 @@ openstack role add --project service --user placement admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Placement packge:</p> </div>
+<div class="text"><p><p>Install the Placement packge:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2569,7 +2663,8 @@ openstack role add --project service --user placement admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the database configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the database configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2588,7 +2683,8 @@ openstack role add --project service --user placement admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Placement configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Placement configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2621,7 +2717,8 @@ openstack-config --set /etc/placement/placement.conf keystone_authtoken password
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2640,7 +2737,8 @@ openstack-config --set /etc/placement/placement.conf keystone_authtoken password
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2659,7 +2757,8 @@ openstack-config --set /etc/placement/placement.conf keystone_authtoken password
     </tbody>
   </table>
 </div>
-<div class="text"><p>This is a little workaround:</p> </div>
+<div class="text"><p><p>This is a little workaround:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2698,7 +2797,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Restart the Apache to make the changes affect:</p> </div>
+<div class="text"><p><p>Restart the Apache to make the changes affect:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2717,7 +2817,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if is possible to connect to Placement endpoints, this command now don&#39;t will have output</p> </div>
+<div class="text"><p><p>Check if is possible to connect to Placement endpoints, this command now don&#39;t will have output</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2740,7 +2841,8 @@ EOF
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>First of all, create the Nova databases (nova_api, nova and nova_cell0) and set the password to enable the connection on this database with user nova:</p> </div>
+<div class="text"><p><p>First of all, create the Nova databases (nova<em>api, nova and nova</em>cell0) and set the password to enable the connection on this database with user nova:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2769,7 +2871,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON nova_cell0.* TO &#39;nova&#39;@&#3
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now create the Nova service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>Now create the Nova service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2794,7 +2897,8 @@ openstack endpoint create --region EURegion compute admin http://simplecontrolle
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create the Nova user also set the role admin on project service:</p> </div>
+<div class="text"><p><p>Create the Nova user also set the role admin on project service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2815,7 +2919,8 @@ openstack role add --project service --user nova admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Nova packges:</p> </div>
+<div class="text"><p><p>Install the Nova packges:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2834,7 +2939,8 @@ openstack role add --project service --user nova admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the databases configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the databases configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2855,7 +2961,8 @@ openstack-config --set /etc/nova/nova.conf database connection mysql+pymysql://n
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
+<div class="text"><p><p>Set the RabbitMQ credentions also which server we will work:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2874,7 +2981,8 @@ openstack-config --set /etc/nova/nova.conf database connection mysql+pymysql://n
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Nova configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Nova configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2907,7 +3015,8 @@ openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set where is the Glance service that this nova will talk:</p> </div>
+<div class="text"><p><p>Set where is the Glance service that this nova will talk:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2926,7 +3035,8 @@ openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Also determine which Cinder Region this nova will talk:</p> </div>
+<div class="text"><p><p>Also determine which Cinder Region this nova will talk:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2945,7 +3055,8 @@ openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials for the service Placement on the Nova configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials for the service Placement on the Nova configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2978,7 +3089,8 @@ openstack-config --set /etc/nova/nova.conf placement password PLACEMENT_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>This configuration is to add automatically new compute nodes to the cell:</p> </div>
+<div class="text"><p><p>This configuration is to add automatically new compute nodes to the cell:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -2997,7 +3109,8 @@ openstack-config --set /etc/nova/nova.conf placement password PLACEMENT_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3022,7 +3135,8 @@ su -s /bin/sh -c &#34;nova-manage db sync&#34; nova
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3045,7 +3159,8 @@ mysql -uroot nova -e &#34;show tables&#34;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Check if the cell are correctly configured:</p> </div>
+<div class="text"><p><p>Check if the cell are correctly configured:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3064,7 +3179,8 @@ mysql -uroot nova -e &#34;show tables&#34;
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Nova API, Nova Scheduler, Nova Conductor and Nova NoVNCProxy service:</p> </div>
+<div class="text"><p><p>Enable and start the Nova API, Nova Scheduler, Nova Conductor and Nova NoVNCProxy service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3089,7 +3205,8 @@ systemctl start openstack-nova-api.service openstack-nova-scheduler.service \
     </tbody>
   </table>
 </div>
-<div class="text"><p>List all services from Nova:</p> </div>
+<div class="text"><p><p>List all services from Nova:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3110,7 +3227,8 @@ systemctl start openstack-nova-api.service openstack-nova-scheduler.service \
 </div>
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
 
-<div class="text"><p>Install the Nova packge:</p> </div>
+<div class="text"><p><p>Install the Nova packge:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3129,7 +3247,8 @@ systemctl start openstack-nova-api.service openstack-nova-scheduler.service \
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
+<div class="text"><p><p>Set the RabbitMQ credentions also which server we will work:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3148,7 +3267,8 @@ systemctl start openstack-nova-api.service openstack-nova-scheduler.service \
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Nova configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Nova configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3181,7 +3301,8 @@ openstack-config --set /etc/nova/nova.conf keystone_authtoken password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials for the service Placement on the Nova configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials for the service Placement on the Nova configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3214,7 +3335,8 @@ openstack-config --set /etc/nova/nova.conf placement password PLACEMENT_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure the VNC to enable the &#39;simplecontroller&#39; be a proxy from external environmet to the internal machines:</p> </div>
+<div class="text"><p><p>Configure the VNC to enable the &#39;simplecontroller&#39; be a proxy from external environmet to the internal machines:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3239,7 +3361,8 @@ openstack-config --set /etc/nova/nova.conf vnc novncproxy_base_url http://192.16
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine which Glance service will be used by this Nova Compute:</p> </div>
+<div class="text"><p><p>Determine which Glance service will be used by this Nova Compute:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3258,7 +3381,8 @@ openstack-config --set /etc/nova/nova.conf vnc novncproxy_base_url http://192.16
     </tbody>
   </table>
 </div>
-<div class="text"><p>This little script will look if the processor supoort virtualization:</p> </div>
+<div class="text"><p><p>This little script will look if the processor supoort virtualization:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3287,7 +3411,8 @@ fi
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the LibvirtD and Nova Computeservice:</p> </div>
+<div class="text"><p><p>Enable and start the LibvirtD and Nova Computeservice:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3310,7 +3435,8 @@ systemctl start libvirtd.service openstack-nova-compute.service
 </div>
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Now it is time to see all works very well:</p> </div>
+<div class="text"><p><p>Now it is time to see all works very well:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3337,7 +3463,8 @@ openstack resource provider list
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the Horizon packge:</p> </div>
+<div class="text"><p><p>Install the Horizon packge:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3356,7 +3483,8 @@ openstack resource provider list
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine which OpenStack this Horizon will conect:</p> </div>
+<div class="text"><p><p>Determine which OpenStack this Horizon will conect:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3375,7 +3503,8 @@ openstack resource provider list
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set where from will be accept connections:</p> </div>
+<div class="text"><p><p>Set where from will be accept connections:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3394,7 +3523,8 @@ openstack resource provider list
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set Horizon to store the Session and Cache on Memcached:</p> </div>
+<div class="text"><p><p>Set Horizon to store the Session and Cache on Memcached:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3415,7 +3545,8 @@ openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable the Horizon to work with multiple Domains:</p> </div>
+<div class="text"><p><p>Enable the Horizon to work with multiple Domains:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3434,7 +3565,8 @@ openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES
     </tbody>
   </table>
 </div>
-<div class="text"><p>Chose the default Role to be used by Horizon:</p> </div>
+<div class="text"><p><p>Chose the default Role to be used by Horizon:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3453,7 +3585,8 @@ openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES
     </tbody>
   </table>
 </div>
-<div class="text"><p>Restart the Apache to be affected by the changes:</p> </div>
+<div class="text"><p><p>Restart the Apache to be affected by the changes:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -3472,7 +3605,8 @@ openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now finalize the instalation fowlling one of the next sections:</p> </div>
+<div class="text"><p><p>Now finalize the instalation fowlling one of the next sections:</p>
+</p> </div>
 
 <p class="link"><a href="https://engops.github.io/OpenStack/Base/OpenVSwitch_Base.html">OpenStack/Base/OpenVSwitch_Base</a></p>
 

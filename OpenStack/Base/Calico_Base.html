@@ -348,7 +348,8 @@ for (i = 0; i < dropdown.length; i++) {
   
   <h1 style="text-align:center;"> Calico Base </h1>
 
-<div class="text"><p>To do this section is advise finalized or have enviroment equal the section bellow: </p> </div>
+<div class="text"><p><p>To do this section is advise finalized or have enviroment equal the section bellow: </p>
+</p> </div>
 
 <p class="link"><a href="https://engops.github.io/OpenStack/Base/Instalation_Base.html">OpenStack/Base/Instalation_Base</a></p>
 
@@ -356,7 +357,8 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
-<div class="text"><p>Install the ETCD that will be used by Calico:</p> </div>
+<div class="text"><p><p>Install the ETCD that will be used by Calico:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -375,7 +377,8 @@ for (i = 0; i < dropdown.length; i++) {
     </tbody>
   </table>
 </div>
-<div class="text"><p>Configure the ETCD:</p> </div>
+<div class="text"><p><p>Configure the ETCD:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -414,7 +417,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the ETCD service:</p> </div>
+<div class="text"><p><p>Enable and start the ETCD service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -491,7 +495,8 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="text"><p>First of all, create the Neutron database and set the password to enable the connection on this database with user neutron:</p> </div>
+<div class="text"><p><p>First of all, create the Neutron database and set the password to enable the connection on this database with user neutron:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -512,7 +517,8 @@ mysql -u root -e &#34;GRANT ALL PRIVILEGES ON neutron.* TO &#39;neutron&#39;@&#3
     </tbody>
   </table>
 </div>
-<div class="text"><p>Now create the Neutron service as well add the your endpoints:</p> </div>
+<div class="text"><p><p>Now create the Neutron service as well add the your endpoints:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -537,7 +543,8 @@ openstack endpoint create --region EURegion network admin http://simplecontrolle
     </tbody>
   </table>
 </div>
-<div class="text"><p>Create the Neutron user also set the role admin on project service:</p> </div>
+<div class="text"><p><p>Create the Neutron user also set the role admin on project service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -558,7 +565,8 @@ openstack role add --project service --user neutron admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Install the Neutron packges:</p> </div>
+<div class="text"><p><p>Install the Neutron packges:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -577,7 +585,8 @@ openstack role add --project service --user neutron admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the database configurations created few steps above:</p> </div>
+<div class="text"><p><p>Set the database configurations created few steps above:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -596,7 +605,8 @@ openstack role add --project service --user neutron admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set the RabbitMQ credentions also which server we will work:</p> </div>
+<div class="text"><p><p>Set the RabbitMQ credentions also which server we will work:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -615,7 +625,8 @@ openstack role add --project service --user neutron admin
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials on the Neutron configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials on the Neutron configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -652,7 +663,8 @@ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken password NEU
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable the communication between Neutron and Nova, it is also used by Designate:</p> </div>
+<div class="text"><p><p>Enable the communication between Neutron and Nova, it is also used by Designate:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -673,7 +685,8 @@ openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_dat
     </tbody>
   </table>
 </div>
-<div class="text"><p>Determine the OpenStack credentials for Nova service on the Neutron configuration file:</p> </div>
+<div class="text"><p><p>Determine the OpenStack credentials for Nova service on the Neutron configuration file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -706,7 +719,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>To manage external resources and with multi-thead and/or multi-process is necessary manage the lock where will determine who is doing what:</p> </div>
+<div class="text"><p><p>To manage external resources and with multi-thead and/or multi-process is necessary manage the lock where will determine who is doing what:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -725,7 +739,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Set here that our core_plugin will be the Calico:</p> </div>
+<div class="text"><p><p>Set here that our core_plugin will be the Calico:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -761,7 +776,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p> </div>
+<div class="text"><p><p>Sync the database, it means create all tables also populate with the minimum iformation required:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -780,7 +796,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Confirm looking if the tables are created:</p> </div>
+<div class="text"><p><p>Confirm looking if the tables are created:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -799,7 +816,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>The Neutron-server will look for this file, so just create a empty file:</p> </div>
+<div class="text"><p><p>The Neutron-server will look for this file, so just create a empty file:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -818,7 +836,8 @@ openstack-config --set /etc/neutron/neutron.conf nova password NOVA_PASS
     </tbody>
   </table>
 </div>
-<div class="text"><p>Enable and start the Neutron Server service:</p> </div>
+<div class="text"><p><p>Enable and start the Neutron Server service:</p>
+</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
