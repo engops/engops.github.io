@@ -363,55 +363,86 @@ for (i = 0; i < dropdown.length; i++) {
 
 <div class="text"><p><p>Create a pod</p>
 </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl run --generator=run-pod/v1 nginx --image=nginx
 
-<div class="text"><p><p>```</p>
-</p> </div>
-
-<div class="text"><p><p>kubectl run --generator=run-pod/v1 nginx --image=nginx</p>
-</p> </div>
-
-<div class="text"><p><p>```</p>
-</p> </div>
-
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="text"><p><p>Generate POD yaml file</p>
 </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml &gt; pod-definition.yml
 
-<div class="text"><p><p>```</p>
-</p> </div>
-
-<div class="text"><p><p>kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml &gt; pod-definition.yml</p>
-</p> </div>
-
-<div class="text"><p><p>```</p>
-</p> </div>
-
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="text"><p><p>Create Deployment</p>
 </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl create deployment --image=nginx nginx
 
-<div class="text"><p><p>```</p>
-</p> </div>
-
-<div class="text"><p><p>kubectl create deployment --image=nginx nginx</p>
-</p> </div>
-
-<div class="text"><p><p>```</p>
-</p> </div>
-
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="text"><p><p>Create Deployment with replicas</p>
 </p> </div>
+<div class="numerallines">
+  <table cellspacing="0" cellpadding="0" border="1">
+    <tbody>
+      <tr>
+        <td class="gutter">
+          
+          <div class="line number1 index0 alt0">1</div>
+          <div class="line number1 index0 alt0">2</div></td>
+        <td class="code">
+          <div class="container">
+          <div class="line number1 index0 alt1">kubectl create deployment --image=nginx nginx
+kubectl scale deployment/nginx --replicas=4
 
-<div class="text"><p><p>```</p>
-</p> </div>
-
-<div class="text"><p><p>kubectl create deployment --image=nginx nginx</p>
-</p> </div>
-
-<div class="text"><p><p>kubectl scale deployment/nginx --replicas=4</p>
-</p> </div>
-
-<div class="text"><p><p>```</p>
-</p> </div>
-
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="text"><p><blockquote>
 <p>You may want generate the deployment YAML file and than update the replica options either</p>
 </blockquote>
