@@ -356,38 +356,60 @@ for (i = 0; i < dropdown.length; i++) {
 
 <p class="link"><a href="https://engops.github.io/Kubernetes/How_to_install_K8S.html">Kubernetes/How_to_install_K8S</a></p>
 
+<div class="text"><p><hr>
+</p> </div>
+
 <div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>Imperative Commands</p> </div>
 
 <div class="text"><p><p>Create a pod</p>
 </p> </div>
 
-<div class="text"><p><pre><code>kubectl run --generator=run-pod/v1 nginx --image=nginx
-</code></pre>
+<div class="text"><p><p>```</p>
+</p> </div>
+
+<div class="text"><p><p>kubectl run --generator=run-pod/v1 nginx --image=nginx</p>
+</p> </div>
+
+<div class="text"><p><p>```</p>
 </p> </div>
 
 <div class="text"><p><p>Generate POD yaml file</p>
 </p> </div>
 
-<div class="text"><p><pre><code>kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml &gt; pod-definition.yml
-</code></pre>
+<div class="text"><p><p>```</p>
+</p> </div>
+
+<div class="text"><p><p>kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml &gt; pod-definition.yml</p>
+</p> </div>
+
+<div class="text"><p><p>```</p>
 </p> </div>
 
 <div class="text"><p><p>Create Deployment</p>
 </p> </div>
 
-<div class="text"><p><pre><code>kubectl create deployment --image=nginx nginx
-</code></pre>
+<div class="text"><p><p>```</p>
+</p> </div>
+
+<div class="text"><p><p>kubectl create deployment --image=nginx nginx</p>
+</p> </div>
+
+<div class="text"><p><p>```</p>
 </p> </div>
 
 <div class="text"><p><p>Create Deployment with replicas</p>
 </p> </div>
 
-<div class="text"><p><pre><code>kubectl create deployment --image=nginx nginx
-</code></pre>
+<div class="text"><p><p>```</p>
 </p> </div>
 
-<div class="text"><p><pre><code>kubectl scale deployment/nginx --replicas=4
-</code></pre>
+<div class="text"><p><p>kubectl create deployment --image=nginx nginx</p>
+</p> </div>
+
+<div class="text"><p><p>kubectl scale deployment/nginx --replicas=4</p>
+</p> </div>
+
+<div class="text"><p><p>```</p>
 </p> </div>
 
 <div class="text"><p><blockquote>
