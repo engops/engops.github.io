@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" href="https://engops.github.io/static/images/pinguin.png">
+<link rel="icon" type="image/png" href="http://127.0.0.1:83/static/images/pinguin.png">
 
 <style>
 html, body {
@@ -286,44 +286,52 @@ html, body {
 <body>
 
 <div class="sidenav">
-  <a href="https://engops.github.io/index.html">Welcome</a>
+  <a href="http://127.0.0.1:83/index.html">Welcome</a>
 
   
-  <button class="dropdown-btn">Kubernetes
-    <i class="fa-caret-down"></i>
-    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
-  </button>
-    <div class="dropdown-container">
-  <a href="https://engops.github.io/Kubernetes/CKA.html">CKA</a>
-  <a href="https://engops.github.io/Kubernetes/How_to_install_K8S.html">How to install K8S</a>
-  </div>
-
   <button class="dropdown-btn">OpenStack
     <i class="fa-caret-down"></i>
-    <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
   </button>
     <div class="dropdown-container">
-  <a href="https://engops.github.io/OpenStack/openstack-helm.html">openstack-helm</a>
-  <a href="https://engops.github.io/OpenStack/pfSense-cloudinit.html">pfSense-cloudinit</a>
+  <a href="http://127.0.0.1:83/OpenStack/pfSense-cloudinit.html">pfSense-cloudinit</a>
+  <a href="http://127.0.0.1:83/OpenStack/pfSense-instance.html">pfSense-instance</a>
+  <a href="http://127.0.0.1:83/OpenStack/openstack-helm.html">openstack-helm</a>
   
     <button class="dropdown-btn">Base
       <i class="fa-caret-down"></i>
-      <img src="https://engops.github.io/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+      <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
     </button>
     <div class="dropdown-container">
     
-      <a href="https://engops.github.io/OpenStack/Base/OpenVSwitch_Base.html">OpenVSwitch Base</a>
+      <a href="http://127.0.0.1:83/OpenStack/Base/Instalation_Base.html">Instalation Base</a>
     
-      <a href="https://engops.github.io/OpenStack/Base/LinuxBridge_Base.html">LinuxBridge Base</a>
+      <a href="http://127.0.0.1:83/OpenStack/Base/Calico_Base.html">Calico Base</a>
     
-      <a href="https://engops.github.io/OpenStack/Base/Calico_Base.html">Calico Base</a>
+      <a href="http://127.0.0.1:83/OpenStack/Base/LinuxBridge_Base.html">LinuxBridge Base</a>
     
-      <a href="https://engops.github.io/OpenStack/Base/Instalation_Base.html">Instalation Base</a>
+      <a href="http://127.0.0.1:83/OpenStack/Base/OpenVSwitch_Base.html">OpenVSwitch Base</a>
     
     </div>
-  <a href="https://engops.github.io/OpenStack/pfSense-instance.html">pfSense-instance</a>
   </div>
-<a href="https://engops.github.io/index.html">About</a>
+
+  <button class="dropdown-btn">Ironic_Standalone
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+    <div class="dropdown-container">
+  <a href="http://127.0.0.1:83/Ironic_Standalone/StandALone.html">StandALone</a>
+  </div>
+
+  <button class="dropdown-btn">Kubernetes
+    <i class="fa-caret-down"></i>
+    <img src="http://127.0.0.1:83/static/images/drop-down-arrow.png" alt="image" style="width:15px">
+  </button>
+    <div class="dropdown-container">
+  <a href="http://127.0.0.1:83/Kubernetes/How_to_install_K8S.html">How to install K8S</a>
+  <a href="http://127.0.0.1:83/Kubernetes/CKA.html">CKA</a>
+  </div>
+<a href="http://127.0.0.1:83/index.html">About</a>
 
 </div>
 
@@ -351,12 +359,12 @@ for (i = 0; i < dropdown.length; i++) {
 <div class="text"><p><p>This is a simple how-to to show how install openstack manually using the packages from repository, we will install only two machines as OpenStack components and the third will be to adictional services, on to be the &quot;simplecontroller&quot; (where all services will installed) and other to be the compute-node as well we will have only one network, the imagem bellow show how will be the environment.</p>
 </p> </div>
 
-<img class="centerimage" src="https://engops.github.io/OpenStack/environment.png" style="width:50%;">
+<img class="centerimage" src="http://127.0.0.1:83/OpenStack/environment.png" style="width:50%;">
 
 <div class="text"><p><p>first of all configure the name and ips on all machines like the commands bellow.</p>
 </p> </div>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -414,7 +422,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -472,7 +480,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -530,7 +538,7 @@ EOF
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>All machines!!!</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>All machines!!!</p> </div>
 
 <div class="text"><p><p>Disable the SELinux:</p>
 </p> </div>
@@ -672,7 +680,7 @@ EOF
 </div>
 <p class="textsubtitle">NTP</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -767,7 +775,7 @@ systemctl start chronyd.service
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
 <div class="numerallines">
   <table cellspacing="0" cellpadding="0" border="1">
     <tbody>
@@ -862,7 +870,7 @@ systemctl start chronyd.service
 </div>
 <p class="textsubtitle">SQL DataBase</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Install the MariaDB service and the python connector:</p>
 </p> </div>
@@ -984,7 +992,7 @@ systemctl start mariadb.service
 </div>
 <p class="textsubtitle">Message Queue</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Install the RabbitMQ service to provide the message system:</p>
 </p> </div>
@@ -1094,7 +1102,7 @@ rabbitmqctl set_permissions openstack &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
 </div>
 <p class="textsubtitle">Memcached</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Install the Memcached and the python library to enable openstack uses memcached:</p>
 </p> </div>
@@ -1180,7 +1188,7 @@ systemctl start memcached.service
 </div>
 <p class="textsubtitle">Identity service (Keystone)</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>First of all, create the Keystone database and set the password to enable the connection on this database with user keystone:</p>
 </p> </div>
@@ -1618,7 +1626,7 @@ openstack role add --project myproject --project-domain mydomain --user myuser -
 </div>
 <p class="textsubtitle">Image service (Glance)</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>First of all, create the Glance database and set the password to enable the connection on this database with user glance:</p>
 </p> </div>
@@ -1918,7 +1926,7 @@ systemctl start openstack-glance-api.service
 </div>
 <p class="textsubtitle">Volume service (Cinder)</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>First of all, create the Cinder database and set the password to enable the connection on this database with user cinder:</p>
 </p> </div>
@@ -2216,7 +2224,7 @@ systemctl start openstack-cinder-api.service openstack-cinder-scheduler.service
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simpleservices</p> </div>
 
 <div class="text"><p><p>The propuse of the section is describe how to have some way to provide volumes on OpenStack, for this environment will be the NFS, but on this blog have or will have other ways to provide Block Storage.</p>
 </p> </div>
@@ -2323,7 +2331,7 @@ systemctl start nfs-server
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Install the same packge, but this time we&#39;ll (Cinder Volume&#39;ll) use the &#39;mount.nfs&#39; command:</p>
 </p> </div>
@@ -2839,7 +2847,7 @@ EOF
 </div>
 <p class="textsubtitle">Compute service (Nova)</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>First of all, create the Nova databases (nova<em>api, nova and nova</em>cell0) and set the password to enable the connection on this database with user nova:</p>
 </p> </div>
@@ -3225,7 +3233,7 @@ systemctl start openstack-nova-api.service openstack-nova-scheduler.service \
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecompute</p> </div>
 
 <div class="text"><p><p>Install the Nova packge:</p>
 </p> </div>
@@ -3433,7 +3441,7 @@ systemctl start libvirtd.service openstack-nova-compute.service
     </tbody>
   </table>
 </div>
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Now it is time to see all works very well:</p>
 </p> </div>
@@ -3461,7 +3469,7 @@ openstack resource provider list
 </div>
 <p class="textsubtitle">Dashboard (Horizon)</p>
 
-<div class="whichserver"> <img src=https://engops.github.io/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
+<div class="whichserver"> <img src=http://127.0.0.1:83/static/images/term1.jpeg alt="which_server" width="52" height="52" align="left"> <p>simplecontroller</p> </div>
 
 <div class="text"><p><p>Install the Horizon packge:</p>
 </p> </div>
@@ -3608,11 +3616,11 @@ openstack-config --set /etc/openstack-dashboard/local_settings &#39;&#39; CACHES
 <div class="text"><p><p>Now finalize the instalation fowlling one of the next sections:</p>
 </p> </div>
 
-<p class="link"><a href="https://engops.github.io/OpenStack/Base/OpenVSwitch_Base.html">OpenStack/Base/OpenVSwitch_Base</a></p>
+<p class="link"><a href="http://127.0.0.1:83/OpenStack/Base/OpenVSwitch_Base.html">OpenStack/Base/OpenVSwitch_Base</a></p>
 
-<p class="link"><a href="https://engops.github.io/OpenStack/Base/Calico_Base.html">OpenStack/Base/Calico_Base</a></p>
+<p class="link"><a href="http://127.0.0.1:83/OpenStack/Base/Calico_Base.html">OpenStack/Base/Calico_Base</a></p>
 
-<p class="link"><a href="https://engops.github.io/OpenStack/Base/LinuxBridge_Base.html">OpenStack/Base/LinuxBridge_Base</a></p>
+<p class="link"><a href="http://127.0.0.1:83/OpenStack/Base/LinuxBridge_Base.html">OpenStack/Base/LinuxBridge_Base</a></p>
 
 </div>
 
